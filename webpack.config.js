@@ -12,7 +12,8 @@ const baseConfig = {
         rules: [
             {
                 test: /\.(css|scss)/,
-                use: [MiniCssExtractPlugin.loader, 'css-loader', 'sass-loader'],
+                //use: [MiniCssExtractPlugin.loader, 'css-loader', 'sass-loader'],
+                use: ['style-loader', 'css-loader', 'sass-loader']
             },
             {
                 test: /\.tsx?$/,
@@ -41,10 +42,11 @@ const baseConfig = {
             template: path.resolve(__dirname, './src/index.html'),
             filename: 'index.html',
         }),
-        new CleanWebpackPlugin(),
+        
         new MiniCssExtractPlugin({
             filename: '[name].[contenthash].css',
         }),
+        new CleanWebpackPlugin(),
     ],
 };
 
