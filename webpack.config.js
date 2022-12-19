@@ -2,6 +2,7 @@ const path = require('path');
 const { merge } = require('webpack-merge');
 const HtmlWebpackPlugin = require('html-webpack-plugin');
 const { CleanWebpackPlugin } = require('clean-webpack-plugin');
+const CopyWebpackPlugin = require('copy-webpack-plugin');
 const MiniCssExtractPlugin = require('mini-css-extract-plugin');
 
 const baseConfig = {
@@ -24,8 +25,15 @@ const baseConfig = {
                 test: /\.(ttf|woff|woff2)$/,
                 type: 'asset/resource',
             },
+            //{
+            //  test: /\.(gif|png|jpg|jpeg|svg)?$/,
+            //  loader: 'file-loader',
+            //  options: {
+            //    name: 'assets/img/[name].[ext]',
+            //  },
+            //},
             {
-                test: /\.(png|jpg|svg|ico)$/,
+                test: /\.(png|jpg|jpeg|svg|ico)$/,
                 type: 'asset/resource',
             },
         ],
@@ -45,6 +53,19 @@ const baseConfig = {
         
         new MiniCssExtractPlugin({
             filename: '[name].[contenthash].css',
+        }),
+        //new CopyWebpackPlugin(),
+        new CopyWebpackPlugin({
+          patterns: [
+            {
+              from: './src/assets/img/',
+              to: './assets/img'
+            },
+            //{
+            //  from: './assets/icons/',
+            //  to: './icons'
+            //},
+          ],
         }),
         new CleanWebpackPlugin(),
     ],
