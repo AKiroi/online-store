@@ -2,6 +2,7 @@ import { createHTMLElement } from '../../utils/createHTMLElement';
 
 class Header {
   constructor() {}
+  
   draw() {
     const header = createHTMLElement('header', 'header');
     const headerContaner = createHTMLElement('header__container');

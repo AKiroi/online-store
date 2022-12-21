@@ -16,17 +16,13 @@ class App {
     const body: HTMLElement = document.body;
     body.classList.add('body');
 
-    body.innerHTML = ''
+    body.innerHTML = '';
+
+    console.log(body);
+    
     
     const mainPage = this.MainPage.draw();
-    console.log(mainPage);
-    body.append(mainPage)
-    //body.draw()
-    //document
-    //  .querySelector<HTMLElement>('.sources')
-    //  ?.addEventListener('click', (e) => this.controller.getNews(e, (data) => this.view.drawNews(data)));
-    //this.controller.getSources((data) => this.view.drawCapitalLetters(data));
-    //this.controller.getNewsDefault((data) => this.view.drawNews(data));
+    body.append(mainPage);
   }
 }
 

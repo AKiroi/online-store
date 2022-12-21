@@ -4,9 +4,9 @@ import { createHTMLElement } from '../../utils/createHTMLElement';
 import Header from './../../components/header/Header';
 
 class MainPage {
-  header 
-  main
-  footer
+  public header ;
+  public main;
+  public footer;
 
   constructor() {
       this.header = new Header();
