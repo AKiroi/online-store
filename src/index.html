@@ -7,343 +7,359 @@
     <title>music-store</title>
 </head>
 <body>
-    <div class="wrapper">
-      <header class="header">
-        <div class="header__container">
-          <h1 class="header__logo">Music store</h1>
-          <div class="header-box">
-            <div class="header__search search">
+    <header class="header">
+      <div class="header__container">
+        <h1 class="header__logo">Music store</h1>
+        <div class="header__cart">
+          <img src="./assets/icons/cart-icon.svg" alt="cart-icon">
+          <span class="header__count">0</span>
+        </div>
+      </div>
+    </header>
+
+    <main class="main">
+      <div class="main__container">
+        <div class="main__filters filters">
+
+          <div class="filters__buttons">
+            <button class="filters__reset-btn">Reset filters</button>
+            <button class="filters__copy-links-btn">Copy links</button>
+          </div>
+
+          <div class="filters__brand brand-filter">
+            <div class="brand-filter__title">Brand</div>
+            <div class="brand-filter__items">
+              <div class="brand-filter__item">
+                <label class="brand-filter__wrapper">
+                  <input type="checkbox" class="brand-filter__checkbox" name="brand">
+                  <span class="brand-filter__custom-checkbox"></span>
+                  <span class="brand-filter__name">Fender</span>
+                  <div class="brand-filter__count">10</div>
+                </label>
+              </div>
+              <div class="brand-filter__item">
+                <label class="brand-filter__wrapper">
+                  <input type="checkbox" class="brand-filter__checkbox" name="brand">
+                  <span class="brand-filter__custom-checkbox"></span>
+                  <span class="brand-filter__name">Fender</span>
+                  <div class="brand-filter__count">10</div>
+                </label>
+              </div>
+              <div class="brand-filter__item">
+                <label class="brand-filter__wrapper">
+                  <input type="checkbox" class="brand-filter__checkbox" name="brand">
+                  <span class="brand-filter__custom-checkbox"></span>
+                  <span class="brand-filter__name">Fender</span>
+                  <div class="brand-filter__count">10</div>
+                </label>
+              </div>
+              <div class="brand-filter__item">
+                <label class="brand-filter__wrapper">
+                  <input type="checkbox" class="brand-filter__checkbox" name="brand">
+                  <span class="brand-filter__custom-checkbox"></span>
+                  <span class="brand-filter__name">Fender</span>
+                  <div class="brand-filter__count">10</div>
+                </label>
+              </div>
+              <div class="brand-filter__item">
+                <label class="brand-filter__wrapper">
+                  <input type="checkbox" class="brand-filter__checkbox" name="brand">
+                  <span class="brand-filter__custom-checkbox"></span>
+                  <span class="brand-filter__name">Fender</span>
+                  <div class="brand-filter__count">10</div>
+                </label>
+              </div>
+              <div class="brand-filter__item">
+                <label class="brand-filter__wrapper">
+                  <input type="checkbox" class="brand-filter__checkbox" name="brand">
+                  <span class="brand-filter__custom-checkbox"></span>
+                  <span class="brand-filter__name">Fender</span>
+                  <div class="brand-filter__count">10</div>
+                </label>
+              </div>
+              <div class="brand-filter__item">
+                <label class="brand-filter__wrapper">
+                  <input type="checkbox" class="brand-filter__checkbox" name="brand">
+                  <span class="brand-filter__custom-checkbox"></span>
+                  <span class="brand-filter__name">Fender</span>
+                  <div class="brand-filter__count">10</div>
+                </label>
+              </div>
+            </div>
+          </div>
+
+          <div class="filters__brand brand-filter">
+            <div class="brand-filter__title">Category</div>
+            <div class="brand-filter__items">
+              <div class="brand-filter__item">
+                <label class="brand-filter__wrapper">
+                  <input type="checkbox" class="brand-filter__checkbox" name="brand">
+                  <span class="brand-filter__custom-checkbox"></span>
+                  <span class="brand-filter__name">Guitar</span>
+                  <div class="brand-filter__count">10</div>
+                </label>
+              </div>
+              <div class="brand-filter__item">
+                <label class="brand-filter__wrapper">
+                  <input type="checkbox" class="brand-filter__checkbox" name="brand">
+                  <span class="brand-filter__custom-checkbox"></span>
+                  <span class="brand-filter__name">Guitar</span>
+                  <div class="brand-filter__count">10</div>
+                </label>
+              </div>
+              <div class="brand-filter__item">
+                <label class="brand-filter__wrapper">
+                  <input type="checkbox" class="brand-filter__checkbox" name="brand">
+                  <span class="brand-filter__custom-checkbox"></span>
+                  <span class="brand-filter__name">Guitar</span>
+                  <div class="brand-filter__count">10</div>
+                </label>
+              </div>
+              <div class="brand-filter__item">
+                <label class="brand-filter__wrapper">
+                  <input type="checkbox" class="brand-filter__checkbox" name="brand">
+                  <span class="brand-filter__custom-checkbox"></span>
+                  <span class="brand-filter__name">Guitar</span>
+                  <div class="brand-filter__count">10</div>
+                </label>
+              </div>
+              <div class="brand-filter__item">
+                <label class="brand-filter__wrapper">
+                  <input type="checkbox" class="brand-filter__checkbox" name="brand">
+                  <span class="brand-filter__custom-checkbox"></span>
+                  <span class="brand-filter__name">Guitar</span>
+                  <div class="brand-filter__count">10</div>
+                </label>
+              </div>
+              <div class="brand-filter__item">
+                <label class="brand-filter__wrapper">
+                  <input type="checkbox" class="brand-filter__checkbox" name="brand">
+                  <span class="brand-filter__custom-checkbox"></span>
+                  <span class="brand-filter__name">Guitar</span>
+                  <div class="brand-filter__count">10</div>
+                </label>
+              </div>
+              <div class="brand-filter__item">
+                <label class="brand-filter__wrapper">
+                  <input type="checkbox" class="brand-filter__checkbox" name="brand">
+                  <span class="brand-filter__custom-checkbox"></span>
+                  <span class="brand-filter__name">Guitar</span>
+                  <div class="brand-filter__count">10</div>
+                </label>
+              </div>
+            </div>
+          </div>
+          
+          <div class="filters__price price-filter">
+            <div class="price-filter__title">Price</div>
+            <div class="price-filter__numbers-wrapper">
+              <div class="price-filter__min">
+                <input class="price-filter__number-min" type="number" min="0" max="2000" value="0" disabled>
+              </div>
+              <div class="price-filter__max">
+                <input type="number" class="price-filter__number-max" min="0" max="2000" value="2000" disabled>
+              </div>
+            </div>
+            <div class="price-filter__wrapper">
+              <div class="price-filter__input-custom"></div>
+              <input type="range" class="price-filter__input-min price-filter__range" min="0" max="2000" value="0">
+              <input type="range" class="price-filter__input-max price-filter__range" min="0" max="2000" value="2000">
+            </div>
+          </div>
+
+          <div class="filters__stock stock-filter">
+            <div class="stock-filter__title">Stock</div>
+            <div class="stock-filter__numbers-wrapper">
+              <div class="stock-filter__min">
+                <input class="stock-filter__number-min" type="number" min="0" max="30" value="0" disabled>
+              </div>
+              <div class="stock-filter__max">
+                <input type="number" class="stock-filter__number-max" min="0" max="30" value="30" disabled>
+              </div>
+            </div>
+            <div class="stock-filter__wrapper">
+              <div class="stock-filter__input-custom"></div>
+              <input type="range" class="stock-filter__input-min stock-filter__range" min="0" max="30" value="0">
+              <input type="range" class="stock-filter__input-max stock-filter__range" min="0" max="30" value="30">
+            </div>
+          </div>
+        </div>
+
+        <div class="main__goods">
+          <div class="goods-sort">
+            <div class="search">
               <form>
                 <input type="search" class="search__input" id="search-input" placeholder="Find...." autofocus/>
               </form>
-              <div class="header__cart">
-                <span class="header__count">0</span>
-                <svg xmlns="http://www.w3.org/2000/svg" width="40" height="40" viewBox="0 0 92 92">
-                  <path fill="#ffca94"
-                        d="M91.8 27.3L81.1 61c-.8 2.4-2.9 4-5.4 4H34.4c-2.4 0-4.7-1.5-5.5-3.7L13.1 19H4c-2.2 0-4-1.8-4-4s1.8-4 4-4h11.9c1.7 0 3.2 1.1 3.8 2.7L36 57h38l8.5-27H35.4c-2.2 0-4-1.8-4-4s1.8-4 4-4H88c1.3 0 2.5.7 3.2 1.7.8 1 1 2.4.6 3.6zm-55.4 43c-1.7 0-3.4.7-4.6 1.9-1.2 1.2-1.9 2.9-1.9 4.6 0 1.7.7 3.4 1.9 4.6 1.2 1.2 2.9 1.9 4.6 1.9s3.4-.7 4.6-1.9c1.2-1.2 1.9-2.9 1.9-4.6 0-1.7-.7-3.4-1.9-4.6-1.2-1.2-2.9-1.9-4.6-1.9zm35.9 0c-1.7 0-3.4.7-4.6 1.9s-1.9 2.9-1.9 4.6c0 1.7.7 3.4 1.9 4.6 1.2 1.2 2.9 1.9 4.6 1.9 1.7 0 3.4-.7 4.6-1.9 1.2-1.2 1.9-2.9 1.9-4.6 0-1.7-.7-3.4-1.9-4.6s-2.9-1.9-4.6-1.9z"/>
-                </svg>
-              </div>
+            </div>
+
+            <div class="sort">
+              <select class="sort__select">
+                <option class="sort__option" value="sort-by-name-down">Sort by price &#8595;</option>
+                <option class="sort__option" value="sort-by-name-up">Sort by price &#8593;</option>
+                <option class="sort__option" value="sort-by-year-up">Sort by ratting &#8593;</option>
+                <option class="sort__option" value="sort-by-year-down">Sort by ratting &#8595;</option>
+              </select>
+            </div>
+
+            <div class="view">
+              <button class="view__button">
+                <img src="./assets/icons/view-small.svg" alt="view small icon">
+              </button>
+              <button class="view__button">
+                <img src="./assets/icons/view-large.svg" alt="view large icon">
+              </button>
             </div>
           </div>
+
+          <div class="goods">
+            <div class="goods__item">
+              <div class="goods__image">
+                <img src="./assets/img/232719_tama_mbs42s-ska_1-1200x800.jpeg" alt="goods image">
+              </div>
+              <div class="goods__title">Fender</div>
+              <ul class="goods__content">
+                <li>Brand: Fender</li>
+                <li>Category: Guitar</li>
+                <li>Stock: 20</li>
+              </ul>
+              <div class="goods__price">$200</div>
+              <a href="" class="goods__btn">Add to card</a>
+            </div>
+            <div class="goods__item">
+              <div class="goods__image">
+                <img src="./assets/img/228188_1-1200x800.jpeg" alt="goods image">
+              </div>
+              <div class="goods__title">Fender</div>
+              <ul class="goods__content">
+                <li>Brand: Fender</li>
+                <li>Category: Guitar</li>
+                <li>Stock: 20</li>
+              </ul>
+              <div class="goods__price">$200</div>
+              <a href="" class="goods__btn">Add to card</a>
+            </div>
+            <div class="goods__item">
+              <div class="goods__image">
+                <img src="./assets/img/232719_tama_mbs42s-ska_1-1200x800.jpeg" alt="goods image">
+              </div>
+              <div class="goods__title">Fender</div>
+              <ul class="goods__content">
+                <li>Brand: Fender</li>
+                <li>Category: Guitar</li>
+                <li>Stock: 20</li>
+              </ul>
+              <div class="goods__price">$200</div>
+              <a href="" class="goods__btn">Add to card</a>
+            </div>
+            <div class="goods__item">
+              <div class="goods__image">
+                <img src="./assets/img/228188_1-1200x800.jpeg" alt="goods image">
+              </div>
+              <div class="goods__title">Fender</div>
+              <ul class="goods__content">
+                <li>Brand: Fender</li>
+                <li>Category: Guitar</li>
+                <li>Stock: 20</li>
+              </ul>
+              <div class="goods__price">$200</div>
+              <a href="" class="goods__btn">Add to card</a>
+            </div>
+            <div class="goods__item">
+              <div class="goods__image">
+                <img src="./assets/img/232719_tama_mbs42s-ska_1-1200x800.jpeg" alt="goods image">
+              </div>
+              <div class="goods__title">Fender</div>
+              <ul class="goods__content">
+                <li>Brand: Fender</li>
+                <li>Category: Guitar</li>
+                <li>Stock: 20</li>
+              </ul>
+              <div class="goods__price">$200</div>
+              <a href="" class="goods__btn">Add to card</a>
+            </div>
+            <div class="goods__item">
+              <div class="goods__image">
+                <img src="./assets/img/228188_1-1200x800.jpeg" alt="goods image">
+              </div>
+              <div class="goods__title">Fender</div>
+              <ul class="goods__content">
+                <li>Brand: Fender</li>
+                <li>Category: Guitar</li>
+                <li>Stock: 20</li>
+              </ul>
+              <div class="goods__price">$200</div>
+              <a href="" class="goods__btn">Add to card</a>
+            </div>
+            <div class="goods__item">
+              <div class="goods__image">
+                <img src="./assets/img/232719_tama_mbs42s-ska_1-1200x800.jpeg" alt="goods image">
+              </div>
+              <div class="goods__title">Fender</div>
+              <ul class="goods__content">
+                <li>Brand: Fender</li>
+                <li>Category: Guitar</li>
+                <li>Stock: 20</li>
+              </ul>
+              <div class="goods__price">$200</div>
+              <a href="" class="goods__btn">Add to card</a>
+            </div>
+            <div class="goods__item">
+              <div class="goods__image">
+                <img src="./assets/img/228188_1-1200x800.jpeg" alt="goods image">
+              </div>
+              <div class="goods__title">Fender</div>
+              <ul class="goods__content">
+                <li>Brand: Fender</li>
+                <li>Category: Guitar</li>
+                <li>Stock: 20</li>
+              </ul>
+              <div class="goods__price">$200</div>
+              <a href="" class="goods__btn">Add to card</a>
+            </div>
+            <div class="goods__item">
+              <div class="goods__image">
+                <img src="./assets/img/232719_tama_mbs42s-ska_1-1200x800.jpeg" alt="goods image">
+              </div>
+              <div class="goods__title">Fender</div>
+              <ul class="goods__content">
+                <li>Brand: Fender</li>
+                <li>Category: Guitar</li>
+                <li>Stock: 20</li>
+              </ul>
+              <div class="goods__price">$200</div>
+              <a href="" class="goods__btn">Add to card</a>
+            </div>
+            <div class="goods__item">
+              <div class="goods__image">
+                <img src="./assets/img/228188_1-1200x800.jpeg" alt="goods image">
+              </div>
+              <div class="goods__title">Fender</div>
+              <ul class="goods__content">
+                <li>Brand: Fender</li>
+                <li>Category: Guitar</li>
+                <li>Stock: 20</li>
+              </ul>
+              <div class="goods__price">$200</div>
+              <a href="" class="goods__btn">Add to card</a>
+            </div>
+          </div>
+
         </div>
-      </header>
+      </div>
+    </main>
 
-      <main class="main">
-        <div class="main__container">
-          <div class="main__filters filters">
-
-            <div class="filters__brand brand-filter">
-              <div class="brand-filter__title">Brand</div>
-              <div class="brand-filter__items">
-                <div class="brand-filter__item">
-                  <label class="brand-filter__wrapper">
-                    <input type="checkbox" class="brand-filter__checkbox" name="brand">
-                    <span class="brand-filter__custom-checkbox"></span>
-                    <span class="brand-filter__name">Fender</span>
-                    <div class="brand-filter__count">10</div>
-                  </label>
-                </div>
-                <div class="brand-filter__item">
-                  <label class="brand-filter__wrapper">
-                    <input type="checkbox" class="brand-filter__checkbox" name="brand">
-                    <span class="brand-filter__custom-checkbox"></span>
-                    <span class="brand-filter__name">Fender</span>
-                    <div class="brand-filter__count">10</div>
-                  </label>
-                </div>
-                <div class="brand-filter__item">
-                  <label class="brand-filter__wrapper">
-                    <input type="checkbox" class="brand-filter__checkbox" name="brand">
-                    <span class="brand-filter__custom-checkbox"></span>
-                    <span class="brand-filter__name">Fender</span>
-                    <div class="brand-filter__count">10</div>
-                  </label>
-                </div>
-                <div class="brand-filter__item">
-                  <label class="brand-filter__wrapper">
-                    <input type="checkbox" class="brand-filter__checkbox" name="brand">
-                    <span class="brand-filter__custom-checkbox"></span>
-                    <span class="brand-filter__name">Fender</span>
-                    <div class="brand-filter__count">10</div>
-                  </label>
-                </div>
-                <div class="brand-filter__item">
-                  <label class="brand-filter__wrapper">
-                    <input type="checkbox" class="brand-filter__checkbox" name="brand">
-                    <span class="brand-filter__custom-checkbox"></span>
-                    <span class="brand-filter__name">Fender</span>
-                    <div class="brand-filter__count">10</div>
-                  </label>
-                </div>
-                <div class="brand-filter__item">
-                  <label class="brand-filter__wrapper">
-                    <input type="checkbox" class="brand-filter__checkbox" name="brand">
-                    <span class="brand-filter__custom-checkbox"></span>
-                    <span class="brand-filter__name">Fender</span>
-                    <div class="brand-filter__count">10</div>
-                  </label>
-                </div>
-                <div class="brand-filter__item">
-                  <label class="brand-filter__wrapper">
-                    <input type="checkbox" class="brand-filter__checkbox" name="brand">
-                    <span class="brand-filter__custom-checkbox"></span>
-                    <span class="brand-filter__name">Fender</span>
-                    <div class="brand-filter__count">10</div>
-                  </label>
-                </div>
-              </div>
-            </div>
-
-            <div class="filters__brand brand-filter">
-              <div class="brand-filter__title">Category</div>
-              <div class="brand-filter__items">
-                <div class="brand-filter__item">
-                  <label class="brand-filter__wrapper">
-                    <input type="checkbox" class="brand-filter__checkbox" name="brand">
-                    <span class="brand-filter__custom-checkbox"></span>
-                    <span class="brand-filter__name">Guitar</span>
-                    <div class="brand-filter__count">10</div>
-                  </label>
-                </div>
-                <div class="brand-filter__item">
-                  <label class="brand-filter__wrapper">
-                    <input type="checkbox" class="brand-filter__checkbox" name="brand">
-                    <span class="brand-filter__custom-checkbox"></span>
-                    <span class="brand-filter__name">Guitar</span>
-                    <div class="brand-filter__count">10</div>
-                  </label>
-                </div>
-                <div class="brand-filter__item">
-                  <label class="brand-filter__wrapper">
-                    <input type="checkbox" class="brand-filter__checkbox" name="brand">
-                    <span class="brand-filter__custom-checkbox"></span>
-                    <span class="brand-filter__name">Guitar</span>
-                    <div class="brand-filter__count">10</div>
-                  </label>
-                </div>
-                <div class="brand-filter__item">
-                  <label class="brand-filter__wrapper">
-                    <input type="checkbox" class="brand-filter__checkbox" name="brand">
-                    <span class="brand-filter__custom-checkbox"></span>
-                    <span class="brand-filter__name">Guitar</span>
-                    <div class="brand-filter__count">10</div>
-                  </label>
-                </div>
-                <div class="brand-filter__item">
-                  <label class="brand-filter__wrapper">
-                    <input type="checkbox" class="brand-filter__checkbox" name="brand">
-                    <span class="brand-filter__custom-checkbox"></span>
-                    <span class="brand-filter__name">Guitar</span>
-                    <div class="brand-filter__count">10</div>
-                  </label>
-                </div>
-                <div class="brand-filter__item">
-                  <label class="brand-filter__wrapper">
-                    <input type="checkbox" class="brand-filter__checkbox" name="brand">
-                    <span class="brand-filter__custom-checkbox"></span>
-                    <span class="brand-filter__name">Guitar</span>
-                    <div class="brand-filter__count">10</div>
-                  </label>
-                </div>
-                <div class="brand-filter__item">
-                  <label class="brand-filter__wrapper">
-                    <input type="checkbox" class="brand-filter__checkbox" name="brand">
-                    <span class="brand-filter__custom-checkbox"></span>
-                    <span class="brand-filter__name">Guitar</span>
-                    <div class="brand-filter__count">10</div>
-                  </label>
-                </div>
-              </div>
-            </div>
-            
-            <div class="filters__price price-filter">
-              <div class="price-filter__title">Price</div>
-              <div class="price-filter__numbers-wrapper">
-                <div class="price-filter__min">
-                  <input class="price-filter__number-min" type="number" min="0" max="2000" value="0" disabled>
-                </div>
-                <div class="price-filter__max">
-                  <input type="number" class="price-filter__number-max" min="0" max="2000" value="2000" disabled>
-                </div>
-              </div>
-              <div class="price-filter__wrapper">
-                <div class="price-filter__input-custom"></div>
-                <input type="range" class="price-filter__input-min price-filter__range" min="0" max="2000" value="0">
-                <input type="range" class="price-filter__input-max price-filter__range" min="0" max="2000" value="2000">
-              </div>
-            </div>
-
-            <div class="filters__stock stock-filter">
-              <div class="stock-filter__title">Stock</div>
-              <div class="stock-filter__numbers-wrapper">
-                <div class="stock-filter__min">
-                  <input class="stock-filter__number-min" type="number" min="0" max="30" value="0" disabled>
-                </div>
-                <div class="stock-filter__max">
-                  <input type="number" class="stock-filter__number-max" min="0" max="30" value="30" disabled>
-                </div>
-              </div>
-              <div class="stock-filter__wrapper">
-                <div class="stock-filter__input-custom"></div>
-                <input type="range" class="stock-filter__input-min stock-filter__range" min="0" max="30" value="0">
-                <input type="range" class="stock-filter__input-max stock-filter__range" min="0" max="30" value="30">
-              </div>
-            </div>
-          </div>
-
-          <div class="main__goods goods">
-            <div class="goods__item">
-              <div class="goods__image">
-                <img src="./assets/img/232719_tama_mbs42s-ska_1-1200x800.jpeg" alt="goods image">
-              </div>
-              <div class="goods__title">Fender</div>
-              <ul class="goods__content">
-                <li>Brand: Fender</li>
-                <li>Category: Guitar</li>
-                <li>Stock: 20</li>
-              </ul>
-              <div class="goods__price">$200</div>
-              <a href="" class="goods__btn">Add to card</a>
-            </div>
-            
-            <div class="goods__item">
-              <div class="goods__image">
-                <img src="./assets/img/228188_1-1200x800.jpeg" alt="goods image">
-              </div>
-              <div class="goods__title">Fender</div>
-              <ul class="goods__content">
-                <li>Brand: Fender</li>
-                <li>Category: Guitar</li>
-                <li>Stock: 20</li>
-              </ul>
-              <div class="goods__price">$200</div>
-              <a href="" class="goods__btn">Add to card</a>
-            </div>
-            <div class="goods__item">
-              <div class="goods__image">
-                <img src="./assets/img/232719_tama_mbs42s-ska_1-1200x800.jpeg" alt="goods image">
-              </div>
-              <div class="goods__title">Fender</div>
-              <ul class="goods__content">
-                <li>Brand: Fender</li>
-                <li>Category: Guitar</li>
-                <li>Stock: 20</li>
-              </ul>
-              <div class="goods__price">$200</div>
-              <a href="" class="goods__btn">Add to card</a>
-            </div>
-
-            <div class="goods__item">
-              <div class="goods__image">
-                <img src="./assets/img/228188_1-1200x800.jpeg" alt="goods image">
-              </div>
-              <div class="goods__title">Fender</div>
-              <ul class="goods__content">
-                <li>Brand: Fender</li>
-                <li>Category: Guitar</li>
-                <li>Stock: 20</li>
-              </ul>
-              <div class="goods__price">$200</div>
-              <a href="" class="goods__btn">Add to card</a>
-            </div>
-            <div class="goods__item">
-              <div class="goods__image">
-                <img src="./assets/img/232719_tama_mbs42s-ska_1-1200x800.jpeg" alt="goods image">
-              </div>
-              <div class="goods__title">Fender</div>
-              <ul class="goods__content">
-                <li>Brand: Fender</li>
-                <li>Category: Guitar</li>
-                <li>Stock: 20</li>
-              </ul>
-              <div class="goods__price">$200</div>
-              <a href="" class="goods__btn">Add to card</a>
-            </div>
-
-            <div class="goods__item">
-              <div class="goods__image">
-                <img src="./assets/img/228188_1-1200x800.jpeg" alt="goods image">
-              </div>
-              <div class="goods__title">Fender</div>
-              <ul class="goods__content">
-                <li>Brand: Fender</li>
-                <li>Category: Guitar</li>
-                <li>Stock: 20</li>
-              </ul>
-              <div class="goods__price">$200</div>
-              <a href="" class="goods__btn">Add to card</a>
-            </div>
-            <div class="goods__item">
-              <div class="goods__image">
-                <img src="./assets/img/232719_tama_mbs42s-ska_1-1200x800.jpeg" alt="goods image">
-              </div>
-              <div class="goods__title">Fender</div>
-              <ul class="goods__content">
-                <li>Brand: Fender</li>
-                <li>Category: Guitar</li>
-                <li>Stock: 20</li>
-              </ul>
-              <div class="goods__price">$200</div>
-              <a href="" class="goods__btn">Add to card</a>
-            </div>
-
-            <div class="goods__item">
-              <div class="goods__image">
-                <img src="./assets/img/228188_1-1200x800.jpeg" alt="goods image">
-              </div>
-              <div class="goods__title">Fender</div>
-              <ul class="goods__content">
-                <li>Brand: Fender</li>
-                <li>Category: Guitar</li>
-                <li>Stock: 20</li>
-              </ul>
-              <div class="goods__price">$200</div>
-              <a href="" class="goods__btn">Add to card</a>
-            </div>
-            <div class="goods__item">
-              <div class="goods__image">
-                <img src="./assets/img/232719_tama_mbs42s-ska_1-1200x800.jpeg" alt="goods image">
-              </div>
-              <div class="goods__title">Fender</div>
-              <ul class="goods__content">
-                <li>Brand: Fender</li>
-                <li>Category: Guitar</li>
-                <li>Stock: 20</li>
-              </ul>
-              <div class="goods__price">$200</div>
-              <a href="" class="goods__btn">Add to card</a>
-            </div>
-
-            <div class="goods__item">
-              <div class="goods__image">
-                <img src="./assets/img/228188_1-1200x800.jpeg" alt="goods image">
-              </div>
-              <div class="goods__title">Fender</div>
-              <ul class="goods__content">
-                <li>Brand: Fender</li>
-                <li>Category: Guitar</li>
-                <li>Stock: 20</li>
-              </ul>
-              <div class="goods__price">$200</div>
-              <a href="" class="goods__btn">Add to card</a>
-            </div>
-
-          </div>
+    <footer class="footer">
+      <div class="footer__container">
+        <div class="footer__left">
+            <a href="https://github.com/AKiroi" target="_blank">AKiroi</a>
+            <a href="https://github.com/flash226" target="_blank">Flash226</a>
         </div>
-      </main>
-
-      <footer class="footer">
-        <div class="footer__container">
-          <div class="footer__left">
-              <a href="https://github.com/AKiroi" target="_blank">AKiroi</a>
-              <a href="https://github.com/flash226" target="_blank">Flash226</a>
-          </div>
-          <div class="footer__center">2022</div>
-          <div class="footer__right">
-              <a href="https://rs.school/js/" target="_blank"></a>
-          </div>
+        <div class="footer__center">2022</div>
+        <div class="footer__right">
+            <a href="https://rs.school/js/" target="_blank"></a>
         </div>
+      </div>
     </footer>
-    </div>
 </body>
 </html>

@@ -5,12 +5,30 @@
 
   &__brand,
   &__price,
-  &__stock {
+  &__stock,
+  &__buttons {
     width: 240px;
-    background: #fff;
+    background: var(--color-white);
     padding: 10px;
     border-radius: 5px;
   }
+
+  &__buttons {
+    display: flex;
+    align-items: center;
+    justify-content: center;
+    gap: 10px;
+  }
+
+  &__reset-btn,
+  &__copy-links-btn {
+    background: var(--color-orange);
+    color: var(--color-white);
+    border-radius: 5px;
+    padding: 5px 10px;
+    width: 100%;
+  }
+
 }
 
 .brand-filter {

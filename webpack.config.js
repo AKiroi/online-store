@@ -61,10 +61,10 @@ const baseConfig = {
               from: './src/assets/img/',
               to: './assets/img'
             },
-            //{
-            //  from: './assets/icons/',
-            //  to: './icons'
-            //},
+            {
+              from: './src/assets/icons/',
+              to: './assets/icons'
+            },
           ],
         }),
         new CleanWebpackPlugin(),
