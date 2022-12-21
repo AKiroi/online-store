@@ -1,55 +1,54 @@
-import { createHTMLElement } from "../../utils/createHTMLElement";
+import {createHTMLElement} from "../../utils/createHTMLElement";
+import {createImageElement} from "../../utils/createImageElement";
+import dataGoods from "../controller/bd";
+import Goods from "../goods/Goods";
 import Search from "../search/Search";
 import Sort from "../sort/Sort";
+import BrandFilters from './../filters/BrandFilters';
 
 class Main {
-  public search;
-  public sort;
+    public search;
+    public sort;
+    public brandFilters;
+    public goods;
 
-  constructor() {
-    this.search = new Search();
-    this.sort = new Sort();
-  }
+    constructor() {
+        this.search = new Search();
+        this.sort = new Sort();
+        this.brandFilters = new BrandFilters();
+        this.goods = new Goods();
+    }
 
-  draw() {
-    const main = createHTMLElement('main', 'main');
-    const mainContaner = createHTMLElement('main__container');
-    const mainFilters = createHTMLElement(['main__filters', 'filters']);
-    const mainGoods = createHTMLElement('main__goods');
-    const goodsSort = createHTMLElement('goods-sort');
-    const goods = createHTMLElement('goods');
+    draw() {
+        const main = createHTMLElement('main', 'main');
+        const mainContaner = createHTMLElement('main__container');
+        const mainFilters = createHTMLElement(['main__filters', 'filters']);
+        const mainGoods = createHTMLElement('main__goods');
+        const goodsSort = createHTMLElement('goods-sort');
 
-    
+        const filtersButtons = createHTMLElement('filters__buttons');
+        const filtersResetButton = createHTMLElement('filters__reset-btn', 'button', 'Reset filters');
+        const filtersCopyLinksButton = createHTMLElement('filters__copy-links-btn', 'button', 'Copy links');
+        filtersButtons.append(filtersResetButton, filtersCopyLinksButton);
+        const brandFilter = this.brandFilters.draw();
 
-    const view = createHTMLElement('view');
-    const veiwButtonSmall = createHTMLElement('view__button');
-    const imgLogoSmall = document.createElement('img') as HTMLImageElement;
-    imgLogoSmall.src = './assets/icons/view-small.svg';
-    imgLogoSmall.alt = 'view small icon';
-    const veiwButtonLarge = createHTMLElement('view__button');
-    const imgLogoLarge = document.createElement('img') as HTMLImageElement;
-    imgLogoLarge.src = './assets/icons/view-large.svg';
-    imgLogoLarge.alt = 'view small icon';
-    veiwButtonSmall.append(imgLogoSmall);
-    veiwButtonLarge.append(imgLogoLarge);
-    view.append(veiwButtonSmall, veiwButtonLarge);
+        const viewContainer = createHTMLElement('view');
+        const veiwButtonSmall = createHTMLElement('view__button');
+        const veiwImageSmall = createImageElement('view__img-small', './assets/icons/view-small.svg', 'view small icon');
+        const veiwButtonLarge = createHTMLElement('view__button');
+        const veiwImageLarge = createImageElement('view__img-large', './assets/icons/view-large.svg', 'view large icon');
+        veiwButtonSmall.append(veiwImageSmall);
+        veiwButtonLarge.append(veiwImageLarge);
+        viewContainer.append(veiwButtonSmall, veiwButtonLarge);
 
-    goodsSort.append(this.search.draw(), this.sort.draw(), view)
-    mainGoods.append(goodsSort, goods);
-    mainContaner.append(mainFilters, mainGoods);
-    main.append(mainContaner);
+        goodsSort.append(this.search.draw(), this.sort.draw(), viewContainer)
+        mainGoods.append(goodsSort, this.goods.draw(dataGoods));
+        mainFilters.append(filtersButtons, brandFilter)
+        mainContaner.append(mainFilters, mainGoods);
+        main.append(mainContaner);
 
-    //header.innerHTML = `
-    //  <div class="header__container">
-    //    <h1 class="header__logo">Music store</h1>
-    //    <div class="header__cart">
-    //      <img src="./assets/icons/cart-icon.svg" alt="cart-icon">
-    //      <span class="header__count">0</span>
-    //    </div>
-    //  </div>
-    //  `;
-    return main;
-  }
+        return main;
+    }
 }
 
 export default Main;

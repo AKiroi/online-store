@@ -1,4 +1,5 @@
 import { createHTMLElement } from '../../utils/createHTMLElement';
+import { createImageElement } from '../../utils/createImageElement';
 
 class Header {
   constructor() {}
@@ -7,14 +8,10 @@ class Header {
     const header = createHTMLElement('header', 'header');
     const headerContaner = createHTMLElement('header__container');
 
-    const headerLogo = createHTMLElement('header__logo');
-    headerLogo.textContent = 'Music store';
+    const headerLogo = createHTMLElement('header__logo', 'div', 'Music store');
     const headerCart = createHTMLElement('header__cart');
 
-    const headerCartImg = document.createElement('img') as HTMLImageElement;
-    headerCartImg.classList.add('header__cart-img');
-    headerCartImg.src = "./assets/icons/cart-icon.svg";
-    headerCartImg.alt = 'image bike';
+    const headerCartImg = createImageElement('header__cart-img', './assets/icons/cart-icon.svg', 'art icon')
     const headerCount = createHTMLElement('header__count', 'span');
     headerCount.textContent = '0';
 

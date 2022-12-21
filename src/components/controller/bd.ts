@@ -1,4 +1,4 @@
-interface Igoods {
+export interface Igoods {
     id: number,
     category: string,
     name: string,
@@ -11,13 +11,15 @@ interface Igoods {
 
 interface Idb extends Igoods {};
 
-const bd: Array<Idb> = [
+
+
+const dataGoods: Array<Idb> = [
   {
     id: 1,
     category: 'Electric guitar',
     name: 'Parallel universe whiteguard strat MN VBL',
     brand: 'Fender',
-    photo: ['./assets/img/0176062707_gtr_frt_001_rr.jpeg', './assets/img/0176062707_gtr_back_001_rl.jpeg', './assets/img/0176062707_gtr_cntbdyright_001_nr.jpeg', './assets/img/0176062707_gtr_frtbdydtl_001_nr.jpeg'],
+    photo: ['./assets/img/0176062707_01.jpeg', './assets/img/0176062707_gtr_back_001_rl.jpeg', './assets/img/0176062707_gtr_cntbdyright_001_nr.jpeg', './assets/img/0176062707_gtr_frtbdydtl_001_nr.jpeg'],
     price: 1802,
     inStock: 18,
     rating: 4.42
@@ -314,4 +316,4 @@ const bd: Array<Idb> = [
   }
 ];
 
-export default bd;
+export default dataGoods;
