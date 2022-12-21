@@ -1,7 +1,7 @@
 
 import { createHTMLElement } from '../../utils/createHTMLElement';
 import dataGoods from '../controller/bd';
-import { Igoods } from './../controller/bd';
+import { Igoods } from '../controller/bd';
 
 class BrandFilters {
 

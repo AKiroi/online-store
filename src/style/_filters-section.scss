@@ -4,6 +4,7 @@
   row-gap: 10px;
 
   &__brand,
+  &__category,
   &__price,
   &__stock,
   &__buttons {
@@ -31,7 +32,8 @@
 
 }
 
-.brand-filter {
+.brand-filter,
+.category-filter {
   &__title {
     font-weight: 700;
     font-size: 18px;

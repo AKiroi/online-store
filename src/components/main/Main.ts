@@ -4,18 +4,21 @@ import dataGoods from "../controller/bd";
 import Goods from "../goods/Goods";
 import Search from "../search/Search";
 import Sort from "../sort/Sort";
-import BrandFilters from './../filters/BrandFilters';
+import BrandFilters from '../filters/BrandFilters';
+import CategoryFilters from "../filters/CategoryFilters";
 
 class Main {
     public search;
     public sort;
     public brandFilters;
+    public categoryFilters;
     public goods;
 
     constructor() {
         this.search = new Search();
         this.sort = new Sort();
         this.brandFilters = new BrandFilters();
+        this.categoryFilters = new CategoryFilters();
         this.goods = new Goods();
     }
 
@@ -31,6 +34,7 @@ class Main {
         const filtersCopyLinksButton = createHTMLElement('filters__copy-links-btn', 'button', 'Copy links');
         filtersButtons.append(filtersResetButton, filtersCopyLinksButton);
         const brandFilter = this.brandFilters.draw();
+        const categoryFilter = this.categoryFilters.draw();
 
         const viewContainer = createHTMLElement('view');
         const veiwButtonSmall = createHTMLElement('view__button');
@@ -43,7 +47,7 @@ class Main {
 
         goodsSort.append(this.search.draw(), this.sort.draw(), viewContainer)
         mainGoods.append(goodsSort, this.goods.draw(dataGoods));
-        mainFilters.append(filtersButtons, brandFilter)
+        mainFilters.append(filtersButtons, brandFilter, categoryFilter)
         mainContaner.append(mainFilters, mainGoods);
         main.append(mainContaner);
 
