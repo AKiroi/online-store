@@ -18,7 +18,7 @@ class BrandFilters{
     if (target.checked === true) {
       state.filters.brand.push(dataBrand);
     } else {
-      const index = state.filters.brand.findIndex((item) => item === dataBrand)
+      const index = state.filters.brand.findIndex((item) => item === dataBrand);
       state.filters.brand.splice(index, 1);
     }
     this.callBack(state.filtredState()); 

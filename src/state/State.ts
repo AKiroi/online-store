@@ -22,11 +22,10 @@ class State {
 
   filtredState() {
     this.filtredGoods = this.goods.filter((item: Igoods) => this.filters.brand.includes(item.brand));
-    this.filtredGoods = this.goods.filter((item: Igoods) => this.filters.category.includes(item.category));
+    //this.filtredGoods = this.goods.filter((item: Igoods) => this.filters.category.includes(item.category));
     return this.filtredGoods
   }
 }
 
 export const state = new State();
 
-console.log(state.category);

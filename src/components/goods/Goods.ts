@@ -4,28 +4,37 @@ import dataGoods from '../../data/data';
 import { Igoods } from '../../data/types';
 
 class Goods {
-  constructor() {}
-  
-  draw(dataGoods: Array<Igoods>) {
-    const goodsContainer = createHTMLElement('goods');
-    
-    goodsContainer.innerHTML = dataGoods.map(({brand, category, name, photo, inStock, price }) => {
-      return (`
-      <div class="goods__item">
+  brand;
+  category; 
+  price; 
+  name; 
+  photo;
+  inStock;
+  constructor(goods: Igoods) {
+    this.brand = goods.brand;
+    this.category = goods.category;
+    this.name = goods.name;
+    this.photo = goods.photo;
+    this.inStock = goods.inStock;
+    this.price = goods.price;
+}
+
+  draw() {
+    const goodsContainer = createHTMLElement('goods__item');
+
+    goodsContainer.innerHTML = `
         <div class="goods__image">
-          <img src=${photo[0]} alt=${brand}>
+          <img src=${this.photo[0]} alt=${this.brand}>
         </div>
-        <div class="goods__title">${name}</div>
+        <div class="goods__title">${this.name}</div>
         <ul class="goods__content">
-          <li>Brand: ${brand}</li>
-          <li>Category: ${category}</li>
-          <li>Stock: ${inStock}20</li>
+          <li>Brand: ${this.brand}</li>
+          <li>Category: ${this.category}</li>
+          <li>Stock: ${this.inStock}20</li>
         </ul>
-        <div class="goods__price">$${price}</div>
+        <div class="goods__price">$${this.price}</div>
         <a href="" class="goods__btn">Add to card</a>
-      </div>
-      `)
-    }).join('');;
+      `;
 
     return goodsContainer;
   }
