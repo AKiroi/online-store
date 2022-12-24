@@ -15,24 +15,27 @@ class Main {
     public categoryFilters;
     public goods;
 
+    mainGoods = createHTMLElement('main__goods');
+
     constructor() {
         this.search = new Search();
         this.sort = new Sort();
         this.goods = new Goods();
         this.brandFilters = new BrandFilters(this.drawFiltredGoods);
-        this.categoryFilters = new CategoryFilters();
+        this.categoryFilters = new CategoryFilters(this.drawFiltredGoods);
     }
 
-    drawFiltredGoods(filtredGoods: Igoods[]): void {
+    drawFiltredGoods = (filtredGoods: Igoods[]) => {
       console.log(filtredGoods);
-      this.goods?.draw(filtredGoods);
+      this.mainGoods.innerHTML = '';
+      this.mainGoods.append(this.goods.draw(filtredGoods));
     }
 
     draws() {
         const main = createHTMLElement('main', 'main');
         const mainContaner = createHTMLElement('main__container');
         const mainFilters = createHTMLElement(['main__filters', 'filters']);
-        const mainGoods = createHTMLElement('main__goods');
+        //const mainGoods = createHTMLElement('main__goods');
         const goodsSort = createHTMLElement('goods-sort');
 
         const filtersButtons = createHTMLElement('filters__buttons');
@@ -52,9 +55,9 @@ class Main {
         viewContainer.append(veiwButtonSmall, veiwButtonLarge);
 
         goodsSort.append(this.search.draw(), this.sort.draw(), viewContainer)
-        mainGoods.append(goodsSort, this.goods.draw(dataGoods));
+        this.mainGoods.append(goodsSort, this.goods.draw(dataGoods));
         mainFilters.append(filtersButtons, brandFilter, categoryFilter)
-        mainContaner.append(mainFilters, mainGoods);
+        mainContaner.append(mainFilters, this.mainGoods);
         main.append(mainContaner);
 
         return main;

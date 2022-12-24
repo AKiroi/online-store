@@ -1,4 +1,4 @@
-import { Idb } from "./types";
+import { Idb, Igoods } from "./types";
 
 
 const dataGoods: Array<Idb> = [
@@ -304,8 +304,33 @@ const dataGoods: Array<Idb> = [
   }
 ];
 
+type Count = {
+  [key: string]: number;
+}
+
 export const brandsArray: string[] = [...new Set(dataGoods.map(item => item.brand))];
 
 export const categoryArray: string[] = [...new Set(dataGoods.map(item => item.category))];
+
+export const countBrandsObj: Count = brandsArray.reduce((acc, brand) => {
+  let count = 0;
+  dataGoods.forEach((item) => {
+    if (brand.toLocaleLowerCase() === item.brand.toLocaleLowerCase()) count++;
+  })
+  acc[brand] = count;
+  return acc;
+}, {});
+
+export const countCategoryObj: Count = categoryArray.reduce((acc, category) => {
+  let count = 0;
+  dataGoods.forEach((item) => {
+    if (category.toLocaleLowerCase() === item.category.toLocaleLowerCase()) count++;
+  })
+  acc[category] = count;
+  return acc;
+}, {});
+
+
+
 
 export default dataGoods;

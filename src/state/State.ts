@@ -14,15 +14,19 @@ export const initialFilters: Filters = {
 
 
 class State {
+  filtredGoods: Array<Igoods> = []
   filters: Filters  = initialFilters;
   goods: Array<Igoods> = dataGoods;
   search: string = '';
   sort: string = 'sort-by-price-down';
 
   filtredState() {
-    const filtredGoods = this.goods.filter((item: Igoods) => this.filters.brand.includes(item.brand));
-    return filtredGoods
+    this.filtredGoods = this.goods.filter((item: Igoods) => this.filters.brand.includes(item.brand));
+    this.filtredGoods = this.goods.filter((item: Igoods) => this.filters.category.includes(item.category));
+    return this.filtredGoods
   }
 }
 
 export const state = new State();
+
+console.log(state.category);
