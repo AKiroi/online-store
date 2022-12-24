@@ -304,9 +304,7 @@ const dataGoods: Array<Idb> = [
   }
 ];
 
-type Count = {
-  [key: string]: number;
-}
+type Count = Record<string, number>
 
 export const brandsArray: string[] = [...new Set(dataGoods.map(item => item.brand))];
 
@@ -319,18 +317,18 @@ export const countBrandsObj: Count = brandsArray.reduce((acc, brand) => {
   })
   acc[brand] = count;
   return acc;
-}, {});
+}, {} as Count);
 
-export const countCategoryObj: Count = categoryArray.reduce((acc, category) => {
+
+
+//<T extends object, U extends keyof T>(obj: T) => (key: U) => obj[key] 
+export const countCategoryObj = categoryArray.reduce((acc, category) => {
   let count = 0;
   dataGoods.forEach((item) => {
     if (category.toLocaleLowerCase() === item.category.toLocaleLowerCase()) count++;
   })
   acc[category] = count;
   return acc;
-}, {});
-
-
-
+}, {} as Count);
 
 export default dataGoods;
