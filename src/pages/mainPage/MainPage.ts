@@ -16,7 +16,7 @@ class MainPage {
   draw() {
       const root = createHTMLElement('root');
       const header = this.header.draw();
-      const main = this.main.draw();
+      const main = this.main.draws();
       const footer = this.footer.draw();
 
       root.append(header, main, footer);

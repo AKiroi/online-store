@@ -1,7 +1,7 @@
 import { createHTMLElement } from '../../utils/createHTMLElement';
 import { createImageElement } from '../../utils/createImageElement';
-import dataGoods from '../controller/bd';
-import { Igoods } from '../controller/bd';
+import dataGoods from '../../data/data';
+import { Igoods } from '../../data/types';
 
 class Goods {
   constructor() {}

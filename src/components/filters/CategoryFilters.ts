@@ -1,7 +1,7 @@
 
 import { createHTMLElement } from '../../utils/createHTMLElement';
-import dataGoods from '../controller/bd';
-import { Igoods } from '../controller/bd';
+import dataGoods, { categoryArray } from '../../data/data';
+import { Igoods } from '../../data/types';
 
 class CategoryFilters {
 
@@ -9,26 +9,28 @@ class CategoryFilters {
   }
   draw() {
     const categoriesFilterContainer = createHTMLElement(['filters__category', 'category-filter']);
+    const brandFilterTitle = createHTMLElement('category-filter__title', 'div', 'Category');
+    const brandFilterItems = createHTMLElement('category-filter__items');
+
     
-    categoriesFilterContainer.innerHTML = this.getCategory(dataGoods).map((category) => {
+    brandFilterItems.innerHTML = categoryArray.map((category) => {
       return (`
-      <div class="category-filter__item">
+      
         <label class="category-filter__wrapper">
+          <div class="category-filter__item">
           <input type="checkbox" class="category-filter__checkbox" name="category">
           <span class=category-filter__custom-checkbox""></span>
           <span class="category-filter__name">${category}</span>
           <div class="category-filter__count">10</div>
+          </div>
         </label>
-      </div>
+      
       `)
-    }).join('');;
+    }).join('');
+
+    categoriesFilterContainer.append(brandFilterTitle, brandFilterItems);
 
     return categoriesFilterContainer;
-  }
-
-  getCategory(data: Array<Igoods>): string[] {
-    const categories = data.map(item => item.category);
-    return [...new Set(categories)];
   }
 }
 

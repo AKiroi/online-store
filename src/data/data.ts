@@ -1,16 +1,4 @@
-export interface Igoods {
-    id: number,
-    category: string,
-    name: string,
-    brand: string,
-    photo: string[],
-    price: number,
-    inStock: number,
-    rating: number
-  };
-
-interface Idb extends Igoods {};
-
+import { Idb } from "./types";
 
 
 const dataGoods: Array<Idb> = [
@@ -315,5 +303,9 @@ const dataGoods: Array<Idb> = [
     rating: 4.92
   }
 ];
+
+export const brandsArray: string[] = [...new Set(dataGoods.map(item => item.brand))];
+
+export const categoryArray: string[] = [...new Set(dataGoods.map(item => item.category))];
 
 export default dataGoods;

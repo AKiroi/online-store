@@ -1,11 +1,12 @@
 import {createHTMLElement} from "../../utils/createHTMLElement";
 import {createImageElement} from "../../utils/createImageElement";
-import dataGoods from "../controller/bd";
+import dataGoods from "../../data/data";
 import Goods from "../goods/Goods";
 import Search from "../search/Search";
 import Sort from "../sort/Sort";
 import BrandFilters from '../filters/BrandFilters';
 import CategoryFilters from "../filters/CategoryFilters";
+import { Igoods } from "../../data/types";
 
 class Main {
     public search;
@@ -17,12 +18,17 @@ class Main {
     constructor() {
         this.search = new Search();
         this.sort = new Sort();
-        this.brandFilters = new BrandFilters();
-        this.categoryFilters = new CategoryFilters();
         this.goods = new Goods();
+        this.brandFilters = new BrandFilters(this.drawFiltredGoods);
+        this.categoryFilters = new CategoryFilters();
     }
 
-    draw() {
+    drawFiltredGoods(filtredGoods: Igoods[]): void {
+      console.log(filtredGoods);
+      this.goods?.draw(filtredGoods);
+    }
+
+    draws() {
         const main = createHTMLElement('main', 'main');
         const mainContaner = createHTMLElement('main__container');
         const mainFilters = createHTMLElement(['main__filters', 'filters']);
