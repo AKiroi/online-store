@@ -37,7 +37,7 @@ const dataGoods: Array<Idb> = [
     category: 'Semi-acoustic guitars',
     name: 'Casino natural',
     brand: 'Epiphone',
-    photo: ['./assets/img/230112_EPIPHONE CASINO NATURAL_1.jpeg', './assets/img/230112_EPIPHONE CASINO NATURAL_2-1200x800.jpeg', './assets/img/230112_EPIPHONE CASINO NATURAL_3-1200x800.jpeg', './assets/img/230112_EPIPHONE CASINO NATURAL_4-1200x800.jpeg'],
+    photo: ['./assets/img/230112_EPIPHONE_CASINO_NATURAL_1.jpeg', './assets/img/230112_EPIPHONE_CASINO_NATURAL_2-1200x800.jpeg', './assets/img/230112_EPIPHONE_CASINO_NATURAL_3-1200x800.jpeg', './assets/img/230112_EPIPHONE_CASINO_NATURAL_4-1200x800.jpeg'],
     price: 780,
     inStock: 10,
     rating: 4.56
