@@ -17,6 +17,7 @@ class Main {
 
     mainGoods = createHTMLElement('main__goods');
     goodsContainer = createHTMLElement('goods');
+    messageSearchResult = createHTMLElement('goods__message', 'div', 'The goods is empty!');
 
     constructor() {
         this.search = new Search();
@@ -27,14 +28,19 @@ class Main {
 
     drawFiltredGoods = () => {
       this.goodsContainer.innerHTML = '';
-      console.log(state.allFilters());
+      state.allFilters();
+
+      if (state.filtredGoods.length === 0) {
+        this.messageSearchResult.style.display = 'block';
+      } else { 
+        state.filtredGoods.forEach((item) => {
+          const goodsItem = new Goods(item);
+          this.goodsContainer.append(goodsItem.draw());
+        });
+        this.messageSearchResult.style.display = 'none';
+      }
       
-      state.allFilters()
-      console.log(state.filtredGoods);
-      state.filtredGoods.forEach((item) => {
-        const goodsItem = new Goods(item);
-        this.goodsContainer.append(goodsItem.draw());
-      });
+      
     }
 
     goodsCreate() {
@@ -71,7 +77,7 @@ class Main {
         viewContainer.append(veiwButtonSmall, veiwButtonLarge);
 
         goodsSort.append(this.search.draw(), this.sort.draw(), viewContainer)
-        this.mainGoods.append(goodsSort, this.goodsCreate());
+        this.mainGoods.append(goodsSort, this.messageSearchResult, this.goodsCreate());
         mainFilters.append(filtersButtons, brandFilter, categoryFilter)
         mainContaner.append(mainFilters, this.mainGoods);
         main.append(mainContaner);
