@@ -1,6 +1,6 @@
 import {createHTMLElement} from "../../utils/createHTMLElement";
 import {createImageElement} from "../../utils/createImageElement";
-import dataGoods from "../../data/data";
+import dataGoods, { brandsArray, categoryArray, countBrandObj } from "../../data/data";
 import Goods from "../goods/Goods";
 import Search from "../search/Search";
 import Sort from "../sort/Sort";
@@ -8,6 +8,7 @@ import BrandFilters from '../filters/BrandFilters';
 import CategoryFilters from "../filters/CategoryFilters";
 import { Igoods } from "../../data/types";
 import { state } from "../../state/State";
+import { countCategoryObj } from './../../data/data';
 
 class Main {
     public search;
@@ -30,6 +31,16 @@ class Main {
       this.goodsContainer.innerHTML = '';
       state.allFilters();
 
+      Object.values(countBrandObj(state.filtredGoods)).forEach((count, i) => {
+        const filtredCountElem = document.querySelectorAll('.brand-filter__count-filtred')!;
+        filtredCountElem[i].textContent = String(count);
+      });
+      Object.values(countCategoryObj(state.filtredGoods)).forEach((count, i) => {
+        const filtredCountElem = document.querySelectorAll('.category-filter__count-filtred')!;
+        filtredCountElem[i].textContent = String(count);
+      });
+
+
       if (state.filtredGoods.length === 0) {
         this.messageSearchResult.style.display = 'block';
       } else { 
@@ -39,8 +50,6 @@ class Main {
         });
         this.messageSearchResult.style.display = 'none';
       }
-      
-      
     }
 
     goodsCreate() {
