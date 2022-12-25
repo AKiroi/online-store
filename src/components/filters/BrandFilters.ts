@@ -7,8 +7,8 @@ import Main from '../main/Main';
 import Goods from '../goods/Goods';
 
 class BrandFilters{
-  callBack: (arg: Igoods[]) => void;
-  constructor (filterCallBack: (arg: Igoods[]) => void){
+  callBack: () => void;
+  constructor (filterCallBack: () => void){
     this.callBack = filterCallBack;
   }
   
@@ -21,7 +21,8 @@ class BrandFilters{
       const index = state.filters.brand.findIndex((item) => item === dataBrand);
       state.filters.brand.splice(index, 1);
     }
-    this.callBack(state.filtredState()); 
+    state.filtredBrandState()
+    this.callBack(); 
   }
 
   draw() {

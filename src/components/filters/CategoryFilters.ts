@@ -5,21 +5,24 @@ import { Igoods } from '../../data/types';
 import { state } from '../../state/State';
 
 class CategoryFilters {
-  callBack: (arg: Igoods[]) => void;
-  constructor (filterCallBack: (arg: Igoods[]) => void){
+  callBack: () => void;
+  constructor (filterCallBack: () => void){
     this.callBack = filterCallBack;
   }
   
   filterCategory = (e: Event): void => {
     const target = e.target as HTMLInputElement;
     const dataCategory = target.getAttribute('data-brand') as string;
+    
     if (target.checked === true) {
       state.filters.category.push(dataCategory);
     } else {
       const index = state.filters.category.findIndex((item) => item === dataCategory)
       state.filters.category.splice(index, 1);
     }
-    this.callBack(state.filtredState()); 
+    state.filtredCategoryState()
+    this.callBack();
+
   }
 
   draw() {

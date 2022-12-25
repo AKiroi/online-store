@@ -7,6 +7,7 @@ import Sort from "../sort/Sort";
 import BrandFilters from '../filters/BrandFilters';
 import CategoryFilters from "../filters/CategoryFilters";
 import { Igoods } from "../../data/types";
+import { state } from "../../state/State";
 
 class Main {
     public search;
@@ -24,11 +25,13 @@ class Main {
         this.categoryFilters = new CategoryFilters(this.drawFiltredGoods);
     }
 
-    drawFiltredGoods = (filtredGoods: Igoods[]) => {
-      console.log(filtredGoods);
+    drawFiltredGoods = () => {
       this.goodsContainer.innerHTML = '';
-
-      filtredGoods.forEach((item) => {
+      console.log(state.allFilters());
+      
+      state.allFilters()
+      console.log(state.filtredGoods);
+      state.filtredGoods.forEach((item) => {
         const goodsItem = new Goods(item);
         this.goodsContainer.append(goodsItem.draw());
       });
