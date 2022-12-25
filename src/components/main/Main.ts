@@ -9,12 +9,16 @@ import CategoryFilters from "../filters/CategoryFilters";
 import { Igoods } from "../../data/types";
 import { state } from "../../state/State";
 import { countCategoryObj } from './../../data/data';
+import PriceFilters from "../filters/PriceFilters";
+import StockFilters from './../filters/StockFilters';
 
 class Main {
     public search;
     public sort;
     public brandFilters;
     public categoryFilters;
+    public priceFilters;
+    public stockFilters;
 
     mainGoods = createHTMLElement('main__goods');
     goodsContainer = createHTMLElement('goods');
@@ -23,11 +27,17 @@ class Main {
     constructor() {
         this.search = new Search();
         this.sort = new Sort();
-        this.brandFilters = new BrandFilters(this.drawFiltredGoods);
-        this.categoryFilters = new CategoryFilters(this.drawFiltredGoods);
+        this.brandFilters = new BrandFilters(this.callbackFiltredBrandAndCategory);
+        this.categoryFilters = new CategoryFilters(this.callbackFiltredBrandAndCategory);
+        this.priceFilters = new PriceFilters();
+        this.stockFilters = new StockFilters();
     }
 
-    drawFiltredGoods = () => {
+    callbackFiltredBrandAndCategory = () => {
+      this.drawFiltredGoods();
+    }
+
+    drawFiltredGoods() {
       this.goodsContainer.innerHTML = '';
       state.allFilters();
 
@@ -39,7 +49,6 @@ class Main {
         const filtredCountElem = document.querySelectorAll('.category-filter__count-filtred')!;
         filtredCountElem[i].textContent = String(count);
       });
-
 
       if (state.filtredGoods.length === 0) {
         this.messageSearchResult.style.display = 'block';
@@ -74,6 +83,8 @@ class Main {
         filtersButtons.append(filtersResetButton, filtersCopyLinksButton);
         const brandFilter = this.brandFilters.draw();
         const categoryFilter = this.categoryFilters.draw();
+        const priceFilter = this.priceFilters.draw();
+        const stockFilter = this.stockFilters.draw();
         
 
         const viewContainer = createHTMLElement('view');
@@ -87,7 +98,7 @@ class Main {
 
         goodsSort.append(this.search.draw(), this.sort.draw(), viewContainer)
         this.mainGoods.append(goodsSort, this.messageSearchResult, this.goodsCreate());
-        mainFilters.append(filtersButtons, brandFilter, categoryFilter)
+        mainFilters.append(filtersButtons, brandFilter, categoryFilter, priceFilter, stockFilter)
         mainContaner.append(mainFilters, this.mainGoods);
         main.append(mainContaner);
 
