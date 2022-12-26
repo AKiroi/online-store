@@ -8,10 +8,15 @@ class Header {
     const header = createHTMLElement('header', 'header');
     const headerContaner = createHTMLElement('header__container');
 
-    const headerLogo = createHTMLElement('header__logo', 'div', 'Music store');
-    const headerCart = createHTMLElement('header__cart');
+    const headerLogo = document.createElement('a');
+    headerLogo.className = 'header__logo';
+    headerLogo.textContent = 'Music store';
+    headerLogo.href = `#/`;
 
-    const headerCartImg = createImageElement('header__cart-img', './assets/icons/cart-icon.svg', 'art icon')
+    const headerCart = document.createElement('a');
+    headerCart.className = 'header__cart';
+    headerCart.href = `#/cart`;
+    const headerCartImg = createImageElement('header__cart-img', './assets/icons/cart-icon.svg', 'art icon');
     const headerCount = createHTMLElement('header__count', 'span');
     headerCount.textContent = '0';
 

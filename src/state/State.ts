@@ -14,6 +14,7 @@ export const initialFilters: Filters = {
 
 
 class State {
+  choseGoodsItem: Igoods | null = null;
   filtredGoods: Igoods[] = []
   filters: Filters  = initialFilters;
   goods: Igoods[] = dataGoods;
