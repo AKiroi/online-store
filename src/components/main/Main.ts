@@ -25,8 +25,8 @@ class Main {
     messageSearchResult = createHTMLElement('goods__message', 'div', 'The goods is empty!');
 
     constructor() {
-        this.search = new Search();
-        this.sort = new Sort();
+        this.search = new Search(this.callbackFiltredBrandAndCategory);
+        this.sort = new Sort(this.callbackFiltredBrandAndCategory);
         this.brandFilters = new BrandFilters(this.callbackFiltredBrandAndCategory);
         this.categoryFilters = new CategoryFilters(this.callbackFiltredBrandAndCategory);
         this.priceFilters = new PriceFilters();
