@@ -38,8 +38,9 @@ class MainPage {
 
   drawFiltredGoods() {
     this.goodsContainer.innerHTML = '';
+    console.log(state.filtredGoods)
     state.allFilters();
-
+    console.log(state.filtredGoods)
     Object.values(countBrandObj(state.filtredGoods)).forEach((count, i) => {
       const filtredCountElem = document.querySelectorAll('.brand-filter__count-filtred')!;
       filtredCountElem[i].textContent = String(count);

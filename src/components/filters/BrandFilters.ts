@@ -3,15 +3,15 @@ import dataGoods, { countBrandObj } from '../../data/data';
 import { Igoods } from '../../data/types';
 import { brandsArray } from './../../data/data';
 import { state } from '../../state/State';
-import Main from '../main/Main';
+//import Main from '../main/Main';
 import Goods from '../goods/Goods';
 
 class BrandFilters{
   callBack: () => void;
   constructor (filterCallBack: () => void){
     this.callBack = filterCallBack;
-  }
-  
+  }  
+
   filterBrand = (e: Event): void => {
     const target = e.target as HTMLInputElement;
     const dataBrand = target.getAttribute('data-brand') as string;

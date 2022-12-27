@@ -15,12 +15,14 @@ class CategoryFilters {
     const target = e.target as HTMLInputElement;
     const dataCategory = target.getAttribute('data-brand') as string;
     
+    
     if (target.checked === true) {
       state.filters.category.push(dataCategory);
     } else {
       const index = state.filters.category.findIndex((item) => item === dataCategory)
       state.filters.category.splice(index, 1);
     }
+   
     state.filtredCategoryState()
     this.callBack();
 
