@@ -48,13 +48,13 @@ class State {
   filtredSortState() {
     if (state.sort.length !== 0) {
       if (state.sort === 'sort-by-price-down') {
-        this.filtredGoods.sort((a, b) => b.price - a.price);
-      } else if (state.sort === 'sort-by-price-up') {
         this.filtredGoods.sort((a, b) => a.price - b.price);
+      } else if (state.sort === 'sort-by-price-up') {
+        this.filtredGoods.sort((a, b) => b.price - a.price);
       } else if (state.sort === 'sort-by-ratting-up') {
-        this.filtredGoods.sort((a, b) => a.rating - b.rating);
-      } else {
         this.filtredGoods.sort((a, b) => b.rating - a.rating);
+      } else {
+        this.filtredGoods.sort((a, b) => a.rating - b.rating);
       }
     }
   }

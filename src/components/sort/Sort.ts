@@ -18,10 +18,10 @@ class Sort {
     const sort = createHTMLElement('sort');
     const arrSortOption: string[][] = [
       ['', 'Sort by...'],
-      ['sort-by-price-down', 'Sort by price &#8595;'],
-      ['sort-by-price-up', 'Sort by price &#8593;'],
-      ['sort-by-ratting-up', 'Sort by ratting &#8593;'],
-      ['sort-by-ratting-down', 'Sort by ratting &#8595;'],
+      ['sort-by-price-down', 'Sort by price low'],
+      ['sort-by-price-up', 'Sort by price hight'],
+      ['sort-by-ratting-down', 'Sort by ratting low'],
+      ['sort-by-ratting-up', 'Sort by ratting hight'],
     ];
 
     const selectList = document.createElement('select') as HTMLSelectElement;
