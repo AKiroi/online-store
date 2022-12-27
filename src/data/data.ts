@@ -397,7 +397,7 @@ const dataGoods: Array<Idb> = [
     name: 'Volca-nubass',
     brand: 'Korg',
     photo: [
-      './assets/img/228888_KORG VOLCA-NUBASS_01-1200x800.jpeg',
+      './assets/img/228888_KORG_VOLCA-NUBASS_01-1200x800.jpeg',
       './assets/img/228888_116-1200x800.jpeg',
       './assets/img/228888_113-1200x800.jpeg',
       './assets/img/228888_117-1200x800.jpeg',
@@ -412,8 +412,8 @@ const dataGoods: Array<Idb> = [
     name: 'LSP32CS-TWS',
     brand: 'Tama',
     photo: [
-      './assets/img/229624_TAMA LSP32CS-TWS_1-1200x800.jpeg',
-      './assets/img/227652_TAMA LHK38CS-SVH_01-1200x800.jpeg',
+      './assets/img/229624_TAMA_LSP32CS-TWS_1-1200x800.jpeg',
+      './assets/img/227652_TAMA_LHK38CS-SVH_01-1200x800.jpeg',
       './assets/img/231009_4-1200x800.jpeg',
       './assets/img/231009_3-1200x800.jpeg',
     ],
