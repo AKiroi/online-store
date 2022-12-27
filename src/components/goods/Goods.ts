@@ -46,7 +46,7 @@ handlerGoodsItem = (e: Event) => {
         <ul class="goods__content">
           <li>Brand: ${this.brand}</li>
           <li>Category: ${this.category}</li>
-          <li>Stock: ${this.inStock}20</li>
+          <li>Stock: ${this.inStock}</li>
         </ul>
         <div class="goods__price">$${this.price}</div>
         <a href="" class="goods__btn">Add to card</a>
