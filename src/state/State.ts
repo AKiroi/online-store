@@ -45,7 +45,7 @@ class State {
     }
   }
 
-  filtredSortState() {
+  filtredSortState(): void {
     if (state.sort.length !== 0) {
       if (state.sort === 'sort-by-price-down') {
         this.filtredGoods.sort((a, b) => a.price - b.price);
@@ -56,6 +56,8 @@ class State {
       } else {
         this.filtredGoods.sort((a, b) => a.rating - b.rating);
       }
+    } else {
+      this.filtredGoods;
     }
   }
 
