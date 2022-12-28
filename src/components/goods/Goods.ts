@@ -6,9 +6,9 @@ import { state } from './../../state/State';
 
 class Goods {
   brand;
-  category; 
-  price; 
-  name; 
+  category;
+  price;
+  name;
   photo;
   inStock;
   goodsItem;
@@ -22,16 +22,35 @@ class Goods {
     this.inStock = goods.inStock;
     this.price = goods.price;
     this.goodsItem = goods;
-}
-
-handlerGoodsItem = (e: Event) => {
-  const target = e.target as HTMLElement;
-  if (target.classList.contains('goods__btn')) {
-    return false;
   }
-  state.choseGoodsItem = this.goodsItem;
-  window.location.hash = `#/goodsItem/${this.goodsItem.id}`;
-}
+
+  handlerCartButtonClick = (target: Element) => {
+    const buttonCart = target.closest('.goods__btn')!;
+    const headerCartCount = document.querySelector('.header__count') as HTMLElement;
+
+    if (target.classList.contains('goods__btn_add')) {
+      buttonCart.classList.remove('goods__btn_add');
+      buttonCart.textContent = 'Add to cart';
+      const index = state.cart.findIndex((item) => item.id === this.id);
+      state.cart.splice(index, 1);
+    } else {
+      buttonCart.classList.add('goods__btn_add');
+      buttonCart.textContent = 'Drop from cart';
+      state.cart.push(this.goodsItem);
+    }
+    headerCartCount.textContent = String(state.cart.length);
+    localStorage.setItem('cart', JSON.stringify(state.cart));
+  };
+
+  handlerGoodsItem = (e: Event): void => {
+    const target = e.target as HTMLElement;
+    if (target.classList.contains('goods__btn')) {
+      this.handlerCartButtonClick(target);
+    } else {
+      state.choseGoodsItem = this.goodsItem;
+      window.location.hash = `#/goodsItem/${this.goodsItem.id}`;
+    }
+  };
 
   draw() {
     const goodsContainer = createHTMLElement('goods__item');
@@ -49,7 +68,7 @@ handlerGoodsItem = (e: Event) => {
           <li>Stock: ${this.inStock}</li>
         </ul>
         <div class="goods__price">$${this.price}</div>
-        <a href="" class="goods__btn">Add to card</a>
+        <button class="goods__btn">Add to card</button>
       `;
 
     return goodsContainer;

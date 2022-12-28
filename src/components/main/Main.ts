@@ -25,19 +25,15 @@ class Main {
     messageSearchResult = createHTMLElement('goods__message', 'div', 'The goods is empty!');
 
     constructor() {
-        this.search = new Search(this.callbackFiltredBrandAndCategory);
-        this.sort = new Sort(this.callbackFiltredBrandAndCategory);
-        this.brandFilters = new BrandFilters(this.callbackFiltredBrandAndCategory);
-        this.categoryFilters = new CategoryFilters(this.callbackFiltredBrandAndCategory);
+        this.search = new Search(this.drawFiltredGoods);
+        this.sort = new Sort(this.drawFiltredGoods);
+        this.brandFilters = new BrandFilters(this.drawFiltredGoods);
+        this.categoryFilters = new CategoryFilters(this.drawFiltredGoods);
         this.priceFilters = new PriceFilters();
         this.stockFilters = new StockFilters();
     }
 
-    callbackFiltredBrandAndCategory = () => {
-      this.drawFiltredGoods();
-    }
-
-    drawFiltredGoods() {
+    drawFiltredGoods = () => {
       this.goodsContainer.innerHTML = '';
       state.allFilters();
 

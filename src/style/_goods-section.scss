@@ -10,7 +10,7 @@
     max-width: 300px;
     height: 100%;
     border-radius: 5px;
-    background: #fff;
+    background: var(--color-white);
     cursor: pointer;
   }
   &__image {
@@ -47,6 +47,10 @@
     color: var(--color-white);
     padding: 10px 10px;
     border-radius: 5px;
+
+    &_add {
+      background: var(--color-grey);
+    }
   }
   &__message {
     text-align: center;

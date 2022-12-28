@@ -20,6 +20,7 @@ class State {
   goods: Igoods[] = dataGoods;
   search: string = '';
   sort: string = '';
+  cart: Igoods[] = [];
 
   filtredSearchState(): void {
     const searchPhrase = state.search.toLowerCase();
