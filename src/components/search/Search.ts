@@ -7,14 +7,14 @@ class Search {
     this.callBack = filterCallBack;
   }
 
-  handlerSearch = (e: Event): void => {
+  private handlerSearch = (e: Event): void => {
     const input = e.target as HTMLInputElement;
     const searchRequest: string = input.value;
     state.search = searchRequest;
     this.callBack();
   };
 
-  draw() {
+  draw(): HTMLElement {
     const search = createHTMLElement('search');
     const inputText = document.createElement('input') as HTMLInputElement;
     inputText.className = 'search__input';

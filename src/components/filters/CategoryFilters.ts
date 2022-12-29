@@ -3,7 +3,7 @@ import { createHTMLElement } from '../../utils/createHTMLElement';
 import dataGoods, { categoryArray } from '../../data/data';
 import { Igoods } from '../../data/types';
 import { state } from '../../state/State';
-import { countCategoryObj } from './../../data/data';
+import { getCountCategoryObj } from '../../utils/getCountCategoryObj';
 
 class CategoryFilters {
   callBack: () => void;
@@ -11,7 +11,7 @@ class CategoryFilters {
     this.callBack = filterCallBack;
   }
   
-  filterCategory = (e: Event): void => {
+  private filterCategory = (e: Event): void => {
     const target = e.target as HTMLInputElement;
     const dataCategory = target.getAttribute('data-brand') as string;
     
@@ -23,12 +23,12 @@ class CategoryFilters {
       state.filters.category.splice(index, 1);
     }
    
-    state.filtredCategoryState()
+    state.filtredCategoryState();
     this.callBack();
 
   }
 
-  draw() {
+  draw(): HTMLElement {
     const categoryFilterContainer = createHTMLElement(['filters__category', 'category-filter']);
     const categoryFilterTitle = createHTMLElement('category-filter__title', 'div', 'Category');
     const categoryFilterItems = createHTMLElement('category-filter__items');
@@ -46,7 +46,7 @@ class CategoryFilters {
       const categoryFilterCustomCheckbox = createHTMLElement('brand-filter__custom-checkbox', 'span');
       const categoryFilterName = createHTMLElement('brand-filter__name', 'span', categoryItem);
 
-      const countCategory: string = String(countCategoryObj(state.goods)[categoryItem]);      
+      const countCategory: string = String(getCountCategoryObj(state.goods)[categoryItem]);      
       const categoryFilterCountContainer = createHTMLElement('category-filter__count-container');
       const categoryFilterCount = createHTMLElement('category-filter__count', 'span', `/${countCategory}`);
       const categoryFilterCountFiltred = createHTMLElement('category-filter__count-filtred', 'span', countCategory);

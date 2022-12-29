@@ -1,3 +1,5 @@
+export type Count = Record<string, number>;
+
 export interface Igoods {
   id: number,
   category: string,

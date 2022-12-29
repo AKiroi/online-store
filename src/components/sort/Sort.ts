@@ -7,14 +7,14 @@ class Sort {
     this.callBack = filterCallBack;
   }
 
-  handlerSort = (e: Event): void => {
+  private handlerSort = (e: Event): void => {
     const input = e.target as HTMLInputElement;
     const sortRequest: string = input.value;
     state.sort = sortRequest;
     this.callBack();
   };
 
-  draw() {
+  draw(): HTMLElement {
     const sort = createHTMLElement('sort');
     const arrSortOption: string[][] = [
       ['', 'Sort by...'],

@@ -1,10 +1,11 @@
 import { createHTMLElement } from '../../utils/createHTMLElement';
-import dataGoods, { countBrandObj } from '../../data/data';
+import dataGoods from '../../data/data';
 import { Igoods } from '../../data/types';
 import { brandsArray } from './../../data/data';
 import { state } from '../../state/State';
 //import Main from '../main/Main';
 import Goods from '../goods/Goods';
+import { getCountBrandObj } from './../../utils/getCountBrandObject';
 
 class BrandFilters{
   callBack: () => void;
@@ -12,7 +13,7 @@ class BrandFilters{
     this.callBack = filterCallBack;
   }  
 
-  filterBrand = (e: Event): void => {
+  private filterBrand = (e: Event): void => {
     const target = e.target as HTMLInputElement;
     const dataBrand = target.getAttribute('data-brand') as string;
     if (target.checked === true) {
@@ -25,7 +26,7 @@ class BrandFilters{
     this.callBack(); 
   }
 
-  draw() {
+  draw(): HTMLElement {
     const brandFilterContainer = createHTMLElement(['filters__brand', 'brand-filter']);
     const brandFilterTitle = createHTMLElement('brand-filter__title', 'div', 'Brand');
     const brandFilterItems = createHTMLElement('brand-filter__items');
@@ -42,7 +43,7 @@ class BrandFilters{
       inputFilterCheckbox.addEventListener('change', this.filterBrand);
       const brandFilterCustomCheckbox = createHTMLElement('brand-filter__custom-checkbox', 'span');
       const brandFilterName = createHTMLElement('brand-filter__name', 'span', brandItem);
-      const countBrand: string = String(countBrandObj(state.goods)[brandItem]);
+      const countBrand: string = String(getCountBrandObj(state.goods)[brandItem]);
       const brandFilterCountContainer = createHTMLElement('brand-filter__count-container');
       const brandFilterCount = createHTMLElement('brand-filter__count', 'span', `/${countBrand}`);
       const brandFilterCountFiltred = createHTMLElement('brand-filter__count-filtred', 'span', countBrand);

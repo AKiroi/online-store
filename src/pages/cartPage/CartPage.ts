@@ -3,7 +3,7 @@ import { createHTMLElement } from "../../utils/createHTMLElement";
 class CartPage {
 
 
-  draw() {
+  draw(): HTMLElement {
     const cartContainer = createHTMLElement('cart');
 
     cartContainer.innerHTML = `

@@ -5,14 +5,14 @@ import { Igoods } from '../../data/types';
 import { state } from './../../state/State';
 
 class Goods {
-  brand;
-  category;
-  price;
-  name;
-  photo;
-  inStock;
-  goodsItem;
-  id;
+  private brand;
+  private category;
+  private price;
+  private name;
+  private photo;
+  private inStock;
+  private goodsItem;
+  private id;
   constructor(goods: Igoods) {
     this.id = goods.id;
     this.brand = goods.brand;
@@ -24,7 +24,7 @@ class Goods {
     this.goodsItem = goods;
   }
 
-  handlerCartButtonClick = (target: Element) => {
+  private handlerCartButtonClick = (target: Element): void => {
     const buttonCart = target.closest('.goods__btn')!;
     const headerCartCount = document.querySelector('.header__count') as HTMLElement;
 
@@ -42,7 +42,7 @@ class Goods {
     localStorage.setItem('cart', JSON.stringify(state.cart));
   };
 
-  handlerGoodsItem = (e: Event): void => {
+  private handlerGoodsItem = (e: Event): void => {
     const target = e.target as HTMLElement;
     if (target.classList.contains('goods__btn')) {
       this.handlerCartButtonClick(target);
@@ -52,7 +52,7 @@ class Goods {
     }
   };
 
-  draw() {
+  draw(): HTMLElement {
     const goodsContainer = createHTMLElement('goods__item');
 
     goodsContainer.addEventListener('click', this.handlerGoodsItem);

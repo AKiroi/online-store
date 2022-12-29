@@ -7,45 +7,44 @@ import CategoryFilters from "../../components/filters/CategoryFilters";
 import PriceFilters from "../../components/filters/PriceFilters";
 import StockFilters from "../../components/filters/StockFilters";
 import { state } from "../../state/State";
-import dataGoods, { countBrandObj, countCategoryObj } from "../../data/data";
+import dataGoods from "../../data/data";
 import Goods from "../../components/goods/Goods";
-import { createImageElement } from "../../utils/createImageElement";
+import ViewButton from "../../components/View/ViewButton";
+import { getCountBrandObj } from "../../utils/getCountBrandObject";
+import { getCountCategoryObj } from "../../utils/getCountCategoryObj";
 
 class MainPage {
-  public search;
-  public sort;
-  public brandFilters;
-  public categoryFilters;
-  public priceFilters;
-  public stockFilters;
+  private search;
+  private sort;
+  private brandFilters;
+  private categoryFilters;
+  private priceFilters;
+  private stockFilters;
+  private viewButtons;
 
   mainGoods = createHTMLElement('main__goods');
   goodsContainer = createHTMLElement('goods');
   messageSearchResult = createHTMLElement('goods__message', 'div', 'The goods is empty!');
 
   constructor() {
-    this.search = new Search(this.callbackFiltredBrandAndCategory);
-    this.sort = new Sort(this.callbackFiltredBrandAndCategory);
-    this.brandFilters = new BrandFilters(this.callbackFiltredBrandAndCategory);
-    this.categoryFilters = new CategoryFilters(this.callbackFiltredBrandAndCategory);
+    this.search = new Search(this.drawFiltredGoods);
+    this.sort = new Sort(this.drawFiltredGoods);
+    this.brandFilters = new BrandFilters(this.drawFiltredGoods);
+    this.categoryFilters = new CategoryFilters(this.drawFiltredGoods);
     this.priceFilters = new PriceFilters();
     this.stockFilters = new StockFilters();
+    this.viewButtons = new ViewButton();
   }
 
-  callbackFiltredBrandAndCategory = () => {
-    this.drawFiltredGoods();
-  }
-
-  drawFiltredGoods() {
+  private drawFiltredGoods = (): void => {
     this.goodsContainer.innerHTML = '';
-    console.log(state.filtredGoods)
     state.allFilters();
-    console.log(state.filtredGoods)
-    Object.values(countBrandObj(state.filtredGoods)).forEach((count, i) => {
+
+    Object.values(getCountBrandObj(state.filtredGoods)).forEach((count, i) => {
       const filtredCountElem = document.querySelectorAll('.brand-filter__count-filtred')!;
       filtredCountElem[i].textContent = String(count);
     });
-    Object.values(countCategoryObj(state.filtredGoods)).forEach((count, i) => {
+    Object.values(getCountCategoryObj(state.filtredGoods)).forEach((count, i) => {
       const filtredCountElem = document.querySelectorAll('.category-filter__count-filtred')!;
       filtredCountElem[i].textContent = String(count);
     });
@@ -61,7 +60,7 @@ class MainPage {
     }
   }
 
-  goodsCreate() {
+  private goodsCreate(): HTMLElement {
     dataGoods.forEach((item) => {
       const goodsItem = new Goods(item);
       this.goodsContainer.append(goodsItem.draw());
@@ -70,7 +69,7 @@ class MainPage {
     return this.goodsContainer;
   }
 
-  draw() {
+  public draw(): HTMLElement {
     const main = createHTMLElement('main', 'main');
     const mainContaner = createHTMLElement('main__container');
     const mainFilters = createHTMLElement(['main__filters', 'filters']);
@@ -85,18 +84,9 @@ class MainPage {
     const categoryFilter = this.categoryFilters.draw();
     const priceFilter = this.priceFilters.draw();
     const stockFilter = this.stockFilters.draw();
+    const viewButtons = this.viewButtons.draw();
 
-
-    const viewContainer = createHTMLElement('view');
-    const veiwButtonSmall = createHTMLElement('view__button');
-    const veiwImageSmall = createImageElement('view__img-small', './assets/icons/view-small.svg', 'view small icon');
-    const veiwButtonLarge = createHTMLElement('view__button');
-    const veiwImageLarge = createImageElement('view__img-large', './assets/icons/view-large.svg', 'view large icon');
-    veiwButtonSmall.append(veiwImageSmall);
-    veiwButtonLarge.append(veiwImageLarge);
-    viewContainer.append(veiwButtonSmall, veiwButtonLarge);
-
-    goodsSort.append(this.search.draw(), this.sort.draw(), viewContainer);
+    goodsSort.append(this.search.draw(), this.sort.draw(), viewButtons);
     this.mainGoods.append(goodsSort, this.messageSearchResult, this.goodsCreate());
     mainFilters.append(filtersButtons, brandFilter, categoryFilter, priceFilter, stockFilter);
     mainContaner.append(mainFilters, this.mainGoods);

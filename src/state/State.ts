@@ -1,5 +1,5 @@
 import dataGoods from "../data/data";
-import { Idb, Igoods } from "../data/types";
+import { Igoods } from "../data/types";
 
 export type Filters = {
   brand: Array<string>;
@@ -12,7 +12,6 @@ export const initialFilters: Filters = {
   category: []
 }
 
-
 class State {
   choseGoodsItem: Igoods | null = null;
   filtredGoods: Igoods[] = []
@@ -22,7 +21,7 @@ class State {
   sort: string = '';
   cart: Igoods[] = [];
 
-  filtredSearchState(): void {
+  private filtredSearchState(): void {
     const searchPhrase = state.search.toLowerCase();
     if (searchPhrase.length !== 0) {
       this.filtredGoods = [];
@@ -46,7 +45,7 @@ class State {
     }
   }
 
-  filtredSortState(): void {
+  private filtredSortState(): void {
     if (state.sort.length !== 0) {
       if (state.sort === 'sort-by-price-down') {
         this.filtredGoods.sort((a, b) => a.price - b.price);

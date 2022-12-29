@@ -2,7 +2,6 @@ import { createHTMLElement } from "../../utils/createHTMLElement";
 import { Igoods } from "../../data/types";
 
 class GoodsItemPage {
-
   brand;
   category;
   price;

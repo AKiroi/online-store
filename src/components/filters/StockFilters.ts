@@ -3,7 +3,7 @@ import { createHTMLElement } from "../../utils/createHTMLElement";
 
 class StockFilters {
 
-  draw() {
+  draw(): HTMLElement {
     const priceFilter = createHTMLElement(['filters__stock', 'stock-filter']);
 
     priceFilter.innerHTML = `
