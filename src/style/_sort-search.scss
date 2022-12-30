@@ -37,9 +37,14 @@
   align-items: center;
   gap: 10px;
   margin-left: 20px;
+
+  &__input-radio {
+    display: none;
+  }
   
   &__button {
     border: none;
     background: transparent;
+    cursor: pointer;
   }
 }

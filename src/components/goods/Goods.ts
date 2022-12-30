@@ -58,18 +58,24 @@ class Goods {
     goodsContainer.addEventListener('click', this.handlerGoodsItem);
 
     goodsContainer.innerHTML = `
+      <div class="goods__content-wrapper">
         <div class="goods__image">
           <img src=${this.photo[0]} alt=${this.brand}>
         </div>
-        <div class="goods__title">${this.name}</div>
-        <ul class="goods__content">
-          <li>Brand: ${this.brand}</li>
-          <li>Category: ${this.category}</li>
-          <li>Stock: ${this.inStock}</li>
-        </ul>
+        <div class="goods__content">
+          <div class="goods__title">${this.name}</div>
+          <ul class="goods__description">
+            <li>Brand: ${this.brand}</li>
+            <li>Category: ${this.category}</li>
+            <li>Stock: ${this.inStock}</li>
+          </ul>
+        </div>
+      </div>
+      <div class="goods__price-block">
         <div class="goods__price">$${this.price}</div>
         <button class="goods__btn">Add to card</button>
-      `;
+      </div>
+  `;
 
     return goodsContainer;
   }
