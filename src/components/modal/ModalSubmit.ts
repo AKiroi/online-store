@@ -1,8 +1,5 @@
 import { createHTMLElement } from '../../utils/createHTMLElement';
-import { createImageElement } from '../../utils/createImageElement';
-import dataGoods from '../../data/data';
-import { Igoods } from '../../data/types';
-import { state } from '../../state/State';
+import { createInputElement } from '../../utils/createInputElement';
 
 class ModalSubmit {
   constructor() {
@@ -14,10 +11,11 @@ class ModalSubmit {
   draw(): HTMLElement {
     const modalSubmit = createHTMLElement('modal-submit');
     const modalSubmitContainer = createHTMLElement('modal-submit_container');
+    const inputName = createInputElement('modal-submit_container__name', 'text');
 
+    modalSubmitContainer.append(inputName);
 
-
-    modalSubmit.innerHTML=`TEST`
+    modalSubmit.append(modalSubmitContainer);
 
     return modalSubmit;
   }

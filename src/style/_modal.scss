@@ -1,4 +1,12 @@
-.modal_submit{
-  font-size: 50px;
-  background-color: azure;
+.modal-submit{
+  background-color: #ffca94;
+  padding: 60px 0 40px 0;
+  height: calc(100vh - 160px);
+  &_container {
+    width: 820px;
+    height: 700px;
+    border-radius: 14px;
+    background: var(--color-white);
+    margin: 0 auto 0 auto;
+  }
 }
