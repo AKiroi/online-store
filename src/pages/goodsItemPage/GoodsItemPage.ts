@@ -64,19 +64,19 @@ class GoodsItemPage {
   };
 
   draw(): HTMLElement {
-    const goodsItem = createHTMLElement('goods-item') as HTMLElement;
+    const goodsItem = createHTMLElement('goods-item');
     const goodsItemContainer = createHTMLElement('goods-item-container');
-    const goodsItemImagesBlok = createHTMLElement('goods-item-container-images-block') as HTMLElement;
-    const goodsItemImage = createHTMLElement('goods-item-container-images-block__image') as HTMLElement;
-    const goodsItemImages = createHTMLElement('goods-item-container-images-block__images') as HTMLElement;
-    const goodsItemContentBlock = createHTMLElement('goods-item-container-content-block') as HTMLElement;
-    const goodsItemContent = createHTMLElement('goods-item-container-content-block__content') as HTMLElement;
-    const goodsItemBreadCrumps = createHTMLElement('goods-item-container-content-block__content__bread-crumps') as HTMLElement;
-    const goodsItemTitle = createHTMLElement('goods-item-container-content-block__content__title') as HTMLElement;
-    const goodsItemDescription = createHTMLElement('goods-item-container-content-block__content__description') as HTMLElement;
-    const goodsItemButtonContainer = createHTMLElement('goods-item-container-button-block') as HTMLElement;
-    const goodsItemPrice = createHTMLElement('goods-item-container-button-block__price') as HTMLElement;
-    const goodsItemButtons = createHTMLElement('goods-item-container-button-block__buttons') as HTMLElement;
+    const goodsItemImagesBlok = createHTMLElement('goods-item-container-images-block');
+    const goodsItemImage = createHTMLElement('goods-item-container-images-block__image');
+    const goodsItemImages = createHTMLElement('goods-item-container-images-block__images');
+    const goodsItemContentBlock = createHTMLElement('goods-item-container-content-block');
+    const goodsItemContent = createHTMLElement('goods-item-container-content-block__content');
+    const goodsItemBreadCrumps = createHTMLElement('goods-item-container-content-block__content__bread-crumps');
+    const goodsItemTitle = createHTMLElement('goods-item-container-content-block__content__title');
+    const goodsItemDescription = createHTMLElement('goods-item-container-content-block__content__description');
+    const goodsItemButtonContainer = createHTMLElement('goods-item-container-button-block');
+    const goodsItemPrice = createHTMLElement('goods-item-container-button-block__price');
+    const goodsItemButtons = createHTMLElement('goods-item-container-button-block__buttons');
     const btnBuyNow = document.createElement('button') as HTMLButtonElement;
     const btnDropOnCart = document.createElement('button') as HTMLButtonElement;
     btnBuyNow.innerHTML = 'Buy now';
