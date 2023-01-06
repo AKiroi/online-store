@@ -1,6 +1,7 @@
 import Header from '../header/Header';
 import MainPage from '../../pages/mainPage/MainPage';
 import CartPage from '../../pages/cartPage/CartPage';
+import ModalPage from '../../components/modal/ModalSubmit';
 import Footer from '../footer/Footer';
 import { createHTMLElement } from '../../utils/createHTMLElement';
 import GoodsItemPage from '../../pages/goodsItemPage/GoodsItemPage';
@@ -10,6 +11,7 @@ const LocationPath: Record<string, string> = {
   MainPage: '#/',
   CartPage: '#/cart',
   GoodsItemPage: `#/goodsItem`,
+  ModalPage: '#/modal',
 };
 
 class App {
@@ -43,6 +45,9 @@ class App {
         break;
       case LocationPath.GoodsItemPage:
         changePage = new GoodsItemPage(this.goodsItem);
+        break;
+        case LocationPath.ModalPage:
+        changePage = new ModalPage();
         break;
     }
 

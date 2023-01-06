@@ -3,14 +3,14 @@ import { Igoods } from "../../data/types";
 import { state } from "../../state/State";
 
 class GoodsItemPage {
-  brand;
-  category;
-  price;
-  name;
-  photo;
-  inStock;
-  goodsItem;
-  id;
+  private brand;
+  private category;
+  private price;
+  private name;
+  private photo;
+  private inStock;
+  private goodsItem;
+  private id;
 
   constructor(goods: Igoods) {
     this.id = goods.id;
