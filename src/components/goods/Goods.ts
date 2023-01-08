@@ -57,13 +57,14 @@ class Goods {
 
     goodsContainer.addEventListener('click', this.handlerGoodsItem);
     let classRemoveButton = '';
-    if (
-      JSON.parse(localStorage.getItem('cart') as string).findIndex(
-        (el: Element) => el.id.toString() === this.id.toString()
-      ) !== -1
-    )
-      classRemoveButton = ' goods__btn_add';
-
+    if (localStorage.getItem('cart')) {
+      if (
+        JSON.parse(localStorage.getItem('cart') as string).findIndex(
+          (el: Element) => el.id.toString() === this.id.toString()
+        ) !== -1
+      )
+        classRemoveButton = ' goods__btn_add';
+    }
     goodsContainer.innerHTML = `
       <div class="goods__content-wrapper">
         <div class="goods__image">

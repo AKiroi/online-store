@@ -3,14 +3,14 @@ import { Igoods } from "../../data/types";
 import { state } from "../../state/State";
 
 class GoodsItemPage {
-  brand;
-  category;
-  price;
-  name;
-  photo;
-  inStock;
-  goodsItem;
-  id;
+  private brand;
+  private category;
+  private price;
+  private name;
+  private photo;
+  private inStock;
+  private goodsItem;
+  private id;
 
   constructor(goods: Igoods) {
     this.id = goods.id;
@@ -41,15 +41,27 @@ class GoodsItemPage {
   };
 
   public findElementToLocalStorage(n: string): number {
-    const dateLocalStorage = JSON.parse(localStorage.getItem('cart') as string);
-    return dateLocalStorage.findIndex((el: Element) => el.id.toString() === n);
+    if (localStorage.getItem('cart') === null) {
+      return -1;
+    } else {
+      const dateLocalStorage = JSON.parse(localStorage.getItem('cart') as string);
+      return dateLocalStorage.findIndex((el: Element) => el.id.toString() === n);
+    }
   }
 
   private handlerGoodsButtons = (e: Event): void => {
     const target = e.target as HTMLElement;
     if (target.classList.contains('drop__btn')) {
-      console.log(target);
       this.handlerCartButtonClick(target);
+    }
+    if (target.classList.contains('bye-btn')) {
+      if (this.findElementToLocalStorage(this.id.toString()) === -1) {
+        state.cart.push(this.goodsItem);
+        localStorage.setItem('cart', JSON.stringify(state.cart));
+        const headerCartCount = document.querySelector('.header__count') as HTMLElement;
+        headerCartCount.textContent = String(state.cart.length);
+      }
+      window.location.hash = `#/cart/`;
     }
   };
 
@@ -64,19 +76,19 @@ class GoodsItemPage {
   };
 
   draw(): HTMLElement {
-    const goodsItem = createHTMLElement('goods-item') as HTMLElement;
+    const goodsItem = createHTMLElement('goods-item');
     const goodsItemContainer = createHTMLElement('goods-item-container');
-    const goodsItemImagesBlok = createHTMLElement('goods-item-container-images-block') as HTMLElement;
-    const goodsItemImage = createHTMLElement('goods-item-container-images-block__image') as HTMLElement;
-    const goodsItemImages = createHTMLElement('goods-item-container-images-block__images') as HTMLElement;
-    const goodsItemContentBlock = createHTMLElement('goods-item-container-content-block') as HTMLElement;
-    const goodsItemContent = createHTMLElement('goods-item-container-content-block__content') as HTMLElement;
-    const goodsItemBreadCrumps = createHTMLElement('goods-item-container-content-block__content__bread-crumps') as HTMLElement;
-    const goodsItemTitle = createHTMLElement('goods-item-container-content-block__content__title') as HTMLElement;
-    const goodsItemDescription = createHTMLElement('goods-item-container-content-block__content__description') as HTMLElement;
-    const goodsItemButtonContainer = createHTMLElement('goods-item-container-button-block') as HTMLElement;
-    const goodsItemPrice = createHTMLElement('goods-item-container-button-block__price') as HTMLElement;
-    const goodsItemButtons = createHTMLElement('goods-item-container-button-block__buttons') as HTMLElement;
+    const goodsItemImagesBlok = createHTMLElement('goods-item-container-images-block');
+    const goodsItemImage = createHTMLElement('goods-item-container-images-block__image');
+    const goodsItemImages = createHTMLElement('goods-item-container-images-block__images');
+    const goodsItemContentBlock = createHTMLElement('goods-item-container-content-block');
+    const goodsItemContent = createHTMLElement('goods-item-container-content-block__content');
+    const goodsItemBreadCrumps = createHTMLElement('goods-item-container-content-block__content__bread-crumps');
+    const goodsItemTitle = createHTMLElement('goods-item-container-content-block__content__title');
+    const goodsItemDescription = createHTMLElement('goods-item-container-content-block__content__description');
+    const goodsItemButtonContainer = createHTMLElement('goods-item-container-button-block');
+    const goodsItemPrice = createHTMLElement('goods-item-container-button-block__price');
+    const goodsItemButtons = createHTMLElement('goods-item-container-button-block__buttons');
     const btnBuyNow = document.createElement('button') as HTMLButtonElement;
     const btnDropOnCart = document.createElement('button') as HTMLButtonElement;
     btnBuyNow.innerHTML = 'Buy now';
@@ -104,8 +116,10 @@ class GoodsItemPage {
     goodsItemImagesBlok.append(goodsItemImage, goodsItemImages);
     goodsItemContentBlock.append(goodsItemContent, goodsItemButtonContainer);
     goodsItemContent.append(goodsItemBreadCrumps, goodsItemTitle, goodsItemDescription);
-    if (this.findElementToLocalStorage(this.id.toString()) !== -1) {
-      btnDropOnCart.classList.add('btn_remove');
+    if (localStorage.getItem('cart')) {
+      if (this.findElementToLocalStorage(this.id.toString()) !== -1) {
+        btnDropOnCart.classList.add('btn_remove');
+      }
     }
     goodsItemButtons.append(btnBuyNow, btnDropOnCart);
     goodsItemButtonContainer.append(goodsItemPrice, goodsItemButtons);
