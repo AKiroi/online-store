@@ -104,8 +104,10 @@ class GoodsItemPage {
     goodsItemImagesBlok.append(goodsItemImage, goodsItemImages);
     goodsItemContentBlock.append(goodsItemContent, goodsItemButtonContainer);
     goodsItemContent.append(goodsItemBreadCrumps, goodsItemTitle, goodsItemDescription);
-    if (this.findElementToLocalStorage(this.id.toString()) !== -1) {
-      btnDropOnCart.classList.add('btn_remove');
+    if (localStorage.getItem('cart')) {
+      if (this.findElementToLocalStorage(this.id.toString()) !== -1) {
+        btnDropOnCart.classList.add('btn_remove');
+      }
     }
     goodsItemButtons.append(btnBuyNow, btnDropOnCart);
     goodsItemButtonContainer.append(goodsItemPrice, goodsItemButtons);
