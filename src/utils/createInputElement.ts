@@ -1,4 +1,4 @@
-export const createInputElement = (elementClass: string | string[], elementType: string): HTMLInputElement => {
+export const createInputElement = (elementClass: string | string[], elementType: string, placeholder: string): HTMLInputElement => {
   const element = document.createElement('input');
   if (Array.isArray(elementClass)) {
     element.className = elementClass.join(' ');
@@ -7,6 +7,9 @@ export const createInputElement = (elementClass: string | string[], elementType:
   }
   if (elementType) {
     element.type = elementType;
+  }
+  if (placeholder) {
+    element.setAttribute('placeholder', placeholder);
   }
   return element;
 };
