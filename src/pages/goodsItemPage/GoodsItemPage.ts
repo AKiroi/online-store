@@ -41,15 +41,27 @@ class GoodsItemPage {
   };
 
   public findElementToLocalStorage(n: string): number {
-    const dateLocalStorage = JSON.parse(localStorage.getItem('cart') as string);
-    return dateLocalStorage.findIndex((el: Element) => el.id.toString() === n);
+    if (localStorage.getItem('cart') === null) {
+      return -1;
+    } else {
+      const dateLocalStorage = JSON.parse(localStorage.getItem('cart') as string);
+      return dateLocalStorage.findIndex((el: Element) => el.id.toString() === n);
+    }
   }
 
   private handlerGoodsButtons = (e: Event): void => {
     const target = e.target as HTMLElement;
     if (target.classList.contains('drop__btn')) {
-      console.log(target);
       this.handlerCartButtonClick(target);
+    }
+    if (target.classList.contains('bye-btn')) {
+      if (this.findElementToLocalStorage(this.id.toString()) === -1) {
+        state.cart.push(this.goodsItem);
+        localStorage.setItem('cart', JSON.stringify(state.cart));
+        const headerCartCount = document.querySelector('.header__count') as HTMLElement;
+        headerCartCount.textContent = String(state.cart.length);
+      }
+      window.location.hash = `#/cart/`;
     }
   };
 
