@@ -8,4 +8,6 @@ export const deleteQuerryParams = () => {
   getQueryParams.delete('sort');
   getQueryParams.delete('search');
   getQueryParams.delete('view');
+  getQueryParams.delete('priceMax');
+  getQueryParams.delete('priceMin');
 }

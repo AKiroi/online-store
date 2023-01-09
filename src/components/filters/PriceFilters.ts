@@ -55,21 +55,20 @@ class PriceFilters {
   draw(): HTMLElement {
     const priceFilter = createHTMLElement(['filters__price', 'price-filter']);
     priceFilter.addEventListener('click', this.handlerPriceFiltred);
-
     priceFilter.innerHTML = `
       <div class="price-filter__title">Price</div>
       <div class="price-filter__numbers-wrapper">
         <div class="price-filter__min">
-          <input class="price-filter__number-min" min=${state.filters.price[0]} max=${state.filters.price[1]} value=${state.getMaxMinPrice()[0]} disabled>
+          <input class="price-filter__number-min" min=${state.filters.price[0]} max=${state.filters.price[1]} value=${state.priceValMin} disabled>
         </div>
         <div class="price-filter__max">
-          <input type="number" class="price-filter__number-max" min=${state.filters.price[0]} max=${state.filters.price[1]} value=${state.getMaxMinPrice()[1]} disabled>
+          <input type="number" class="price-filter__number-max" min=${state.filters.price[0]} max=${state.filters.price[1]} value=${state.priceValMax} disabled>
         </div>
       </div>
       <div class="price-filter__wrapper">
         <div class="price-filter__input-custom"></div>
-        <input type="range" class="price-filter__input-min price-filter__range" min=${state.filters.price[0]} max=${state.filters.price[1]} value=${state.getMaxMinPrice()[0]}>
-        <input type="range" class="price-filter__input-max price-filter__range" min=${state.filters.price[0]} max=${state.filters.price[1]} value=${state.getMaxMinPrice()[1]}>
+        <input type="range" class="price-filter__input-min price-filter__range" min=${state.filters.price[0]} max=${state.filters.price[1]} value=${state.priceValMin}>
+        <input type="range" class="price-filter__input-max price-filter__range" min=${state.filters.price[0]} max=${state.filters.price[1]} value=${state.priceValMax}>
       </div>
       `;
 
