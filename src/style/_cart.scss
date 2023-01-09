@@ -4,7 +4,7 @@
   background: var(--color-orange);
   flex: 1 1 auto;
   height: 100%;
- 
+  position: relative;
   &__container {
     display: flex;
     flex-direction: column;
@@ -195,5 +195,23 @@
     margin-left: 20px;
     font-weight: 700;
     font-size: 20px;
+  }
+  & .overlay {
+    z-index: 100;
+    position: absolute;
+    top: 0;
+    left: 0;
+    width:100%;
+    height:100%;
+    background:#000;
+    opacity:0.5;
+  }
+  & .overlay-modal-container {
+    z-index: 100;
+    position: absolute;
+    top: 0;
+    left: 0;
+    width:100%;
+    height:110%;
   }
 }
