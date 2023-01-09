@@ -114,7 +114,6 @@ class MainPage {
         this.goodsContainer.append(goodsItem.draw());
       });
     }
-    
     return this.goodsContainer;
   }
 
@@ -155,7 +154,9 @@ class MainPage {
     mainFilters.append(filtersButtons, brandFilter, categoryFilter, priceFilter, stockFilter);
     mainContaner.append(mainFilters, this.mainGoods);
     main.append(mainContaner);
-
+    setTimeout(() => {
+      this.drawFiltredGoods();
+    }, 100);
     return main;
   }
 }

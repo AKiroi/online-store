@@ -79,13 +79,17 @@ class CartPage {
   private handlerFooter = (e: Event): void => {
     const button = e.target as HTMLButtonElement;
     if (button.classList.contains('cart__btn-byu')) {
-      const overlay = document.querySelector('.container__modal_overlay') as HTMLElement;
-      overlay.classList.add('overlay');
-      const containerModal = document.querySelector('.modal-container') as HTMLElement;
-      containerModal.classList.add('overlay-modal-container');
-      containerModal.append(this.modal.draw());
+      this.drawModal();
     }
   };
+
+  private drawModal(): void {
+    const overlay = document.querySelector('.container__modal_overlay') as HTMLElement;
+    overlay.classList.add('overlay');
+    const containerModal = document.querySelector('.modal-container') as HTMLElement;
+    containerModal.classList.add('overlay-modal-container');
+    containerModal.append(this.modal.draw());
+  }
 
   draw(): HTMLElement {
     const cartContainer = createHTMLElement('cart');
@@ -474,6 +478,13 @@ class CartPage {
 
     //   </div>
     //   `;
+
+    if (localStorage.getItem('modal')) {
+      setTimeout(() => {
+        localStorage.removeItem('modal');
+        this.drawModal();
+      }, 500);
+    }
 
     cartFooter?.addEventListener('click', this.handlerFooter);
     return cartContainer;
