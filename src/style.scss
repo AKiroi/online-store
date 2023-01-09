@@ -5,10 +5,12 @@
 @import "./style/_footer.scss";
 @import "style/cart";
 @import "style/goodsItem";
+@import "style/modal";
 
 :root {
 	--color-backgrounfd: #121c1e;
 	--color-orange: #ffca94;
+	--color-orange-light: #f2d0ae;
 	--color-white: #fff;
 	--color-grey: #999;
 	--color-grey-light: #c2c2c2;

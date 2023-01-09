@@ -56,7 +56,15 @@ class Goods {
     const goodsContainer = createHTMLElement('goods__item');
 
     goodsContainer.addEventListener('click', this.handlerGoodsItem);
-
+    let classRemoveButton = '';
+    if (localStorage.getItem('cart')) {
+      if (
+        JSON.parse(localStorage.getItem('cart') as string).findIndex(
+          (el: Element) => el.id.toString() === this.id.toString()
+        ) !== -1
+      )
+        classRemoveButton = ' goods__btn_add';
+    }
     goodsContainer.innerHTML = `
       <div class="goods__content-wrapper">
         <div class="goods__image">
@@ -73,7 +81,7 @@ class Goods {
       </div>
       <div class="goods__price-block">
         <div class="goods__price">$${this.price}</div>
-        <button class="goods__btn">Add to card</button>
+        <button class="goods__btn${classRemoveButton}">Add to card</button>
       </div>
   `;
 
