@@ -20,7 +20,7 @@ class Search {
     inputText.className = 'search__input';
     inputText.type = 'search';
     inputText.id = 'search-input';
-    inputText.placeholder = 'Find....';
+    inputText.placeholder = state.search ? state.search : 'Find....';
     search.append(inputText);
     inputText?.addEventListener('input', this.handlerSearch);
     return search;

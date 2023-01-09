@@ -1,5 +1,7 @@
 import { createHTMLElement } from '../../utils/createHTMLElement';
 import { createImageElement } from '../../utils/createImageElement';
+import { state } from './../../state/State';
+import { getQueryParams } from './../../utils/getQueryParams';
 
 class ViewButton {
 
@@ -10,15 +12,22 @@ class ViewButton {
     const viewImgWindow = document.querySelector('.view__img-window')! as HTMLImageElement;
     const viewImgList= document.querySelector('.view__img-list')! as HTMLImageElement;
 
+    getQueryParams.delete('view');
+
     if(dataView === 'list') {
+      state.view = 'list';
+      getQueryParams.append('view', 'list');
       goodsItemElem.classList.add('goods_list');
       viewImgWindow.src = './assets/icons/view-small.svg';
       viewImgList.src = './assets/icons/view-large_grey.svg';
     } else {
+      state.view = '';
       goodsItemElem.classList.remove('goods_list');
       viewImgWindow.src = './assets/icons/view-small_grey.svg';
       viewImgList.src = './assets/icons/view-large.svg';
     }
+
+    window.location.hash = !!getQueryParams.toString() ? `/?${getQueryParams.toString()}` : `/`;
   }
   
   draw(): HTMLElement {
@@ -38,14 +47,25 @@ class ViewButton {
       viewInputRadio.type = 'radio';
       viewInputRadio.name = 'view-button';
       viewInputRadio.dataset.view = btn.dataset;
-      if (i === 0) {
-        viewInputRadio.checked = true;
-      }
-
+    
       viewInputRadio.addEventListener('change', this.changedViewIcon);
 
       const viewButton = createHTMLElement('view__button');
       const viewImage = createImageElement(btn.class, btn.src, btn.alt);
+
+      if (i === 0 && state.view.length === 0) {
+        viewInputRadio.checked = true;
+      }
+      if (state.view) {
+        if (i === 1) {
+          viewInputRadio.checked = true;
+          viewImage.src = './assets/icons/view-large_grey.svg';
+        }
+        if (i === 0) {
+          viewImage.src = './assets/icons/view-small.svg';
+        }
+      }
+
       viewButton.append(viewImage);
       viewLabel.append(viewInputRadio, viewButton);
       viewContainer.append(viewLabel);

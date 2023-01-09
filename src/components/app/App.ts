@@ -5,11 +5,12 @@ import Footer from '../footer/Footer';
 import { createHTMLElement } from '../../utils/createHTMLElement';
 import GoodsItemPage from '../../pages/goodsItemPage/GoodsItemPage';
 import dataGoods from '../../data/data';
+import { getQueryParams } from '../../utils/getQueryParams';
 
 const LocationPath: Record<string, string> = {
-  MainPage: '#/',
-  CartPage: '#/cart',
-  GoodsItemPage: `#/goodsItem`,
+  MainPage: '/',
+  CartPage: '/cart',
+  GoodsItemPage: `/goodsItem`,
 };
 
 class App {
@@ -18,6 +19,8 @@ class App {
   private header: Header;
   private footer: Footer;
   private goodsItem: any;
+
+  prevPathPage = '';
 
   constructor() {
     this.header = new Header();
@@ -33,7 +36,6 @@ class App {
       this.goodsItem = dataGoods.find((item) => item.id === +id);
     }
 
-
     switch (location) {
       case LocationPath.MainPage:
         changePage = new MainPage();
@@ -47,34 +49,42 @@ class App {
     }
 
     if (changePage) {
+      this.prevPathPage = window.location.hash.slice(1);
       this.wrapper.append(changePage.draw());
     }
   }
 
   handleHashChange(): void {
-    window.addEventListener('hashchange', () => {
-      const hashLoc = window.location.hash;
-      const hashArr = hashLoc.split('/');
-      let hash;
-      let id;
-      if (hashArr.length > 2) {
-        id = hashArr.splice(-1).join('');
-        hash = hashArr.join('/');
-      } else {
-        hash = hashLoc;
-      }
+    window.addEventListener('hashchange', this.loadHashPage);
+    window.addEventListener('load', this.loadHashPage);
+  }
 
-      if (!hash) {
-        window.location.hash = `#/`;
+  loadHashPage = () => {
+    const hash = window.location.hash.slice(1);
+    const hashArr = hash.split('/');
+    const pathPage = hash.slice(0, hash.indexOf('?'));
+
+    if (!hash) {
+      window.location.hash = `/`;
+    }
+    if (hash.includes('?')) {
+      if (this.prevPathPage.slice(0, hash.indexOf('?')) !== pathPage) {
+        this.drawNewPage(`/`);
       }
-      this.drawNewPage(hash, id);
-    });
+    } else {
+      if (hashArr.length > 2) {
+        const id = hashArr.pop();
+        const hashItem = hashArr.join('/');
+        this.drawNewPage(hashItem, id);
+      } else {
+        this.drawNewPage(hash);
+      }
+    }
   }
 
   start(): void {
-    this.root.append(this.header.draw(), this.wrapper, this.footer.draw());
-    this.drawNewPage('#/');
     this.handleHashChange();
+    this.root.append(this.header.draw(), this.wrapper, this.footer.draw());
   }
 }
 

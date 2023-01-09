@@ -3,12 +3,12 @@ import dataGoods from '../../data/data';
 import { Igoods } from '../../data/types';
 import { brandsArray } from './../../data/data';
 import { state } from '../../state/State';
-//import Main from '../main/Main';
 import Goods from '../goods/Goods';
 import { getCountBrandObj } from './../../utils/getCountBrandObject';
 
 class BrandFilters{
   callBack: () => void;
+  
   constructor (filterCallBack: () => void){
     this.callBack = filterCallBack;
   }  
@@ -21,8 +21,9 @@ class BrandFilters{
     } else {
       const index = state.filters.brand.findIndex((item) => item === dataBrand);
       state.filters.brand.splice(index, 1);
+     
     }
-    state.filtredBrandState()
+    state.filtredBrandState();
     this.callBack(); 
   }
 
@@ -40,13 +41,24 @@ class BrandFilters{
       inputFilterCheckbox.type = 'checkbox';
       inputFilterCheckbox.name = 'brand';
       inputFilterCheckbox.dataset.brand = brandItem;
+
       inputFilterCheckbox.addEventListener('change', this.filterBrand);
       const brandFilterCustomCheckbox = createHTMLElement('brand-filter__custom-checkbox', 'span');
       const brandFilterName = createHTMLElement('brand-filter__name', 'span', brandItem);
+
       const countBrand: string = String(getCountBrandObj(state.goods)[brandItem]);
+
       const brandFilterCountContainer = createHTMLElement('brand-filter__count-container');
       const brandFilterCount = createHTMLElement('brand-filter__count', 'span', `/${countBrand}`);
       const brandFilterCountFiltred = createHTMLElement('brand-filter__count-filtred', 'span', countBrand);
+
+
+      if (state.filters.brand.includes(brandItem)) {
+        inputFilterCheckbox.checked = true;
+      } else {
+        brandFilterCountFiltred.textContent = countBrand;
+        inputFilterCheckbox.checked = false;
+      }
 
       brandFilterCountContainer.append(brandFilterCountFiltred, brandFilterCount);
       brandFilterWrapper.append(inputFilterCheckbox, brandFilterCustomCheckbox, brandFilterName);

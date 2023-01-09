@@ -1,5 +1,6 @@
 import dataGoods from "../data/data";
 import { Igoods } from "../data/types";
+import { getQueryParams } from './../utils/getQueryParams';
 
 export type Filters = {
   brand: Array<string>;
@@ -8,8 +9,8 @@ export type Filters = {
 
 
 export const initialFilters: Filters = {
-  brand: [],
-  category: []
+  brand: getQueryParams.getAll('brand') || [],
+  category: getQueryParams.getAll('category') || [],
 }
 
 class State {
@@ -17,9 +18,18 @@ class State {
   filtredGoods: Igoods[] = []
   filters: Filters  = initialFilters;
   goods: Igoods[] = dataGoods;
-  search: string = '';
-  sort: string = '';
+  view: string = getQueryParams.get('view') || '';
+  search: string = getQueryParams.get('search') || '';
+  sort: string = getQueryParams.get('sort')|| '';
   cart: Igoods[] = [];
+
+  resetState(): void {
+    this.search = '';
+    this.sort = '';
+    this.view = '';
+    this.filters.brand = [];
+    this.filters.category = [];
+  }
 
   private filtredSearchState(): void {
     const searchPhrase = state.search.toLowerCase();
