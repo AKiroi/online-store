@@ -1,6 +1,7 @@
 import { createHTMLElement } from "../../utils/createHTMLElement";
 import { Igoods } from "../../data/types";
 import { state } from "../../state/State";
+import cartPage from "../../pages/cartPage/CartPage";
 
 class GoodsItemPage {
   private brand;
@@ -11,6 +12,7 @@ class GoodsItemPage {
   private inStock;
   private goodsItem;
   private id;
+  private cartPage;
 
   constructor(goods: Igoods) {
     this.id = goods.id;
@@ -21,6 +23,7 @@ class GoodsItemPage {
     this.inStock = goods.inStock;
     this.price = goods.price;
     this.goodsItem = goods;
+    this.cartPage = cartPage;
   }
 
   private handlerCartButtonClick = (target: Element): void => {
@@ -62,6 +65,7 @@ class GoodsItemPage {
         headerCartCount.textContent = String(state.cart.length);
       }
       window.location.hash = `#/cart/`;
+      localStorage.setItem('modal', JSON.stringify('1'));
     }
   };
 
