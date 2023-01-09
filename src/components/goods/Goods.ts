@@ -13,6 +13,8 @@ class Goods {
   private inStock;
   private goodsItem;
   private id;
+  private count;
+  
   constructor(goods: Igoods) {
     this.id = goods.id;
     this.brand = goods.brand;
@@ -22,6 +24,7 @@ class Goods {
     this.inStock = goods.inStock;
     this.price = goods.price;
     this.goodsItem = goods;
+    this.count = goods;
   }
 
   private handlerCartButtonClick = (target: Element): void => {
@@ -31,14 +34,18 @@ class Goods {
     if (target.classList.contains('goods__btn_add')) {
       buttonCart.classList.remove('goods__btn_add');
       buttonCart.textContent = 'Add to cart';
+
+      this.goodsItem.count = 0;
+
       const index = state.cart.findIndex((item) => item.id === this.id);
       state.cart.splice(index, 1);
     } else {
       buttonCart.classList.add('goods__btn_add');
       buttonCart.textContent = 'Drop from cart';
+      this.goodsItem.count = 1;
       state.cart.push(this.goodsItem);
     }
-    headerCartCount.textContent = String(state.cart.length);
+    headerCartCount.textContent = String(state.getTotalCount());
     localStorage.setItem('cart', JSON.stringify(state.cart));
   };
 

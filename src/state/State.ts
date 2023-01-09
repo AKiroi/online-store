@@ -35,6 +35,10 @@ class State {
     this.filters.category = [];
   }
 
+  getTotalCount(): number  {
+    return this.cart.reduce((acc, item) => item.count + acc, 0);
+  }
+
   private filtredSearchState(): void {
     const searchPhrase = state.search.toLowerCase();
     if (searchPhrase.length !== 0) {

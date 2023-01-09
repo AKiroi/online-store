@@ -15,6 +15,7 @@ const dataGoods: Array<Idb> = [
     price: 1802,
     inStock: 18,
     rating: 4.42,
+    count: 0,
   },
   {
     id: 2,
@@ -30,6 +31,7 @@ const dataGoods: Array<Idb> = [
     price: 532,
     inStock: 14,
     rating: 4.01,
+    count: 0,
   },
   {
     id: 3,
@@ -45,6 +47,7 @@ const dataGoods: Array<Idb> = [
     price: 1260,
     inStock: 22,
     rating: 4.71,
+    count: 0,
   },
   {
     id: 4,
@@ -60,6 +63,7 @@ const dataGoods: Array<Idb> = [
     price: 780,
     inStock: 10,
     rating: 4.56,
+    count: 0,
   },
   {
     id: 5,
@@ -75,6 +79,7 @@ const dataGoods: Array<Idb> = [
     price: 1005,
     inStock: 7,
     rating: 4.78,
+    count: 0
   },
   {
     id: 6,
@@ -90,6 +95,7 @@ const dataGoods: Array<Idb> = [
     price: 205,
     inStock: 23,
     rating: 4.81,
+    count: 0,
   },
   {
     id: 7,
@@ -105,6 +111,7 @@ const dataGoods: Array<Idb> = [
     price: 162,
     inStock: 11,
     rating: 4.75,
+    count: 0,
   },
   {
     id: 8,
@@ -120,6 +127,7 @@ const dataGoods: Array<Idb> = [
     price: 224,
     inStock: 5,
     rating: 4.32,
+    count: 0
   },
   {
     id: 9,
@@ -135,6 +143,7 @@ const dataGoods: Array<Idb> = [
     price: 1320,
     inStock: 28,
     rating: 4.91,
+    count: 0,
   },
   {
     id: 10,
@@ -150,6 +159,7 @@ const dataGoods: Array<Idb> = [
     price: 820,
     inStock: 11,
     rating: 4.43,
+    count: 0,
   },
   {
     id: 11,
@@ -165,6 +175,7 @@ const dataGoods: Array<Idb> = [
     price: 4580,
     inStock: 2,
     rating: 4.87,
+    count: 0
   },
   {
     id: 12,
@@ -180,6 +191,7 @@ const dataGoods: Array<Idb> = [
     price: 1540,
     inStock: 6,
     rating: 4.95,
+    count: 0
   },
   {
     id: 13,
@@ -195,6 +207,7 @@ const dataGoods: Array<Idb> = [
     price: 2400,
     inStock: 3,
     rating: 4.83,
+    count: 0
   },
   {
     id: 14,
@@ -210,6 +223,7 @@ const dataGoods: Array<Idb> = [
     price: 765,
     inStock: 6,
     rating: 4.76,
+    count: 0
   },
   {
     id: 15,
@@ -225,6 +239,7 @@ const dataGoods: Array<Idb> = [
     price: 305,
     inStock: 11,
     rating: 4.61,
+    count: 0,
   },
   {
     id: 16,
@@ -240,6 +255,7 @@ const dataGoods: Array<Idb> = [
     price: 2000,
     inStock: 1,
     rating: 4.32,
+    count: 0
   },
   {
     id: 17,
@@ -255,6 +271,7 @@ const dataGoods: Array<Idb> = [
     price: 1950,
     inStock: 6,
     rating: 4.88,
+    count: 0
   },
   {
     id: 18,
@@ -270,6 +287,7 @@ const dataGoods: Array<Idb> = [
     price: 2650,
     inStock: 4,
     rating: 4.72,
+    count: 0
   },
   {
     id: 19,
@@ -285,6 +303,7 @@ const dataGoods: Array<Idb> = [
     price: 689,
     inStock: 12,
     rating: 4.18,
+    count: 0,
   },
   {
     id: 20,
@@ -300,6 +319,7 @@ const dataGoods: Array<Idb> = [
     price: 110,
     inStock: 23,
     rating: 4.45,
+    count: 0,
   },
   {
     id: 21,
@@ -315,6 +335,7 @@ const dataGoods: Array<Idb> = [
     price: 66,
     inStock: 19,
     rating: 4.67,
+    count: 0,
   },
   {
     id: 22,
@@ -330,6 +351,7 @@ const dataGoods: Array<Idb> = [
     price: 1260,
     inStock: 27,
     rating: 4.86,
+    count: 0,
   },
   {
     id: 23,
@@ -345,6 +367,7 @@ const dataGoods: Array<Idb> = [
     price: 482,
     inStock: 3,
     rating: 4.97,
+    count: 0
   },
   {
     id: 24,
@@ -360,6 +383,7 @@ const dataGoods: Array<Idb> = [
     price: 131,
     inStock: 18,
     rating: 4.82,
+    count: 0,
   },
   {
     id: 25,
@@ -375,6 +399,7 @@ const dataGoods: Array<Idb> = [
     price: 499,
     inStock: 26,
     rating: 4.47,
+    count: 0,
   },
   {
     id: 26,
@@ -390,6 +415,7 @@ const dataGoods: Array<Idb> = [
     price: 828,
     inStock: 17,
     rating: 4.57,
+    count: 0,
   },
   {
     id: 27,
@@ -405,6 +431,7 @@ const dataGoods: Array<Idb> = [
     price: 1599,
     inStock: 8,
     rating: 3.96,
+    count: 0
   },
   {
     id: 28,
@@ -420,6 +447,7 @@ const dataGoods: Array<Idb> = [
     price: 1500,
     inStock: 4,
     rating: 4.65,
+    count: 0,
   },
   {
     id: 29,
@@ -435,6 +463,7 @@ const dataGoods: Array<Idb> = [
     price: 730,
     inStock: 5,
     rating: 4.71,
+    count: 0,
   },
   {
     id: 30,
@@ -450,6 +479,7 @@ const dataGoods: Array<Idb> = [
     price: 1360,
     inStock: 8,
     rating: 4.92,
+    count: 0,
   },
 ];
 

@@ -8,7 +8,8 @@ export interface Igoods {
   photo: string[],
   price: number,
   inStock: number,
-  rating: number
+  rating: number,
+  count: number
 };
 
 
