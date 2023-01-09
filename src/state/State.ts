@@ -5,12 +5,14 @@ import { getQueryParams } from './../utils/getQueryParams';
 export type Filters = {
   brand: Array<string>;
   category: Array<string>;
+  price:  [string, string];
 };
 
 
 export const initialFilters: Filters = {
   brand: getQueryParams.getAll('brand') || [],
   category: getQueryParams.getAll('category') || [],
+  price: ['0', '5000']
 }
 
 class State {
@@ -21,6 +23,8 @@ class State {
   view: string = getQueryParams.get('view') || '';
   search: string = getQueryParams.get('search') || '';
   sort: string = getQueryParams.get('sort')|| '';
+  priceUp: number = 0;
+  priceDown: number = 0;
   cart: Igoods[] = [];
 
   resetState(): void {
@@ -83,12 +87,23 @@ class State {
     if (this.filters.category.length !== 0) {
       this.filtredGoods = this.filtredGoods.filter((item: Igoods) => this.filters.category.includes(item.category));
     } else {
-      this.filtredGoods
+      this.filtredGoods;
     }
   }
 
+  //filtredPriceState(): void {
+  //  //if (!state.priceDown && !state.priceUp) {
+  //    this.filtredGoods = this.filtredGoods.filter((item: Igoods) => item.price >= state.priceDown && item.price <= state.priceUp);
+      
+  //  //} else {
+  //  //  this.filtredGoods
+  //  //}
+
+  //}
+
   allFilters(): Igoods[] {
     this.filtredSearchState();
+    //this.filtredPriceState();
     this.filtredBrandState();
     this.filtredCategoryState();
     this.filtredSortState();

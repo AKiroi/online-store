@@ -33,7 +33,7 @@ class MainPage {
     this.sort = new Sort(this.drawFiltredGoods);
     this.brandFilters = new BrandFilters(this.drawFiltredGoods);
     this.categoryFilters = new CategoryFilters(this.drawFiltredGoods);
-    this.priceFilters = new PriceFilters();
+    this.priceFilters = new PriceFilters(this.drawFiltredGoods);
     this.stockFilters = new StockFilters();
     this.viewButtons = new ViewButton();
   }
