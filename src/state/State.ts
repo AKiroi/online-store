@@ -12,7 +12,7 @@ export type Filters = {
 export const initialFilters: Filters = {
   brand: getQueryParams.getAll('brand') || [],
   category: getQueryParams.getAll('category') || [],
-  price: ['0', '5000']
+  price: ['66', '4580']
 }
 
 class State {
@@ -23,8 +23,8 @@ class State {
   view: string = getQueryParams.get('view') || '';
   search: string = getQueryParams.get('search') || '';
   sort: string = getQueryParams.get('sort')|| '';
-  priceUp: number = 0;
-  priceDown: number = 0;
+  priceValMin: number | string = getQueryParams.get('priceMin') ||this.getMaxMinPrice()[0];
+  priceValMax: number | string = getQueryParams.get('priceMax') || this.getMaxMinPrice()[1];
   cart: Igoods[] = [];
 
   resetState(): void {
@@ -37,6 +37,15 @@ class State {
 
   getTotalCount(): number  {
     return this.cart.reduce((acc, item) => item.count + acc, 0);
+  }
+
+  getMaxMinPrice() {
+    const data = this.filtredGoods.length === 0 ? this.goods : this.filtredGoods;
+    const prices = data.map((item) => item.price);
+    const maxPrice = Math.max(...prices);
+    const minPrice = Math.min(...prices);
+
+    return [minPrice, maxPrice];
   }
 
   private filtredSearchState(): void {
@@ -95,21 +104,19 @@ class State {
     }
   }
 
-  //filtredPriceState(): void {
-  //  //if (!state.priceDown && !state.priceUp) {
-  //    this.filtredGoods = this.filtredGoods.filter((item: Igoods) => item.price >= state.priceDown && item.price <= state.priceUp);
-      
-  //  //} else {
-  //  //  this.filtredGoods
-  //  //}
-
-  //}
+  filtredPriceState(): void {
+    if (this.priceValMin !== 0 || this.priceValMax !== 0) {
+      this.filtredGoods = this.filtredGoods.filter((item: Igoods) => item.price >= state.priceValMin && item.price <= state.priceValMax);
+    } else {
+      this.filtredGoods;
+    }
+  }
 
   allFilters(): Igoods[] {
     this.filtredSearchState();
-    //this.filtredPriceState();
     this.filtredBrandState();
     this.filtredCategoryState();
+    this.filtredPriceState();
     this.filtredSortState();
     return this.filtredGoods;
   }

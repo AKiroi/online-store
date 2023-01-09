@@ -178,6 +178,7 @@
     pointer-events: none;
     background: none;
     outline: none;
+    cursor: pointer;
 
     &::-webkit-slider-thumb {
       pointer-events: auto;

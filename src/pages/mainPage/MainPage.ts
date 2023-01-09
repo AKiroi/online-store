@@ -41,8 +41,13 @@ class MainPage {
   private drawFiltredGoods = (): void => {
     this.goodsContainer.innerHTML = '';
     state.allFilters();
+   
+    console.log(state.filtredGoods);
+    console.log(state.getMaxMinPrice());
+    console.log(state.priceValMin);
+    console.log(state.priceValMax);
+
     this.setParamsToUrl();
-    
 
     Object.values(getCountBrandObj(state.filtredGoods)).forEach((count, i) => {
       const filtredCountElem = document.querySelectorAll('.brand-filter__count-filtred')!;
@@ -63,12 +68,13 @@ class MainPage {
     getQueryParams.delete('sort');
     getQueryParams.delete('search');
     getQueryParams.delete('view');
+     //getQueryParams.delete('priceMin');
+    //getQueryParams.delete('priceMax');
 
     if (state.view) {
       getQueryParams.append('view', state.view);
     }
     if (state.search) {
-      //getQueryParams.delete('search');
       getQueryParams.append('search', state.search);
     }
     if (state.filters.brand.length !== 0) { 
