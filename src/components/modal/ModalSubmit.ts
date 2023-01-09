@@ -86,6 +86,41 @@ class ModalSubmit {
       }
       input.value = cvvCard;
     }
+
+
+
+    const button = e.target as HTMLButtonElement;
+    if (button.classList.contains('close-btn')) {
+      const overlay = document.querySelector('.container__modal_overlay') as HTMLElement;
+      overlay.classList.remove('overlay');
+      const containerModal = document.querySelector('.modal-container') as HTMLElement;
+      containerModal.classList.remove('overlay-modal-container');
+      containerModal.innerHTML = ``;
+    }
+
+    if (button.classList.contains('submit-btn')) {
+      const formElement = document.querySelector('.form') as HTMLInputElement;
+      console.log(formElement);
+
+      console.log(formElement.checkValidity())
+
+
+      if (formElement.checkValidity()) {
+        const popup = document.querySelector('.modal-popup') as HTMLElement;
+        popup.classList.remove('hidden');
+        localStorage.removeItem('cart');
+      
+      setTimeout(() => {
+        window.location.hash = `#/`;
+      }, 3000);
+    }
+    }
+
+
+
+
+
+
   };
 
   draw(): HTMLElement {
@@ -94,10 +129,9 @@ class ModalSubmit {
     modalSubmitContainer?.addEventListener('change', this.handlerInput);
     modalSubmitContainer?.addEventListener('input', this.handlerInput);
     modalSubmitContainer?.addEventListener('click', this.handlerInput);
-
     const form = document.createElement('form') as HTMLFormElement;
     form.method = '';
-    form.action = '/';
+    // form.action = '/';
     const inputName = createInputElement(['input-submit', 'name', 'text'], 'text', 'Name and Surname');
     inputName.setAttribute('required', '');
     inputName.setAttribute('pattern', "[A-Za-zА-Яа-я\\-']{3,}\\b.+?[A-Za-zА-Яа-я\\-']{3,}");
@@ -150,10 +184,12 @@ class ModalSubmit {
     const btnClose = document.createElement('button') as HTMLButtonElement;
     btnClose.innerHTML = 'Close';
     btnClose.className += 'modal-btn close-btn';
+    const modalPopup = createHTMLElement('modal-popup hidden');
+    modalPopup.innerHTML = `<span class="popup-text" id="myPopup">Your order has been placed!</span>`;
 
     placeCard.append(inputCardNumber, logoCard, inputCardDateLabel, inputCardDate, inputCardCvvLabel, inputCardCvv);
     form.append(inputName, inputPhoneNumber, inputDelivery, inputEmail, placeCard, btnSubmit, btnClose);
-    modalSubmitContainer.append(form);
+    modalSubmitContainer.append(form, modalPopup);
     modalSubmit.append(modalSubmitContainer);
 
     return modalSubmit;
