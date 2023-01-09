@@ -99,28 +99,16 @@ class ModalSubmit {
     }
 
     if (button.classList.contains('submit-btn')) {
-      const formElement = document.querySelector('.form') as HTMLInputElement;
-      console.log(formElement);
-
-      console.log(formElement.checkValidity())
-
-
+      const formElement = document.getElementById('form') as HTMLInputElement;
       if (formElement.checkValidity()) {
         const popup = document.querySelector('.modal-popup') as HTMLElement;
         popup.classList.remove('hidden');
-        localStorage.removeItem('cart');
-      
-      setTimeout(() => {
-        window.location.hash = `#/`;
-      }, 3000);
+        setTimeout(() => {
+          localStorage.removeItem('cart');
+          window.location.hash = `#/`;
+        }, 3000);
+      }
     }
-    }
-
-
-
-
-
-
   };
 
   draw(): HTMLElement {
@@ -130,8 +118,8 @@ class ModalSubmit {
     modalSubmitContainer?.addEventListener('input', this.handlerInput);
     modalSubmitContainer?.addEventListener('click', this.handlerInput);
     const form = document.createElement('form') as HTMLFormElement;
+    form.id = 'form';
     form.method = '';
-    // form.action = '/';
     const inputName = createInputElement(['input-submit', 'name', 'text'], 'text', 'Name and Surname');
     inputName.setAttribute('required', '');
     inputName.setAttribute('pattern', "[A-Za-zА-Яа-я\\-']{3,}\\b.+?[A-Za-zА-Яа-я\\-']{3,}");
