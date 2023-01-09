@@ -7,6 +7,10 @@
     align-items: center;
   }
 
+  &__item {
+    color: var(--color-orange);
+  }
+
   &__logo {
     color: var(--color-orange);
     font-size: 30px;

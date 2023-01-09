@@ -1,5 +1,6 @@
 import { createHTMLElement } from '../../utils/createHTMLElement';
 import { createImageElement } from '../../utils/createImageElement';
+import { state } from './../../state/State';
 
 class Header {
   
@@ -12,6 +13,13 @@ class Header {
     headerLogo.textContent = 'Music store';
     headerLogo.href = `#/`;
 
+    const headerItem = createHTMLElement('header__item');
+    const headerItemText = createHTMLElement('header__item-text', 'span', 'Total: ' );
+    const headerItemTotal = createHTMLElement('header__item-total', 'span', `${state.getTotalPrice().toString()}`);
+
+    headerItem.append(headerItemText, headerItemTotal);
+
+
     const headerCart = document.createElement('a');
     headerCart.className = 'header__cart';
     headerCart.href = `#/cart`;
@@ -20,7 +28,7 @@ class Header {
     headerCount.textContent = '0';
 
     headerCart.append(headerCartImg, headerCount)
-    headerContaner.append(headerLogo, headerCart);
+    headerContaner.append(headerLogo, headerItem, headerCart);
     header.append(headerContaner)
 
     //header.innerHTML = `

@@ -30,6 +30,7 @@ class Goods {
   private handlerCartButtonClick = (target: Element): void => {
     const buttonCart = target.closest('.goods__btn')!;
     const headerCartCount = document.querySelector('.header__count') as HTMLElement;
+    const headerTotal= document.querySelector('.header__item-total') as HTMLElement;
 
     if (target.classList.contains('goods__btn_add')) {
       buttonCart.classList.remove('goods__btn_add');
@@ -39,6 +40,7 @@ class Goods {
 
       const index = state.cart.findIndex((item) => item.id === this.id);
       state.cart.splice(index, 1);
+      
     } else {
       buttonCart.classList.add('goods__btn_add');
       buttonCart.textContent = 'Drop from cart';
@@ -46,6 +48,7 @@ class Goods {
       state.cart.push(this.goodsItem);
     }
     headerCartCount.textContent = String(state.getTotalCount());
+    headerTotal.textContent = state.getTotalPrice().toString();
     localStorage.setItem('cart', JSON.stringify(state.cart));
   };
 

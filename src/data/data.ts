@@ -1,6 +1,6 @@
-import { Count, Idb, Igoods } from './types';
+import { Count, Igoods } from './types';
 
-const dataGoods: Array<Idb> = [
+const dataGoods: Igoods[] = [
   {
     id: 1,
     category: 'Electric guitar',

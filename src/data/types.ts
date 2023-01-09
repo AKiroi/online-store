@@ -14,5 +14,5 @@ export interface Igoods {
 
 
 
-export interface Idb extends Igoods {};
+//export interface Idb extends Igoods {};
 

@@ -34,7 +34,7 @@ class MainPage {
     this.brandFilters = new BrandFilters(this.drawFiltredGoods);
     this.categoryFilters = new CategoryFilters(this.drawFiltredGoods);
     this.priceFilters = new PriceFilters(this.drawFiltredGoods);
-    this.stockFilters = new StockFilters();
+    this.stockFilters = new StockFilters(this.drawFiltredGoods);
     this.viewButtons = new ViewButton();
   }
 
@@ -42,10 +42,12 @@ class MainPage {
     this.goodsContainer.innerHTML = '';
     state.allFilters();
    
-    console.log(state.filtredGoods);
-    console.log(state.getMaxMinPrice());
-    console.log(state.priceValMin);
-    console.log(state.priceValMax);
+    //console.log(state.filtredGoods);
+    //console.log(state.getMaxMinPrice());
+    //console.log(state.priceValMin);
+    //console.log(state.priceValMax);
+    //console.log(state.stockValMin);
+    //console.log(state.stockValMax);
 
     this.setParamsToUrl();
 
@@ -62,14 +64,11 @@ class MainPage {
   }
 
   private setParamsToUrl() {
-    //deleteQuerryParams();
     getQueryParams.delete('brand');
     getQueryParams.delete('category');
     getQueryParams.delete('sort');
     getQueryParams.delete('search');
     getQueryParams.delete('view');
-     //getQueryParams.delete('priceMin');
-    //getQueryParams.delete('priceMax');
 
     if (state.view) {
       getQueryParams.append('view', state.view);

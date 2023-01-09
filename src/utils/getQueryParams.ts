@@ -10,4 +10,6 @@ export const deleteQuerryParams = () => {
   getQueryParams.delete('view');
   getQueryParams.delete('priceMax');
   getQueryParams.delete('priceMin');
+  getQueryParams.delete('stockMin');
+  getQueryParams.delete('stockMax');
 }
