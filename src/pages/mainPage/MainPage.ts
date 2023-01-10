@@ -124,6 +124,13 @@ class MainPage {
 
   private handlerCopyLinksButton(): void {
     navigator.clipboard.writeText(document.location.href);
+    const button = document.querySelector('.filters__copy-links-btn') as HTMLElement;
+    button.style.backgroundColor = 'green';
+    button.innerHTML = 'Link copied';
+    setTimeout(() => {
+      button.style.backgroundColor = '#FFCA94';
+      button.innerHTML = 'Copy links';
+    }, 2000);
   }
 
   public draw(): HTMLElement {

@@ -123,6 +123,7 @@ class GoodsItemPage {
     if (localStorage.getItem('cart')) {
       if (this.findElementToLocalStorage(this.id.toString()) !== -1) {
         btnDropOnCart.classList.add('btn_remove');
+        btnDropOnCart.innerHTML = 'Drop from cart';
       }
     }
     goodsItemButtons.append(btnBuyNow, btnDropOnCart);

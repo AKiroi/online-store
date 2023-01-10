@@ -136,7 +136,9 @@ class ModalSubmit {
     );
     inputDelivery.setAttribute('title', 'At least 3 words with at least 5 letters each.');
     const inputEmail = createInputElement(['input-submit', 'email', 'text'], 'email', 'Email');
+    inputEmail.setAttribute('title', 'Enter valid email address');
     inputEmail.setAttribute('required', '');
+    inputEmail.setAttribute('pattern', '[a-z0-9._%+-]+@[a-z0-9.-]+\\.[a-z]{2,4}$');
     const placeCard = createHTMLElement('modal-submit_container__place-card');
     const inputCardNumber = createInputElement(['input-submit', 'card__number', 'text'], 'text', 'XXXX XXXX XXXX XXXX');
     inputCardNumber.setAttribute('required', '');
