@@ -123,9 +123,6 @@ class CartPage {
     const cartPagesArrowRight = document.querySelector('.cart__pages-arrow-right');
     const countPages = Math.ceil(this.cartItems.length / +cartHeaderItem.value);
 
-    cartPagesArrowLeft?.addEventListener('click', () => {
-      console.log('left');
-    })
 
     const generateCardCurrent = () => {
       const carts = [...this.cartItems];
@@ -174,12 +171,12 @@ class CartPage {
               <div class="cart__plus">
                 <img src="./assets/icons/plus-icon.svg" alt="plus-icon">
               </div>
-              <div class="cart__add-count">1</div>
+              <div class="cart__add-count">${item.count}</div>
               <div class="cart__minus">
                 <img src="./assets/icons/mines-icon.svg" alt="minus-icon">
               </div>
             </div>
-            <div class="cart__price">400$</div>
+            <div class="cart__price">${item.price}$</div>
           </div>
       `;
 
@@ -197,9 +194,13 @@ class CartPage {
     const cartPromoBye = createHTMLElement('cart__promo-byu');
     const cartProducts = createHTMLElement('cart__products');
     const cartProduct = createHTMLElement('cart__product');
-    cartProduct.innerHTML = `Products: <span class="cart__product-count">10</span>`;
+    cartProduct.innerHTML = `Products: <span class="cart__product-count">${this.cartItems.reduce((acc, curr) => {
+      return acc + curr.count;
+    }, 0)}</span>`;
     const cartTotal = createHTMLElement('cart__total');
-    cartTotal.innerHTML = `Total: <span class="cart__total-count">400$</span>`;
+    cartTotal.innerHTML = `Total: <span class="cart__total-count">${this.cartItems.reduce((acc, curr) => {
+      return acc + curr.price * curr.count;
+    }, 0)}$</span>`;
     const btnSubmit = document.createElement('button') as HTMLButtonElement;
     btnSubmit.type = 'submit';
     btnSubmit.innerHTML = 'BUY NOW';
