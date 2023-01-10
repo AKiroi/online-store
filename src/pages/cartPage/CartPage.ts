@@ -166,7 +166,13 @@ class CartPage {
           });
 
           this.cartItems = this.cartItems.filter((item) => item.count !== 0);
-          localStorage.setItem('cart', JSON.stringify(this.cartItems));
+          if (this.cartItems.length === 0) {
+            localStorage.removeItem('cart');
+            state.cart = [];
+          } else {
+            localStorage.setItem('cart', JSON.stringify(this.cartItems));
+          }
+          
           generateCardCurrent();
           drawCartItem();
 
