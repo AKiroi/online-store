@@ -38,7 +38,8 @@
     align-items: center;
     gap: 10px;
   }
-  &__pages-arrow-left {
+  &__pages-arrow-left,
+  &__pages-arrow-right {
     cursor: pointer;
   }
   &__pages-count {
@@ -76,6 +77,7 @@
     display: flex;
     align-items: center;
     gap: 20px;
+    cursor: pointer;
   }
   &__item-number {
     height: 45px;

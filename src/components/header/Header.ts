@@ -25,7 +25,7 @@ class Header {
     headerCart.href = `#/cart`;
     const headerCartImg = createImageElement('header__cart-img', './assets/icons/cart-icon.svg', 'art icon');
     const headerCount = createHTMLElement('header__count', 'span');
-    headerCount.textContent = '0';
+    headerCount.textContent = `${state.getTotalCount().toString()}`;
 
     headerCart.append(headerCartImg, headerCount)
     headerContaner.append(headerLogo, headerItem, headerCart);

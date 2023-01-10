@@ -1,6 +1,7 @@
 import dataGoods from "../data/data";
 import { Igoods } from "../data/types";
 import { getQueryParams } from './../utils/getQueryParams';
+import { localStorageUtil } from './../utils/localStorageUtil';
 
 export type Filters = {
   brand: Array<string>;
@@ -29,7 +30,7 @@ class State {
   priceValMax: number | string = getQueryParams.get('priceMax') || this.getMaxMinPrice()[1];
   stockValMin: number | string = getQueryParams.get('stockMin') || this.getMaxMinStock()[0];
   stockValMax: number | string = getQueryParams.get('stockMax') || this.getMaxMinStock()[1];
-  cart: Igoods[] = [];
+  cart: Igoods[] = localStorageUtil.getCartItems() || [];
 
   resetState(): void {
     this.search = '';
