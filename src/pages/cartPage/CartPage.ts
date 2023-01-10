@@ -143,6 +143,7 @@ class CartPage {
           const cartProductCount = document.querySelector('.cart__product-count')!;
           const headerItemText = document.querySelector('.header__item-total')!;
           const headerCount = document.querySelector('.header__count')!;
+          const goodsSortItemCount = document.querySelector('.goods-sort__item-count')!;
 
           if (target.closest('.cart__right')) {
             window.location.hash = `#/goodsItem/${dataId}`;
@@ -157,11 +158,9 @@ class CartPage {
                 item.count--;
                 if (item.count === 0) {
                   cartItem.remove(); 
-                  localStorage.setItem('cart', JSON.stringify(state.cart));
                 }
               }
               cartAddCount[i].textContent = item.count.toString();
-              cartPrice[i].textContent = item.count.toString();
               cartPrice[i].textContent = (item.count * item.price).toString() + '$';
             }
           });
@@ -190,19 +189,24 @@ class CartPage {
         drawCartItem();
       });
 
-      const drawCartItem = () => {
-        cartItems.innerHTML = '';
-        const cards = this.cartPages[this.currentPage - 1].map((item) => createCartItems(item));
-        cartItems.append(...cards);
+      const drawCartItem = (): void => {
+        if (this.cartPages.length !== 0) {
+          cartItems.innerHTML = '';
+          const cards = this.cartPages[this.currentPage - 1].map((item) => createCartItems(item));
+          cartItems.append(...cards);
+        } else {
+          cartContainer.innerHTML =
+        '<div class="cart__container"><div class="cart__header"><div class="cart_no-items"><p>Shopping cart is empty</p></div></div></div>';
+        }
       }
 
-      const getCartItemsCount = () => {
+      const getCartItemsCount = (): number => {
         return this.cartItems.reduce((acc, curr) => {
           return acc + curr.count;
         }, 0);
       };
 
-      const getCartTotalPrice = () => {
+      const getCartTotalPrice = (): number => {
         return this.cartItems.reduce((acc, curr) => {
           return acc + curr.price * curr.count;
         }, 0)

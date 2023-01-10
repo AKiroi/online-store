@@ -139,6 +139,8 @@ class MainPage {
     const mainFilters = createHTMLElement(['main__filters', 'filters']);
     //const mainGoods = createHTMLElement('main__goods');
     const goodsSort = createHTMLElement('goods-sort');
+    //const goodsSortItem = createHTMLElement('goods-sort__item', 'div', 'Found: ');
+    //const goodsSortItemCount = createHTMLElement('goods-sort__item-count', 'span', `${state.filtredGoods.length}`);
 
     const filtersButtons = createHTMLElement('filters__buttons');
 
@@ -155,7 +157,8 @@ class MainPage {
     const stockFilter = this.stockFilters.draw();
     const viewButtons = this.viewButtons.draw();
 
-    goodsSort.append(this.search.draw(), this.sort.draw(), viewButtons);
+    //goodsSortItem.append(goodsSortItemCount);
+    goodsSort.append(this.search.draw(),  this.sort.draw(), viewButtons);
     this.mainGoods.append(goodsSort, this.messageSearchResult, this.goodsCreate());
     mainFilters.append(filtersButtons, brandFilter, categoryFilter, priceFilter, stockFilter);
     mainContaner.append(mainFilters, this.mainGoods);

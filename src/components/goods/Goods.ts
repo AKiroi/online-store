@@ -31,6 +31,7 @@ class Goods {
     const buttonCart = target.closest('.goods__btn')!;
     const headerCartCount = document.querySelector('.header__count') as HTMLElement;
     const headerTotal= document.querySelector('.header__item-total') as HTMLElement;
+    const goodsSortItemCount = document.querySelector('.goods-sort__item-count') as HTMLElement;
 
     if (target.classList.contains('goods__btn_add')) {
       buttonCart.classList.remove('goods__btn_add');
@@ -48,7 +49,7 @@ class Goods {
       state.cart.push(this.goodsItem);
     }
     headerCartCount.textContent = String(state.getTotalCount());
-    headerTotal.textContent = state.getTotalPrice().toString();
+    headerTotal.textContent = state.getTotalPrice().toString() + " $";
     localStorage.setItem('cart', JSON.stringify(state.cart));
   };
 
