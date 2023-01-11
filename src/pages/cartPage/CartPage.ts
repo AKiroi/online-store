@@ -131,7 +131,7 @@ class CartPage {
       )}$</span>`;
     }
 
-    console.log(promo)
+    
    
     if (promo) {
       if (promo[0].active !== -1 || promo[0].active !== undefined) {
@@ -164,7 +164,6 @@ class CartPage {
   }
 
   draw(): HTMLElement {
-    sessionStorage.removeItem('promo');
     const cartContainer = createHTMLElement('cart');
     if (!this.cartItems || this.cartItems.length === 0) {
       cartContainer.innerHTML =
