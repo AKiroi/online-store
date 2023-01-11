@@ -7,6 +7,7 @@ import { createHTMLElement } from '../../utils/createHTMLElement';
 import GoodsItemPage from '../../pages/goodsItemPage/GoodsItemPage';
 import dataGoods from '../../data/data';
 import { Igoods } from '../../data/types';
+import ErrorPage from './../../pages/errorPage/ErrorPage';
 
 const LocationPath: Record<string, string> = {
   MainPage: '/',
@@ -34,19 +35,16 @@ class App {
 
     const goodsItem = dataGoods.find((item) => item.id === +id);
 
-    switch (location) {
-      case LocationPath.MainPage:
-        changePage = new MainPage();
-        break;
-      case LocationPath.CartPage:
-        changePage = new CartPage();
-        break;
-      case LocationPath.GoodsItemPage:
-        changePage = new GoodsItemPage(goodsItem as Igoods);
-        break;
-        case LocationPath.ModalPage:
-        changePage = new ModalPage();
-        break;
+    if (location === LocationPath.MainPage) {
+      changePage = new MainPage();
+    } else if (location === LocationPath.CartPage) {
+      changePage = new CartPage();
+    } else if (location === LocationPath.GoodsItemPage) {
+      changePage = new GoodsItemPage(goodsItem as Igoods);
+    } else if (location === LocationPath.ModalPage) {
+      changePage = new ModalPage();
+    } else {
+      changePage = new ErrorPage();
     }
 
     if (changePage) {
