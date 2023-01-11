@@ -38,6 +38,10 @@ class State {
     this.view = '';
     this.filters.brand = [];
     this.filters.category = [];
+    this.priceValMin = '66';
+    this.priceValMax = '4568';
+    this.stockValMin = '1';
+    this.stockValMax = '28';
   }
 
   getTotalCount(): number  {

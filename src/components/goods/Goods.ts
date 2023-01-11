@@ -1,6 +1,7 @@
 import { createHTMLElement } from '../../utils/createHTMLElement';
 import { Igoods } from '../../data/types';
 import { state } from './../../state/State';
+import { localStorageUtil } from './../../utils/localStorageUtil';
 
 class Goods {
   private brand;
@@ -28,9 +29,13 @@ class Goods {
   }
 
   private handlerCartButtonClick = (target: Element): void => {
-    const buttonCart = target.closest('.goods__btn')!;
+    const buttonCart = target.closest('.goods__btn')! as HTMLElement;
     const headerCartCount = document.querySelector('.header__count') as HTMLElement;
     const headerTotal= document.querySelector('.header__item-total') as HTMLElement;
+    const data = localStorageUtil.getCartItems();
+
+    //console.log(data);
+    
 
     if (target.classList.contains('goods__btn_add')) {
       buttonCart.classList.remove('goods__btn_add');
@@ -47,6 +52,7 @@ class Goods {
       this.goodsItem.count = 1;
       state.cart.push(this.goodsItem);
     }
+
     headerCartCount.textContent = String(state.getTotalCount());
     headerTotal.textContent = state.getTotalPrice().toString() + " $";
     localStorage.setItem('cart', JSON.stringify(state.cart));
@@ -75,6 +81,12 @@ class Goods {
       )
         classRemoveButton = ' goods__btn_add';
     }
+
+    const data = localStorageUtil.getCartItems();
+
+
+
+
     goodsContainer.innerHTML = `
       <div class="goods__content-wrapper">
         <div class="goods__image">
