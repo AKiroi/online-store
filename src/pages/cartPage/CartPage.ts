@@ -263,6 +263,7 @@ class CartPage {
           const dataId = cartItem.getAttribute('data-id') as string;
           const cartAddCount = document.querySelectorAll('.cart__add-count')!;
           const cartPrice = document.querySelectorAll('.cart__price')!;
+          const cartTotalCount = document.querySelector('.cart__total-count')!;
           const cartProductCount = document.querySelector('.cart__product-count')!;
           const headerItemText = document.querySelector('.header__item-total')!;
           const headerCount = document.querySelector('.header__count')!;
@@ -279,8 +280,7 @@ class CartPage {
               if (target.classList.contains('cart__minus-item')) {
                 item.count--;
                 if (item.count === 0) {
-                  cartItem.remove();
-                  localStorage.setItem('cart', JSON.stringify(state.cart));
+                  cartItem.remove(); 
                 }
               }
               cartAddCount[i].textContent = item.count.toString();
@@ -290,15 +290,19 @@ class CartPage {
           });
 
           this.cartItems = this.cartItems.filter((item) => item.count !== 0);
-          localStorage.setItem('cart', JSON.stringify(this.cartItems));
+          if (this.cartItems.length === 0) {
+            localStorage.removeItem('cart');
+            state.cart = [];
+          } else {
+            localStorage.setItem('cart', JSON.stringify(this.cartItems));
+          }
           generateCardCurrent();
           drawCartItem();
 
           cartProductCount.textContent = getCartItemsCount().toString();
           headerCount.textContent = getCartItemsCount().toString();
+          cartTotalCount.textContent = getCartTotalPrice().toString() + '$';
           headerItemText.textContent = getCartTotalPrice().toString() + '$';
-          cartTotal.innerHTML = this.getSumTotal('discount');
-          cartOldPrice.innerHTML = this.getSumTotal('noDiscount');
         });
 
         return cartItem;
@@ -315,9 +319,14 @@ class CartPage {
       });
 
       const drawCartItem = () => {
-        cartItems.innerHTML = '';
-        const cards = this.cartPages[this.currentPage - 1].map((item) => createCartItems(item));
-        cartItems.append(...cards);
+        if (this.cartPages.length !== 0) {
+          cartItems.innerHTML = '';
+          const cards = this.cartPages[this.currentPage - 1].map((item) => createCartItems(item));
+          cartItems.append(...cards);
+        } else {
+          cartContainer.innerHTML =
+        '<div class="cart__container"><div class="cart__header"><div class="cart_no-items"><p>Shopping cart is empty</p></div></div></div>';
+        }
       }
 
       const getCartItemsCount = () => {
