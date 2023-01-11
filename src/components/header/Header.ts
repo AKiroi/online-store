@@ -15,7 +15,7 @@ class Header {
 
     const headerItem = createHTMLElement('header__item');
     const headerItemText = createHTMLElement('header__item-text', 'span', 'Total: ' );
-    const headerItemTotal = createHTMLElement('header__item-total', 'span', `${state.getTotalPrice().toString()}`);
+    const headerItemTotal = createHTMLElement('header__item-total', 'span', `${state.getTotalPrice().toString()} $`);
 
     headerItem.append(headerItemText, headerItemTotal);
 

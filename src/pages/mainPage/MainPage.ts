@@ -27,6 +27,7 @@ class MainPage {
   mainGoods = createHTMLElement('main__goods');
   goodsContainer = createHTMLElement('goods');
   messageSearchResult = createHTMLElement('goods__message', 'div', 'The goods is empty!');
+  goodsSortFoundCount = createHTMLElement('goods-sort__found-count', 'span', `${state.filtredGoods.length}`);
 
   constructor() {
     this.search = new Search(this.drawFiltredGoods);
@@ -51,6 +52,7 @@ class MainPage {
       const filtredCountElem = document.querySelectorAll('.category-filter__count-filtred')!;
       filtredCountElem[i].textContent = String(count);
     });
+    this.goodsSortFoundCount.textContent = `${state.filtredGoods.length}`;
 
     this.goodsFiltredCreate();
   }
@@ -102,6 +104,7 @@ class MainPage {
       dataGoods.forEach((item) => {
         const goodsItem = new Goods(item);
         this.goodsContainer.append(goodsItem.draw());
+        this.goodsSortFoundCount.textContent = `${dataGoods.length}`;
       });
     }
     return this.goodsContainer;
@@ -129,8 +132,9 @@ class MainPage {
     const mainContaner = createHTMLElement('main__container');
     const mainFilters = createHTMLElement(['main__filters', 'filters']);
     const goodsSort = createHTMLElement('goods-sort');
-    //const goodsSortItem = createHTMLElement('goods-sort__item', 'div', 'Found: ');
-    //const goodsSortItemCount = createHTMLElement('goods-sort__item-count', 'span', `${state.filtredGoods.length}`);
+    const goodsSortFound = createHTMLElement('goods-sort__found', 'div', 'Found: ');
+    //const goodsSortFoundCount = createHTMLElement('goods-sort__found-count', 'span', `${state.filtredGoods.length}`);
+    
 
     const filtersButtons = createHTMLElement('filters__buttons');
 
@@ -147,8 +151,8 @@ class MainPage {
     const stockFilter = this.stockFilters.draw();
     const viewButtons = this.viewButtons.draw();
 
-    //goodsSortItem.append(goodsSortItemCount);
-    goodsSort.append(this.search.draw(),  this.sort.draw(), viewButtons);
+    goodsSortFound.append(this.goodsSortFoundCount);
+    goodsSort.append(this.search.draw(), goodsSortFound, this.sort.draw(), viewButtons);
     this.mainGoods.append(goodsSort, this.messageSearchResult, this.goodsCreate());
     mainFilters.append(filtersButtons, brandFilter, categoryFilter, priceFilter, stockFilter);
     mainContaner.append(mainFilters, this.mainGoods);

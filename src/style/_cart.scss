@@ -74,8 +74,8 @@
     cursor: pointer;
   }
   &__item-number {
-    height: 45px;
-    width: 45px;
+    height: 40px;
+    width: 40px;
     border: 2px solid var(--color-orange);
     border-radius: 50%;
     display: flex;
@@ -119,6 +119,12 @@
   &__plus {
     cursor: pointer;
   }
+  &__plus-item,
+  &__minus-item {
+    width: 40px;
+    height: 40px;
+    cursor: pointer;
+  }
   &__add-count {
     font-weight: 700;
     font-size: 20px;
@@ -127,8 +133,9 @@
     cursor: pointer;
   }
   &__price {
+    text-align: left;
     font-weight: 700;
-    font-size: 32px;
+    font-size: 28px;
     color: var(--color-black);
   }
   &__footer {

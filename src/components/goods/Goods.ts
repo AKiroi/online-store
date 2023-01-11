@@ -10,6 +10,7 @@ class Goods {
   private photo;
   private inStock;
   private goodsItem;
+  private rating;
   private id;
   private count;
   
@@ -18,6 +19,7 @@ class Goods {
     this.brand = goods.brand;
     this.category = goods.category;
     this.name = goods.name;
+    this.rating = goods.rating;
     this.photo = goods.photo;
     this.inStock = goods.inStock;
     this.price = goods.price;
@@ -84,6 +86,7 @@ class Goods {
             <li>Brand: ${this.brand}</li>
             <li>Category: ${this.category}</li>
             <li>Stock: ${this.inStock}</li>
+            <li>Rating: ${this.rating}</li>
           </ul>
         </div>
       </div>

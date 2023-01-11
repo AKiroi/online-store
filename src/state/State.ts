@@ -138,7 +138,7 @@ class State {
     }
   }
 
-  allFilters(): void{
+  allFilters(): void {
     this.filtredSearchState();
     this.filtredBrandState();
     this.filtredCategoryState();
