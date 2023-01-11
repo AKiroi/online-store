@@ -11,8 +11,3 @@ export interface Igoods {
   rating: number,
   count: number
 };
-
-
-
-//export interface Idb extends Igoods {};
-

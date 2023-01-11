@@ -15,7 +15,7 @@ class Header {
 
     const headerItem = createHTMLElement('header__item');
     const headerItemText = createHTMLElement('header__item-text', 'span', 'Total: ' );
-    const headerItemTotal = createHTMLElement('header__item-total', 'span', `${state.getTotalPrice().toString()}`);
+    const headerItemTotal = createHTMLElement('header__item-total', 'span', `${state.getTotalPrice().toString()} $`);
 
     headerItem.append(headerItemText, headerItemTotal);
 
@@ -31,15 +31,6 @@ class Header {
     headerContaner.append(headerLogo, headerItem, headerCart);
     header.append(headerContaner)
 
-    //header.innerHTML = `
-    //  <div class="header__container">
-    //    <h1 class="header__logo">Music store</h1>
-    //    <div class="header__cart">
-    //      <img src="./assets/icons/cart-icon.svg" alt="cart-icon">
-    //      <span class="header__count">0</span>
-    //    </div>
-    //  </div>
-    //  `;
     return header;
   }
 }

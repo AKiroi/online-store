@@ -1,6 +1,4 @@
 import { createHTMLElement } from '../../utils/createHTMLElement';
-import { createImageElement } from '../../utils/createImageElement';
-import dataGoods from '../../data/data';
 import { Igoods } from '../../data/types';
 import { state } from './../../state/State';
 
@@ -12,6 +10,7 @@ class Goods {
   private photo;
   private inStock;
   private goodsItem;
+  private rating;
   private id;
   private count;
   
@@ -20,6 +19,7 @@ class Goods {
     this.brand = goods.brand;
     this.category = goods.category;
     this.name = goods.name;
+    this.rating = goods.rating;
     this.photo = goods.photo;
     this.inStock = goods.inStock;
     this.price = goods.price;
@@ -48,7 +48,7 @@ class Goods {
       state.cart.push(this.goodsItem);
     }
     headerCartCount.textContent = String(state.getTotalCount());
-    headerTotal.textContent = state.getTotalPrice().toString();
+    headerTotal.textContent = state.getTotalPrice().toString() + " $";
     localStorage.setItem('cart', JSON.stringify(state.cart));
   };
 
@@ -86,6 +86,7 @@ class Goods {
             <li>Brand: ${this.brand}</li>
             <li>Category: ${this.category}</li>
             <li>Stock: ${this.inStock}</li>
+            <li>Rating: ${this.rating}</li>
           </ul>
         </div>
       </div>

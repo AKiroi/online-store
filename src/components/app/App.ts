@@ -6,7 +6,8 @@ import Footer from '../footer/Footer';
 import { createHTMLElement } from '../../utils/createHTMLElement';
 import GoodsItemPage from '../../pages/goodsItemPage/GoodsItemPage';
 import dataGoods from '../../data/data';
-import { getQueryParams } from '../../utils/getQueryParams';
+import { Igoods } from '../../data/types';
+import ErrorPage from './../../pages/errorPage/ErrorPage';
 
 const LocationPath: Record<string, string> = {
   MainPage: '/',
@@ -19,7 +20,6 @@ class App {
   private wrapper = createHTMLElement('wrapper');
   private header: Header;
   private footer: Footer;
-  private goodsItem: any;
 
   prevPathPage = '';
 
@@ -33,23 +33,18 @@ class App {
 
     let changePage;
 
-    if (id) {
-      this.goodsItem = dataGoods.find((item) => item.id === +id);
-    }
+    const goodsItem = dataGoods.find((item) => item.id === +id);
 
-    switch (location) {
-      case LocationPath.MainPage:
-        changePage = new MainPage();
-        break;
-      case LocationPath.CartPage:
-        changePage = new CartPage();
-        break;
-      case LocationPath.GoodsItemPage:
-        changePage = new GoodsItemPage(this.goodsItem);
-        break;
-        case LocationPath.ModalPage:
-        changePage = new ModalPage();
-        break;
+    if (location === LocationPath.MainPage) {
+      changePage = new MainPage();
+    } else if (location === LocationPath.CartPage) {
+      changePage = new CartPage();
+    } else if (location === LocationPath.GoodsItemPage) {
+      changePage = new GoodsItemPage(goodsItem as Igoods);
+    } else if (location === LocationPath.ModalPage) {
+      changePage = new ModalPage();
+    } else {
+      changePage = new ErrorPage();
     }
 
     if (changePage) {

@@ -27,6 +27,7 @@ class MainPage {
   mainGoods = createHTMLElement('main__goods');
   goodsContainer = createHTMLElement('goods');
   messageSearchResult = createHTMLElement('goods__message', 'div', 'The goods is empty!');
+  goodsSortFoundCount = createHTMLElement('goods-sort__found-count', 'span', `${state.filtredGoods.length}`);
 
   constructor() {
     this.search = new Search(this.drawFiltredGoods);
@@ -41,14 +42,6 @@ class MainPage {
   private drawFiltredGoods = (): void => {
     this.goodsContainer.innerHTML = '';
     state.allFilters();
-   
-    //console.log(state.filtredGoods);
-    //console.log(state.getMaxMinPrice());
-    //console.log(state.priceValMin);
-    //console.log(state.priceValMax);
-    //console.log(state.stockValMin);
-    //console.log(state.stockValMax);
-
     this.setParamsToUrl();
 
     Object.values(getCountBrandObj(state.filtredGoods)).forEach((count, i) => {
@@ -59,11 +52,12 @@ class MainPage {
       const filtredCountElem = document.querySelectorAll('.category-filter__count-filtred')!;
       filtredCountElem[i].textContent = String(count);
     });
+    this.goodsSortFoundCount.textContent = `${state.filtredGoods.length}`;
 
     this.goodsFiltredCreate();
   }
 
-  private setParamsToUrl() {
+  private setParamsToUrl(): void {
     getQueryParams.delete('brand');
     getQueryParams.delete('category');
     getQueryParams.delete('sort');
@@ -87,10 +81,9 @@ class MainPage {
       getQueryParams.append('sort', state.sort);
     }
     window.location.hash = !!getQueryParams.toString() ? `/?${getQueryParams.toString()}` : `/`;
-   
   }
 
-  private goodsFiltredCreate() {
+  private goodsFiltredCreate(): void {
     if (state.filtredGoods.length === 0) {
       this.messageSearchResult.style.display = 'block';
     } else {
@@ -111,6 +104,7 @@ class MainPage {
       dataGoods.forEach((item) => {
         const goodsItem = new Goods(item);
         this.goodsContainer.append(goodsItem.draw());
+        this.goodsSortFoundCount.textContent = `${dataGoods.length}`;
       });
     }
     return this.goodsContainer;
@@ -137,8 +131,10 @@ class MainPage {
     const main = createHTMLElement('main', 'main');
     const mainContaner = createHTMLElement('main__container');
     const mainFilters = createHTMLElement(['main__filters', 'filters']);
-    //const mainGoods = createHTMLElement('main__goods');
     const goodsSort = createHTMLElement('goods-sort');
+    const goodsSortFound = createHTMLElement('goods-sort__found', 'div', 'Found: ');
+    //const goodsSortFoundCount = createHTMLElement('goods-sort__found-count', 'span', `${state.filtredGoods.length}`);
+    
 
     const filtersButtons = createHTMLElement('filters__buttons');
 
@@ -155,7 +151,8 @@ class MainPage {
     const stockFilter = this.stockFilters.draw();
     const viewButtons = this.viewButtons.draw();
 
-    goodsSort.append(this.search.draw(), this.sort.draw(), viewButtons);
+    goodsSortFound.append(this.goodsSortFoundCount);
+    goodsSort.append(this.search.draw(), goodsSortFound, this.sort.draw(), viewButtons);
     this.mainGoods.append(goodsSort, this.messageSearchResult, this.goodsCreate());
     mainFilters.append(filtersButtons, brandFilter, categoryFilter, priceFilter, stockFilter);
     mainContaner.append(mainFilters, this.mainGoods);

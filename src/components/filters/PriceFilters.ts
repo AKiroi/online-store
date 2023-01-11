@@ -20,7 +20,7 @@ class PriceFilters {
 
     filterPriceRange.forEach((item) => {
       item.addEventListener('input', (e) => {
-        let target = e.target as HTMLElement;
+        const target = e.target as HTMLElement;
         let minVal = parseInt(filterPriceinputMin.value);
         let maxVal = parseInt(filterPriceinputMax.value);
         state.priceValMin = minVal;
