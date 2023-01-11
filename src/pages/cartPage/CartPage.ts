@@ -131,8 +131,12 @@ class CartPage {
       )}$</span>`;
     }
 
-    
-   
+    if (d === 'noDiscount') {
+      if (!promo || promo[0].active === -1)  {
+        return '';
+      }
+    }
+
     if (promo) {
       if (promo[0].active !== -1 || promo[0].active !== undefined) {
         if (d === 'discount') {
@@ -146,8 +150,6 @@ class CartPage {
     } else {
       if (d === 'discount') {
         return `Total: <span class="cart__total-count">${total()}$</span>`;
-      } else if (d === 'noDiscount') {
-        return '';
       } else if (d === 'activeDiscount') {
         return '';
       }
