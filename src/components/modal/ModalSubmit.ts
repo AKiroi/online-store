@@ -1,5 +1,6 @@
 import { createHTMLElement } from '../../utils/createHTMLElement';
 import { createInputElement } from '../../utils/createInputElement';
+import { state } from "../../state/State";
 
 class ModalSubmit {
   constructor() {
@@ -105,8 +106,9 @@ class ModalSubmit {
         popup.classList.remove('hidden');
         setTimeout(() => {
           localStorage.removeItem('cart');
-          window.location.hash = `#/`;
-        }, 3000);
+          state.cart = [];
+          window.location.hash = `/`;
+        }, 5000);
       }
     }
   };
