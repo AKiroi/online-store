@@ -38,6 +38,7 @@ class GoodsItemPage {
       buttonCart.classList.add('btn_remove');
       buttonCart.textContent = 'Drop from cart';
       state.cart.push(this.goodsItem);
+      state.cart[state.cart.length - 1].count = 1;
     }
     headerCartCount.textContent = String(state.cart.length);
     localStorage.setItem('cart', JSON.stringify(state.cart));

@@ -43,7 +43,12 @@ class CartPage {
     const cartTotal = document.querySelector('.cart__total') as HTMLElement;
     const cartPromoHint = document.querySelector('.cart__promo-hint') as HTMLElement;
     const cartOldPrice = document.querySelector('.cart__promo-old-price') as HTMLElement;
-    let promo;
+    let promo: {
+      active: number;
+      percent: number;
+      activeDiscount: string;
+      hover: number;
+    }[];
     const sessionStorageItem: string | null = sessionStorage.getItem('promo');
     if (sessionStorageItem !== null) {
       promo = JSON.parse(sessionStorageItem as string);
