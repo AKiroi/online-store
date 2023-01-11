@@ -103,9 +103,13 @@ class ModalSubmit {
       const formElement = document.getElementById('form') as HTMLInputElement;
       if (formElement.checkValidity()) {
         const popup = document.querySelector('.modal-popup') as HTMLElement;
+        const headerCount = document.querySelector('.header__count') as HTMLElement;
+        const headerItemText = document.querySelector('.header__item-total') as HTMLElement;
         popup.classList.remove('hidden');
+        localStorage.removeItem('cart');
+        headerCount.textContent = '0';
+        headerItemText.textContent = '0';
         setTimeout(() => {
-          localStorage.removeItem('cart');
           state.cart = [];
           window.location.hash = `/`;
         }, 5000);
