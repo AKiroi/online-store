@@ -68,7 +68,7 @@ class App {
     }
     if (hash.includes('?')) {
       if (this.prevPathPage.slice(0, hash.indexOf('?')) !== pathPage) {
-        this.drawNewPage(`/`);
+        this.drawNewPage(pathPage.toString());
       }
     } else {
       if (hashArr.length > 2) {

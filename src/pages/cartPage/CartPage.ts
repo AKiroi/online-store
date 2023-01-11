@@ -5,20 +5,21 @@ import { Igoods } from '../../data/types';
 import { state } from '../../state/State';
 import ModalSubmit from '../../components/modal/ModalSubmit';
 import { localStorageUtil } from './../../utils/localStorageUtil';
+import { getQueryParams } from './../../utils/getQueryParams';
 
 class CartPage {
   private modal;
   private cartItems;
   private cartPages: Igoods[][];
   private currentPage: number;
-  private pagesItems: number;
+  private pagesItems: string;
 
   constructor() {
     this.modal = new ModalSubmit();
     this.cartItems = localStorageUtil.getCartItems();
     this.cartPages = [];
-    this.currentPage = 1;
-    this.pagesItems = 4;
+    this.currentPage = Number(getQueryParams.get('page')) || 1;
+    this.pagesItems = getQueryParams.get('limit') || '4';
   }
 
   private handlerFooter = (e: Event): void => {
@@ -193,16 +194,16 @@ class CartPage {
       const cartHeaderPages = createHTMLElement('cart__pages');
       cartHeaderPages.innerHTML = `Page:
                 <img src="./assets/icons/arrow-left-icon.svg" alt="arrow-left icon" class="cart__pages-arrow cart__pages-arrow-left">
-                <span class="cart__pages-count">1</span>
+                <span class="cart__pages-count">${this.currentPage}</span>
                 <img src="./assets/icons/arrow-right-icon.svg" alt="arrow-left icon" class="cart__pages-arrow cart__pages-arrow-right">`;
 
       const generateCardCurrent = () => {
-        const countPages = Math.ceil(this.cartItems.length / this.pagesItems);
+        const countPages = Math.ceil(this.cartItems.length / +this.pagesItems);
 
         const carts = [...this.cartItems];
         let arrCarts = [];
         for (let i = 0; i < countPages; i++) {
-          let arrCard = carts.splice(0, this.pagesItems);
+          let arrCard = carts.splice(0, +this.pagesItems);
           arrCarts.push(arrCard);
         }
         this.cartPages = arrCarts;
@@ -224,6 +225,11 @@ class CartPage {
         if (e.target === cartPagesArrowRight) {
           if (this.currentPage !== this.cartPages.length) this.currentPage++;
         }
+
+        getQueryParams.delete('page');
+        getQueryParams.append('page', this.currentPage.toString());
+        window.location.hash = !!getQueryParams.toString() ? `/cart?${getQueryParams.toString()}` : `/cart`;
+
         cartPageCount.textContent = this.currentPage.toString();
         drawCartItem();
       }
@@ -282,7 +288,9 @@ class CartPage {
           this.cartPages[this.currentPage - 1].forEach((item, i) => {
             if (item.id === +dataId) {
               if (target.classList.contains('cart__plus-item')) {
-                item.count++;
+                if (item.count < item.inStock) {
+                  item.count++;
+                } 
               }
               if (target.classList.contains('cart__minus-item')) {
                 item.count--;
@@ -295,6 +303,12 @@ class CartPage {
               cartPrice[i].textContent = (item.count * item.price).toString() + '$';
             }
           });
+
+          if (this.cartPages[this.currentPage - 1].length === 1) {
+            this.cartPages.pop();
+            this.currentPage--;
+          };
+
 
           this.cartItems = this.cartItems.filter((item) => item.count !== 0);
           if (this.cartItems.length === 0) {
@@ -319,7 +333,11 @@ class CartPage {
         const target = e.target as HTMLInputElement;
         let valueItems = +target.value;
         if (valueItems <= 1) valueItems = 1;
-        this.pagesItems = +valueItems;
+        this.pagesItems = valueItems.toString();
+
+        getQueryParams.delete('limit');
+        getQueryParams.append('limit', valueItems.toString());
+        window.location.hash = !!getQueryParams.toString() ? `/cart?${getQueryParams.toString()}` : `/cart`;
 
         generateCardCurrent();
         drawCartItem();

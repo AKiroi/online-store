@@ -63,6 +63,8 @@ class MainPage {
     getQueryParams.delete('sort');
     getQueryParams.delete('search');
     getQueryParams.delete('view');
+    getQueryParams.delete('page');
+    getQueryParams.delete('limit');
 
     if (state.view) {
       getQueryParams.append('view', state.view);
