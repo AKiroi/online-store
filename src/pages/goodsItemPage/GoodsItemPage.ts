@@ -60,6 +60,7 @@ class GoodsItemPage {
     if (target.classList.contains('bye-btn')) {
       if (this.findElementToLocalStorage(this.id.toString()) === -1) {
         state.cart.push(this.goodsItem);
+        state.cart[state.cart.length - 1].count = 1;
         localStorage.setItem('cart', JSON.stringify(state.cart));
         const headerCartCount = document.querySelector('.header__count') as HTMLElement;
         headerCartCount.textContent = String(state.cart.length);
