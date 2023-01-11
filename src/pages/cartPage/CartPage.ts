@@ -124,20 +124,24 @@ class CartPage {
     const sessionStorageItem: string | null = sessionStorage.getItem('promo');
     let promo;
     let discount = ``;
-    if (sessionStorageItem !== null) {
+    if (sessionStorageItem) {
       promo = JSON.parse(sessionStorageItem as string);
       discount = `Total: <span class="cart__total-count">${Math.round(
         total() - (total() * promo[0].percent) / 100
       )}$</span>`;
     }
 
-    if (promo[0].active !== -1) {
-      if (d === 'discount') {
-        return discount;
-      } else if (d === 'noDiscount') {
-        return noDiscount;
-      } else if (d === 'activeDiscount') {
-        return promo[0].activeDiscount;
+    console.log(promo)
+   
+    if (promo) {
+      if (promo[0].active !== -1 || promo[0].active !== undefined) {
+        if (d === 'discount') {
+          return discount;
+        } else if (d === 'noDiscount') {
+          return noDiscount;
+        } else if (d === 'activeDiscount') {
+          return promo[0].activeDiscount;
+        }
       }
     } else {
       if (d === 'discount') {
@@ -160,7 +164,7 @@ class CartPage {
   }
 
   draw(): HTMLElement {
-    // sessionStorage.removeItem('promo');
+    sessionStorage.removeItem('promo');
     const cartContainer = createHTMLElement('cart');
     if (!this.cartItems || this.cartItems.length === 0) {
       cartContainer.innerHTML =
