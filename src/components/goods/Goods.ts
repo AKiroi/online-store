@@ -1,6 +1,4 @@
 import { createHTMLElement } from '../../utils/createHTMLElement';
-import { createImageElement } from '../../utils/createImageElement';
-import dataGoods from '../../data/data';
 import { Igoods } from '../../data/types';
 import { state } from './../../state/State';
 
@@ -31,7 +29,6 @@ class Goods {
     const buttonCart = target.closest('.goods__btn')!;
     const headerCartCount = document.querySelector('.header__count') as HTMLElement;
     const headerTotal= document.querySelector('.header__item-total') as HTMLElement;
-    const goodsSortItemCount = document.querySelector('.goods-sort__item-count') as HTMLElement;
 
     if (target.classList.contains('goods__btn_add')) {
       buttonCart.classList.remove('goods__btn_add');

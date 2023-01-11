@@ -17,16 +17,10 @@
     align-items: center;
     padding: 10px 20px;
   }
-  &__header-title {
-    
-  }
   &__header-box {
     display: flex;
     align-items: center;
     gap: 40px;
-  }
-  &__header-items {
-
   }
   &__header-item {
     font-size: 20px;
@@ -116,8 +110,6 @@
     font-size: 20px;
     margin-bottom: 10px;
   }
-  &__description {
-  }
   &__add-item {
     display: flex;
     align-items: center;
@@ -148,15 +140,11 @@
     align-items: center;
     padding: 20px 20px;
   }
-  &__promo-block {
-  }
   &__promo-input {
     padding: 8px 10px;
     border-radius: 12px;
     border: 2px solid var(--color-orange);
     margin-bottom: 10px;
-  }
-  &__promo-text {
   }
   &__promo-byu {
     display: flex;
@@ -164,9 +152,6 @@
   &__products {
     font-size: 18px;
     text-align: right;
-
-  }
-  &__product {
   }
   &__product-count {
     font-size: 36px;
@@ -177,7 +162,6 @@
   &__total {
     font-size: 18px;
     text-align: right;
-
   }
   &__total-count {
     font-size: 36px;

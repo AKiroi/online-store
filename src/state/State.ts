@@ -48,7 +48,7 @@ class State {
     return this.cart.reduce((acc, item) => (+item.count * +item.price) + acc, 0);
   }
 
-  getMaxMinPrice() {
+  getMaxMinPrice(): [number, number] {
     const data = this.filtredGoods.length === 0 ? this.goods : this.filtredGoods;
     const prices = data.map((item) => item.price);
     const maxPrice = Math.max(...prices);
@@ -57,7 +57,7 @@ class State {
     return [minPrice, maxPrice];
   }
 
-  getMaxMinStock() {
+  getMaxMinStock() : [number, number] {
     const data = this.filtredGoods.length === 0 ? this.goods : this.filtredGoods;
     const stoks = data.map((item) => item.inStock);
     const maxStock = Math.max(...stoks);
@@ -138,14 +138,13 @@ class State {
     }
   }
 
-  allFilters(): Igoods[] {
+  allFilters(): void{
     this.filtredSearchState();
     this.filtredBrandState();
     this.filtredCategoryState();
     this.filtredPriceState();
     this.filtredStockState();
     this.filtredSortState();
-    return this.filtredGoods;
   }
 }
 

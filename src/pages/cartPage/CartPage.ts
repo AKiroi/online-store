@@ -143,7 +143,6 @@ class CartPage {
           const cartProductCount = document.querySelector('.cart__product-count')!;
           const headerItemText = document.querySelector('.header__item-total')!;
           const headerCount = document.querySelector('.header__count')!;
-          const goodsSortItemCount = document.querySelector('.goods-sort__item-count')!;
 
           if (target.closest('.cart__right')) {
             window.location.hash = `#/goodsItem/${dataId}`;

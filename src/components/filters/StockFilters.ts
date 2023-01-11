@@ -17,11 +17,11 @@ class StockFilters {
     const filterStockInputMax = <HTMLInputElement>document.querySelector('.stock-filter__input-max');
     const filterStockNumberMin = <HTMLInputElement>document.querySelector('.stock-filter__number-min')!;
     const filterStockNumberMax = <HTMLInputElement>document.querySelector('.stock-filter__number-max')!;
-    let gap = 10;
+    let gap = 1;
 
     filterStockRange.forEach((item) => {
       item.addEventListener('input', (e) => {
-        let target = e.target as HTMLElement;
+        const target = e.target as HTMLElement;
         let minVal = parseInt(filterStockInputMin.value);
         let maxVal = parseInt(filterStockInputMax.value);
         state.stockValMin = minVal;

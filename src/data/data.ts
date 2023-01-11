@@ -1,4 +1,4 @@
-import { Count, Igoods } from './types';
+import { Igoods } from './types';
 
 const dataGoods: Igoods[] = [
   {

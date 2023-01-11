@@ -41,14 +41,6 @@ class MainPage {
   private drawFiltredGoods = (): void => {
     this.goodsContainer.innerHTML = '';
     state.allFilters();
-   
-    //console.log(state.filtredGoods);
-    //console.log(state.getMaxMinPrice());
-    //console.log(state.priceValMin);
-    //console.log(state.priceValMax);
-    //console.log(state.stockValMin);
-    //console.log(state.stockValMax);
-
     this.setParamsToUrl();
 
     Object.values(getCountBrandObj(state.filtredGoods)).forEach((count, i) => {
@@ -63,7 +55,7 @@ class MainPage {
     this.goodsFiltredCreate();
   }
 
-  private setParamsToUrl() {
+  private setParamsToUrl(): void {
     getQueryParams.delete('brand');
     getQueryParams.delete('category');
     getQueryParams.delete('sort');
@@ -87,10 +79,9 @@ class MainPage {
       getQueryParams.append('sort', state.sort);
     }
     window.location.hash = !!getQueryParams.toString() ? `/?${getQueryParams.toString()}` : `/`;
-   
   }
 
-  private goodsFiltredCreate() {
+  private goodsFiltredCreate(): void {
     if (state.filtredGoods.length === 0) {
       this.messageSearchResult.style.display = 'block';
     } else {
@@ -137,7 +128,6 @@ class MainPage {
     const main = createHTMLElement('main', 'main');
     const mainContaner = createHTMLElement('main__container');
     const mainFilters = createHTMLElement(['main__filters', 'filters']);
-    //const mainGoods = createHTMLElement('main__goods');
     const goodsSort = createHTMLElement('goods-sort');
     //const goodsSortItem = createHTMLElement('goods-sort__item', 'div', 'Found: ');
     //const goodsSortItemCount = createHTMLElement('goods-sort__item-count', 'span', `${state.filtredGoods.length}`);

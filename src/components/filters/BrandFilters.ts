@@ -1,9 +1,6 @@
 import { createHTMLElement } from '../../utils/createHTMLElement';
-import dataGoods from '../../data/data';
-import { Igoods } from '../../data/types';
 import { brandsArray } from './../../data/data';
 import { state } from '../../state/State';
-import Goods from '../goods/Goods';
 import { getCountBrandObj } from './../../utils/getCountBrandObject';
 
 class BrandFilters{
@@ -46,7 +43,7 @@ class BrandFilters{
       const brandFilterCustomCheckbox = createHTMLElement('brand-filter__custom-checkbox', 'span');
       const brandFilterName = createHTMLElement('brand-filter__name', 'span', brandItem);
 
-      const countBrand: string = String(getCountBrandObj(state.goods)[brandItem]);
+      const countBrand: string = getCountBrandObj(state.goods)[brandItem].toString();
 
       const brandFilterCountContainer = createHTMLElement('brand-filter__count-container');
       const brandFilterCount = createHTMLElement('brand-filter__count', 'span', `/${countBrand}`);

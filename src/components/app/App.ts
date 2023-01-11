@@ -6,7 +6,7 @@ import Footer from '../footer/Footer';
 import { createHTMLElement } from '../../utils/createHTMLElement';
 import GoodsItemPage from '../../pages/goodsItemPage/GoodsItemPage';
 import dataGoods from '../../data/data';
-import { getQueryParams } from '../../utils/getQueryParams';
+import { Igoods } from '../../data/types';
 
 const LocationPath: Record<string, string> = {
   MainPage: '/',
@@ -19,7 +19,6 @@ class App {
   private wrapper = createHTMLElement('wrapper');
   private header: Header;
   private footer: Footer;
-  private goodsItem: any;
 
   prevPathPage = '';
 
@@ -33,9 +32,7 @@ class App {
 
     let changePage;
 
-    if (id) {
-      this.goodsItem = dataGoods.find((item) => item.id === +id);
-    }
+    const goodsItem = dataGoods.find((item) => item.id === +id);
 
     switch (location) {
       case LocationPath.MainPage:
@@ -45,7 +42,7 @@ class App {
         changePage = new CartPage();
         break;
       case LocationPath.GoodsItemPage:
-        changePage = new GoodsItemPage(this.goodsItem);
+        changePage = new GoodsItemPage(goodsItem as Igoods);
         break;
         case LocationPath.ModalPage:
         changePage = new ModalPage();
