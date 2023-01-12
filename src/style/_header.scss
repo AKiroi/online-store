@@ -1,0 +1,34 @@
+.header {
+  &__container {
+    width: 100%;
+    min-height: 80px;
+    display: flex;
+    justify-content: space-between;
+    align-items: center;
+  }
+
+  &__item {
+    color: var(--color-orange);
+    font-size: 20px;
+    &-total {
+      font-weight: 700;
+    }
+  }
+
+  &__logo {
+    color: var(--color-orange);
+    font-size: 30px;
+    font-weight: bold;
+  }
+
+  &__cart {
+    display: flex;
+    justify-content: space-between;
+    align-items: center;
+  }
+
+  &__count {
+    font-weight: bold;
+    color: var(--color-orange);
+  }
+}

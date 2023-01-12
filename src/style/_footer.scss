@@ -1,0 +1,22 @@
+.footer {
+  &__container {
+    width: 100%;
+    min-height: 60px;
+    display: flex;
+    justify-content: space-between;
+    align-items: center;
+  }
+  &__left {
+    a {
+      color: #fff;
+    }
+  }
+  &__center {
+    color: #fff;
+  }
+  &__right {
+    height: 45px;
+    width: 90px;
+    background: url('./assets/icons/rs_school.svg') center/contain no-repeat;
+  }
+}

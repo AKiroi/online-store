@@ -1,0 +1,62 @@
+.goods-sort {
+  display: flex;
+  align-items: center;
+  //justify-content: space-between;
+  justify-content: flex-end;
+  margin-bottom: 10px;
+}
+.search {
+  display: flex;
+  align-items: center;
+  margin-right: auto;
+  &__input {
+    //width: 380px;
+    height: 45px;
+    margin-right: 30px;
+    padding: 0px 0px 0px 30px;
+    border-radius: 20px;
+    border: 1px solid #ffca94;
+    color: var(--color-backgrounfd);
+    font-size: 18px;
+    background-color: var(--color-white);
+    @media (max-width: 940px){
+        //width: 100px;
+    }
+  }
+}
+.sort {
+  &__select {
+    text-align: center;
+    padding: 10px 20px;
+    height: 45px;
+    border: 0;
+    border-radius: 20px;
+    font-weight: normal;
+    font-size: 12px;
+  }
+}
+.view {
+  display: flex;
+  align-items: center;
+  gap: 10px;
+  margin-left: 20px;
+
+  &__input-radio {
+    display: none;
+  }
+  
+  &__button {
+    border: none;
+    background: transparent;
+    cursor: pointer;
+  }
+}
+
+.goods-sort__found {
+  margin-right: 10px;
+  color: var(--color-gray);
+  font-size: 18px;
+  &-count {
+    font-weight: 700;
+  }
+}
