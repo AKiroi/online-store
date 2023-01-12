@@ -312,6 +312,13 @@ class CartPage {
             }
           });
 
+          //console.log(this.cartPages[this.currentPage - 1]);
+          //console.log(this.currentPage - 1);
+          //if (this.cartPages[this.currentPage - 1].length === 0) {
+          //    this.cartPages.splice(this.currentPage - 1, 1);
+          //  this.currentPage--;
+          //};
+
           
           this.cartItems = this.cartItems.filter((item) => item.count !== 0);
           if (this.cartItems.length === 0) {
@@ -350,15 +357,12 @@ class CartPage {
 
       const drawCartItem = () => {
 
-        //if (this.cartPages[this.currentPage - 1].length === 0) {
-        //  //this.cartPages.splice(this.currentPage - 1, 1);
-        //  this.cartPages.pop();
-        //  //console.log(this.cartPages);
-          
-        //  this.currentPage--;
-        //};
-        //if (this.cartPages[this.currentPage -1])
         if (this.cartPages.length !== 0) {
+          console.log(this.cartPages[this.currentPage - 1].length );
+          if (this.cartPages[this.currentPage - 1].length === 0) {
+            this.cartPages.splice(this.currentPage - 1, 1);
+          this.currentPage--;
+        };
           cartItems.innerHTML = '';
           const cards = this.cartPages[this.currentPage - 1].map((item) => createCartItems(item));
           cartItems.append(...cards);

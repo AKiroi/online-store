@@ -40,7 +40,11 @@ class App {
     } else if (location === LocationPath.CartPage) {
       changePage = new CartPage();
     } else if (location === LocationPath.GoodsItemPage) {
-      changePage = new GoodsItemPage(goodsItem as Igoods);
+      if (+id > 0 && +id <= +dataGoods.length) {
+        changePage = new GoodsItemPage(goodsItem as Igoods);
+      } else {
+        changePage = new ErrorPage();
+      }
     } else if (location === LocationPath.ModalPage) {
       changePage = new ModalPage();
     } else {
