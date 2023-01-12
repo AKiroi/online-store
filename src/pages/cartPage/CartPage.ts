@@ -38,140 +38,6 @@ class CartPage {
     containerModal.append(this.modal.draw());
   }
 
-  private setDiscount = (e: Event): void => {
-    const input = e.target as HTMLInputElement;
-    const inputRequest: string = input.value;
-    const discountPercent: [string[], string[], number[]] = [
-      ['RSS', 'EPAM'],
-      ['RS School', 'EPAM Systems'],
-      [10, 15],
-    ];
-
-    const clickedElement = e.target as HTMLElement;
-    const cartPromoButton = document.querySelector('.cart__promo-button') as HTMLElement;
-    const cartPromoActive = document.querySelector('.cart__promo-text') as HTMLElement;
-    const cartTotal = document.querySelector('.cart__total') as HTMLElement;
-    const cartPromoHint = document.querySelector('.cart__promo-hint') as HTMLElement;
-    const cartOldPrice = document.querySelector('.cart__promo-old-price') as HTMLElement;
-    let promo: {
-      active: number;
-      percent: number;
-      activeDiscount: string;
-      hover: number;
-    }[];
-    const sessionStorageItem: string | null = sessionStorage.getItem('promo');
-    if (sessionStorageItem !== null) {
-      promo = JSON.parse(sessionStorageItem as string);
-    } else {
-      promo = [
-        {
-          active: -1,
-          percent: 0,
-          activeDiscount: '',
-          hover: 0,
-        },
-      ];
-    }
-
-    if (e.type === 'input') {
-      if (discountPercent[0].indexOf(inputRequest.toUpperCase()) !== -1) {
-        const index = discountPercent[0].indexOf(inputRequest.toUpperCase());
-        cartPromoHint.innerHTML = `${[discountPercent[1][index]]} - ${discountPercent[2][index]} %`;
-        if (index !== promo[0].active && promo[0].active !== 2) {
-          cartPromoButton.classList.remove('hidden');
-        }
-        promo[0].hover = index;
-        sessionStorage.setItem('promo', JSON.stringify(promo));
-      } else {
-        cartPromoHint.innerHTML = '';
-        cartPromoButton.classList.add('hidden');
-      }
-    }
-    let activatedDiscount = '';
-    let percent = 0;
-
-    if (e.type === 'click' && clickedElement.classList.contains('cart__promo-button')) {
-      const sessionStorageItem: string | null = sessionStorage.getItem('promo');
-      if (sessionStorageItem !== null && cartPromoActive.textContent?.length === 0) {
-        const index = Number(JSON.parse(sessionStorageItem)[0].hover);
-        activatedDiscount = `<div class="button-delete-discount">Delete discount</div><br>Discount: <br>${[discountPercent[1][index]]} - ${discountPercent[2][index]} %`
-        cartPromoActive.innerHTML = activatedDiscount;
-        percent = discountPercent[2][index];
-      } else if (sessionStorageItem !== null && cartPromoActive.textContent?.length !== 0) {
-        activatedDiscount = `<div class="button-delete-discount">Delete discount</div><br>Discount: <br>${[discountPercent[1][0]]} - ${discountPercent[2][0]} % <br>${[discountPercent[1][1]]} - ${discountPercent[2][1]} %`
-        cartPromoActive.innerHTML = activatedDiscount;
-        percent = discountPercent[2][0] + discountPercent[2][1];
-        promo[0].hover = 2;
-      }
-      if (sessionStorageItem) {
-        promo[0].percent = percent;
-        promo[0].active = promo[0].hover;
-        promo[0].activeDiscount = activatedDiscount;
-        sessionStorage.setItem('promo', JSON.stringify(promo));
-      }
-      cartTotal.innerHTML = this.getSumTotal('discount');
-      cartOldPrice.innerHTML = this.getSumTotal('noDiscount');
-      cartPromoButton.classList.add('hidden');
-    }
-
-    if (e.type === 'click' && clickedElement.classList.contains('button-delete-discount')) {
-      promo = [
-        {
-          active: -1,
-          percent: 0,
-          activeDiscount: '',
-          hover: 0,
-        },
-      ];
-      sessionStorage.setItem('promo', JSON.stringify(promo));
-      cartPromoActive.innerHTML = '';
-      cartTotal.innerHTML = this.getSumTotal('discount');
-      cartOldPrice.innerHTML = '';
-    }
-  };
-
-  private getSumTotal = (d: string): string => {
-    const total = () =>
-      this.cartItems.reduce((acc, curr) => {
-        return acc + curr.price * curr.count;
-      }, 0);
-    const noDiscount = `<span class="cart__total-count-old">${total()}$</span>`;
-    const sessionStorageItem: string | null = sessionStorage.getItem('promo');
-    let promo;
-    let discount = ``;
-    if (sessionStorageItem) {
-      promo = JSON.parse(sessionStorageItem as string);
-      discount = `Total: <span class="cart__total-count">${Math.round(
-        total() - (total() * promo[0].percent) / 100
-      )}$</span>`;
-    }
-
-    if (d === 'noDiscount') {
-      if (!promo || promo[0].active === -1)  {
-        return '';
-      }
-    }
-
-    if (promo) {
-      if (promo[0].active !== -1 || promo[0].active !== undefined) {
-        if (d === 'discount') {
-          return discount;
-        } else if (d === 'noDiscount') {
-          return noDiscount;
-        } else if (d === 'activeDiscount') {
-          return promo[0].activeDiscount;
-        }
-      }
-    } else {
-      if (d === 'discount') {
-        return `Total: <span class="cart__total-count">${total()}$</span>`;
-      } else if (d === 'activeDiscount') {
-        return '';
-      }
-    }
-    return '';
-  };
-
   draw(): HTMLElement {
     const cartContainer = createHTMLElement('cart');
     if (!this.cartItems || this.cartItems.length === 0) {
@@ -307,18 +173,12 @@ class CartPage {
               cartAddCount[i].textContent = item.count.toString();
               cartPrice[i].textContent = item.count.toString();
               cartPrice[i].textContent = (item.count * item.price).toString() + '$';
-              cartOldPrice.innerHTML = this.getSumTotal('noDiscount');
-              cartTotal.innerHTML = this.getSumTotal('discount');
             }
           });
 
-          
-          //if (this.cartPages[this.currentPage - 1].length === 0 ) {
-          //  //this.cartPages.pop();
+          //if (this.cartPages[this.currentPage - 1].length === 1 && this.cartPages[this.currentPage - 1] !== this.cartPages[0]) {
+          //  this.cartPages.pop();
           //  this.currentPage--;
-
-          //  generateCardCurrent();
-          //drawCartItem();
           //};
 
           this.cartItems = this.cartItems.filter((item) => item.count !== 0);
@@ -326,10 +186,9 @@ class CartPage {
             localStorage.removeItem('cart');
             state.cart = [];
           } else {
+            state.cart = this.cartItems;
             localStorage.setItem('cart', JSON.stringify(this.cartItems));
           }
-
-
 
           generateCardCurrent();
           drawCartItem();
@@ -390,25 +249,16 @@ class CartPage {
       };
 
       const cartFooter = createHTMLElement('cart__footer');
-      cartFooter.addEventListener('click', this.setDiscount);
       const cartPromoBlock = createHTMLElement('cart__promo-block');
       const inputPromoInput = createInputElement(['cart__promo-input'], 'text', 'Enter promo code');
-      inputPromoInput?.addEventListener('input', this.setDiscount);
-      const cartPromoText = createHTMLElement('__promo-cod');
-      cartPromoText.textContent = `Promo for test: 'RSS', 'EPAM'`;
-      const cartPromoHint = createHTMLElement('cart__promo-hint');
-      const cartPromoButton = createHTMLElement(['cart__promo-button', 'hidden']);
-      cartPromoButton.textContent = 'Add';
-      const cartPromoActive = createHTMLElement('cart__promo-text');
-      const cartOldPrice = createHTMLElement('cart__promo-old-price');
+      const cartPromoText = createHTMLElement('cart__header');
+      cartPromoText.textContent = `Promo for test: 'RS', 'EPM'`;
       const cartPromoBye = createHTMLElement('cart__promo-byu');
       const cartProducts = createHTMLElement('cart__products');
       const cartProduct = createHTMLElement('cart__product');
       cartProduct.innerHTML = `Products: <span class="cart__product-count">${getCartItemsCount()}</span>`;
       const cartTotal = createHTMLElement('cart__total');
-      cartOldPrice.innerHTML = this.getSumTotal('noDiscount');
-      cartTotal.innerHTML = this.getSumTotal('discount');
-      cartPromoActive.innerHTML = this.getSumTotal('activeDiscount');
+      cartTotal.innerHTML = `Total: <span class="cart__total-count">${getCartTotalPrice()}$</span>`;
       const btnSubmit = document.createElement('button') as HTMLButtonElement;
       btnSubmit.type = 'submit';
       btnSubmit.innerHTML = 'BUY NOW';
@@ -422,10 +272,10 @@ class CartPage {
       cartItems.append(...cards);
       cartMain.append(cartItems);
 
-      cartPromoBlock.append(inputPromoInput, cartPromoHint, cartPromoButton, cartPromoText);
+      cartPromoBlock.append(inputPromoInput, cartPromoText);
       cartProducts.append(cartProduct, cartTotal);
       cartPromoBye.append(cartProducts, btnSubmit);
-      cartFooter.append(cartPromoBlock, cartPromoActive, cartOldPrice, cartPromoBye);
+      cartFooter.append(cartPromoBlock, cartPromoBye);
       cartMainContainer.append(cartModalOverlay, cartHeader, cartMain, cartFooter, cartModalContainer);
 
       if (localStorage.getItem('modal')) {
