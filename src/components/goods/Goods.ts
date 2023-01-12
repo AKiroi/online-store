@@ -73,6 +73,7 @@ class Goods {
 
     goodsContainer.addEventListener('click', this.handlerGoodsItem);
     let classRemoveButton = '';
+    let textButton = 'Add to card';
     if (localStorage.getItem('cart')) {
       if (
         JSON.parse(localStorage.getItem('cart') as string).findIndex(
@@ -80,6 +81,7 @@ class Goods {
         ) !== -1
       )
         classRemoveButton = ' goods__btn_add';
+      textButton = 'Drop from card';
     }
 
     const data = localStorageUtil.getCartItems();
@@ -104,7 +106,7 @@ class Goods {
       </div>
       <div class="goods__price-block">
         <div class="goods__price">$${this.price}</div>
-        <button class="goods__btn${classRemoveButton}">Add to card</button>
+        <button class="goods__btn${classRemoveButton}">${textButton}</button>
       </div>
   `;
 
