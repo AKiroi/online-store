@@ -72,21 +72,26 @@ class Goods {
     const goodsContainer = createHTMLElement('goods__item');
 
     goodsContainer.addEventListener('click', this.handlerGoodsItem);
-    let classRemoveButton = '';
-    let textButton = 'Add to card';
-    if (localStorage.getItem('cart')) {
-      if (
-        JSON.parse(localStorage.getItem('cart') as string).findIndex(
-          (el: Element) => el.id.toString() === this.id.toString()
-        ) !== -1
-      ) {
-        textButton = 'Drop from card';
-        classRemoveButton = ' goods__btn_add';
+    //let classRemoveButton = '';
+    //let textButton = 'Add to card';
+    //if (localStorage.getItem('cart')) {
+    //  if (
+    //    JSON.parse(localStorage.getItem('cart') as string).findIndex(
+    //      (el: Element) => el.id.toString() === this.id.toString()
+    //    ) !== -1
+    //  )
+    //    classRemoveButton = ' goods__btn_add';
+    //  textButton = 'Drop from card';
+    //}
+
+    //const data = localStorageUtil.getCartItems();
+    const createButtonAdd = (): string => {
+      if (state.cart.some((item) => item.id === this.id)) {
+        return `<button class="goods__btn goods__btn_add">Drop from cart</button>`;
+      } else {
+        return `<button class="goods__btn">Add to car</button>`;
       }
     }
-
-    const data = localStorageUtil.getCartItems();
-
 
 
 
@@ -107,7 +112,7 @@ class Goods {
       </div>
       <div class="goods__price-block">
         <div class="goods__price">$${this.price}</div>
-        <button class="goods__btn${classRemoveButton}">${textButton}</button>
+        ${createButtonAdd()}
       </div>
   `;
 
