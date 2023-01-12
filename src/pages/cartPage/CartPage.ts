@@ -117,7 +117,7 @@ class CartPage {
 
         cartItem.innerHTML = `
             <div class="cart__right">
-              <div class="cart__item-number">${item.id}</div>
+              <div class="cart__item-number">${this.cartItems.findIndex((el) => el.id === item.id) + 1}</div>
               <div class="cart__img-box">
                 <img class="cart__img" src=${item.photo[0]} alt=${item.brand}>
               </div>
