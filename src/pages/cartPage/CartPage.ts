@@ -307,6 +307,8 @@ class CartPage {
               cartAddCount[i].textContent = item.count.toString();
               cartPrice[i].textContent = item.count.toString();
               cartPrice[i].textContent = (item.count * item.price).toString() + '$';
+              cartOldPrice.innerHTML = this.getSumTotal('noDiscount');
+              cartTotal.innerHTML = this.getSumTotal('discount');
             }
           });
 
