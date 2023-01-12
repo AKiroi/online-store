@@ -177,10 +177,13 @@ class CartPage {
           });
 
           
-          if (this.cartPages[this.currentPage - 1].length === 1 && this.cartPages[this.currentPage - 1] !== this.cartPages[0]) {
-            this.cartPages.pop();
-            this.currentPage--;
-          };
+          //if (this.cartPages[this.currentPage - 1].length === 0 ) {
+          //  //this.cartPages.pop();
+          //  this.currentPage--;
+
+          //  generateCardCurrent();
+          //drawCartItem();
+          //};
 
           this.cartItems = this.cartItems.filter((item) => item.count !== 0);
           if (this.cartItems.length === 0) {
