@@ -89,7 +89,7 @@ class Goods {
       if (state.cart.some((item) => item.id === this.id)) {
         return `<button class="goods__btn goods__btn_add">Drop from cart</button>`;
       } else {
-        return `<button class="goods__btn">Add to cart</button>`;
+        return `<button class="goods__btn">Add to car</button>`;
       }
     }
 
