@@ -79,9 +79,10 @@ class Goods {
         JSON.parse(localStorage.getItem('cart') as string).findIndex(
           (el: Element) => el.id.toString() === this.id.toString()
         ) !== -1
-      )
+      ) {
+        textButton = 'Drop from card';
         classRemoveButton = ' goods__btn_add';
-      textButton = 'Drop from card';
+      }
     }
 
     const data = localStorageUtil.getCartItems();
