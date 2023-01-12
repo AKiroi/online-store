@@ -32,20 +32,13 @@ class Goods {
     const buttonCart = target.closest('.goods__btn')! as HTMLElement;
     const headerCartCount = document.querySelector('.header__count') as HTMLElement;
     const headerTotal= document.querySelector('.header__item-total') as HTMLElement;
-    const data = localStorageUtil.getCartItems();
-
-    //console.log(data);
     
-
     if (target.classList.contains('goods__btn_add')) {
       buttonCart.classList.remove('goods__btn_add');
       buttonCart.textContent = 'Add to cart';
-
       this.goodsItem.count = 0;
-
       const index = state.cart.findIndex((item) => item.id === this.id);
       state.cart.splice(index, 1);
-      
     } else {
       buttonCart.classList.add('goods__btn_add');
       buttonCart.textContent = 'Drop from cart';
@@ -68,32 +61,18 @@ class Goods {
     }
   };
 
+  private createButtonAdd = (): string => {
+    if (state.cart.some((item) => item.id === this.id)) {
+      return `<button class="goods__btn goods__btn_add">Drop from cart</button>`;
+    } else {
+      return `<button class="goods__btn">Add to cart</button>`;
+    }
+  }
+
   draw(): HTMLElement {
     const goodsContainer = createHTMLElement('goods__item');
 
     goodsContainer.addEventListener('click', this.handlerGoodsItem);
-    //let classRemoveButton = '';
-    //let textButton = 'Add to card';
-    //if (localStorage.getItem('cart')) {
-    //  if (
-    //    JSON.parse(localStorage.getItem('cart') as string).findIndex(
-    //      (el: Element) => el.id.toString() === this.id.toString()
-    //    ) !== -1
-    //  )
-    //    classRemoveButton = ' goods__btn_add';
-    //  textButton = 'Drop from card';
-    //}
-
-    //const data = localStorageUtil.getCartItems();
-    const createButtonAdd = (): string => {
-      if (state.cart.some((item) => item.id === this.id)) {
-        return `<button class="goods__btn goods__btn_add">Drop from cart</button>`;
-      } else {
-        return `<button class="goods__btn">Add to car</button>`;
-      }
-    }
-
-
 
     goodsContainer.innerHTML = `
       <div class="goods__content-wrapper">
@@ -112,7 +91,7 @@ class Goods {
       </div>
       <div class="goods__price-block">
         <div class="goods__price">$${this.price}</div>
-        ${createButtonAdd()}
+        ${this.createButtonAdd()}
       </div>
   `;
 
