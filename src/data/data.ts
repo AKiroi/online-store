@@ -1,6 +1,6 @@
-import { Igoods } from './types';
+import { IGoods } from './types';
 
-const dataGoods: Igoods[] = [
+const dataGoods: IGoods[] = [
   {
     id: 1,
     category: 'Electric guitar',
@@ -483,10 +483,21 @@ const dataGoods: Igoods[] = [
   },
 ];
 
+export type FiltersObjectTypes = {
+  brand: Array<string>;
+  category: Array<string>;
+};
+
 
 export const brandsArray: string[] = [...new Set(dataGoods.map((item) => item.brand))];
 
 export const categoryArray: string[] = [...new Set(dataGoods.map((item) => item.category))];
 
+
+
+export const filtersObject: FiltersObjectTypes = {
+  brand: brandsArray,
+  category: categoryArray,
+}
 
 export default dataGoods;

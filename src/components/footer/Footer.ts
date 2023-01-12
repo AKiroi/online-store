@@ -1,6 +1,7 @@
+import { IFooter } from '../../data/types';
 import { createHTMLElement } from '../../utils/createHTMLElement';
 
-class Footer {
+class Footer implements IFooter {
   draw(): HTMLElement {
     const footer = createHTMLElement('footer', 'footer');
 

@@ -1,5 +1,5 @@
 import { createHTMLElement } from "../../utils/createHTMLElement";
-import { Igoods } from "../../data/types";
+import { IGoods } from "../../data/types";
 import { state } from "../../state/State";
 import cartPage from "../../pages/cartPage/CartPage";
 
@@ -14,7 +14,7 @@ class GoodsItemPage {
   private id;
   private cartPage;
 
-  constructor(goods: Igoods) {
+  constructor(goods: IGoods) {
     this.id = goods.id;
     this.brand = goods.brand;
     this.category = goods.category;

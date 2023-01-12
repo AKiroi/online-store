@@ -7,7 +7,7 @@ import CategoryFilters from "../../components/filters/CategoryFilters";
 import PriceFilters from "../../components/filters/PriceFilters";
 import StockFilters from "../../components/filters/StockFilters";
 import { state } from "../../state/State";
-import dataGoods from "../../data/data";
+import dataGoods, { filtersObject } from "../../data/data";
 import Goods from "../../components/goods/Goods";
 import ViewButton from "../../components/View/ViewButton";
 import { getCountBrandObj } from "../../utils/getCountBrandObject";
@@ -16,13 +16,13 @@ import { getQueryParams } from "../../utils/getQueryParams";
 import { deleteQuerryParams } from './../../utils/getQueryParams';
 
 class MainPage {
-  private search;
-  private sort;
-  private brandFilters;
-  private categoryFilters;
-  private priceFilters;
-  private stockFilters;
-  private viewButtons;
+  private search: Search;
+  private sort: Sort;
+  private brandFilters: BrandFilters;
+  private categoryFilters: CategoryFilters;
+  private priceFilters: PriceFilters;
+  private stockFilters: StockFilters;
+  private viewButtons: ViewButton;
 
   mainGoods = createHTMLElement('main__goods');
   goodsContainer = createHTMLElement('goods');
@@ -48,6 +48,9 @@ class MainPage {
       const filtredCountElem = document.querySelectorAll('.brand-filter__count-filtred')!;
       filtredCountElem[i].textContent = String(count);
     });
+
+
+
     Object.values(getCountCategoryObj(state.filtredGoods)).forEach((count, i) => {
       const filtredCountElem = document.querySelectorAll('.category-filter__count-filtred')!;
       filtredCountElem[i].textContent = String(count);
@@ -135,9 +138,6 @@ class MainPage {
     const mainFilters = createHTMLElement(['main__filters', 'filters']);
     const goodsSort = createHTMLElement('goods-sort');
     const goodsSortFound = createHTMLElement('goods-sort__found', 'div', 'Found: ');
-    //const goodsSortFoundCount = createHTMLElement('goods-sort__found-count', 'span', `${state.filtredGoods.length}`);
-    
-
     const filtersButtons = createHTMLElement('filters__buttons');
 
     const filtersResetButton = createHTMLElement('filters__reset-btn', 'button', 'Reset filters');

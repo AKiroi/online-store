@@ -6,20 +6,21 @@ import Footer from '../footer/Footer';
 import { createHTMLElement } from '../../utils/createHTMLElement';
 import GoodsItemPage from '../../pages/goodsItemPage/GoodsItemPage';
 import dataGoods from '../../data/data';
-import { Igoods } from '../../data/types';
+import { IFooter, IGoods } from '../../data/types';
 import ErrorPage from './../../pages/errorPage/ErrorPage';
+import { IHeader } from './../../data/types';
 
-const LocationPath: Record<string, string> = {
-  MainPage: '/',
-  CartPage: '/cart',
-  GoodsItemPage: `/goodsItem`,
-};
+enum LocationPath {
+  MainPage = '/',
+  CartPage = '/cart',
+  GoodsItemPage = `/goodsItem`,
+}
 
 class App {
   private root: HTMLElement = document.body;
   private wrapper = createHTMLElement('wrapper');
-  private header: Header;
-  private footer: Footer;
+  private header: IHeader;
+  private footer: IFooter;
 
   prevPathPage = '';
 
@@ -28,7 +29,7 @@ class App {
     this.footer = new Footer();
   }
 
-  drawNewPage(location: string, id = ''): void {
+  private drawNewPage(location: string, id = ''): void {
     this.wrapper.innerHTML = '';
 
     let changePage;
@@ -41,12 +42,10 @@ class App {
       changePage = new CartPage();
     } else if (location === LocationPath.GoodsItemPage) {
       if (+id > 0 && +id <= +dataGoods.length) {
-        changePage = new GoodsItemPage(goodsItem as Igoods);
+        changePage = new GoodsItemPage(goodsItem as IGoods);
       } else {
         changePage = new ErrorPage();
       }
-    } else if (location === LocationPath.ModalPage) {
-      changePage = new ModalPage();
     } else {
       changePage = new ErrorPage();
     }
@@ -57,12 +56,12 @@ class App {
     }
   }
 
-  handleHashChange(): void {
+  private handleHashChange(): void {
     window.addEventListener('hashchange', this.loadHashPage);
     window.addEventListener('load', this.loadHashPage);
   }
 
-  loadHashPage = () => {
+  private loadHashPage = (): void => {
     const hash = window.location.hash.slice(1);
     const hashArr = hash.split('/');
     const pathPage = hash.slice(0, hash.indexOf('?'));

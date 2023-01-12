@@ -1,5 +1,5 @@
 import dataGoods from "../data/data";
-import { Igoods } from "../data/types";
+import { IGoods } from "../data/types";
 import { getQueryParams } from './../utils/getQueryParams';
 import { localStorageUtil } from './../utils/localStorageUtil';
 
@@ -19,10 +19,10 @@ export const initialFilters: Filters = {
 }
 
 class State {
-  choseGoodsItem: Igoods | null = null;
-  filtredGoods: Igoods[] = []
+  choseGoodsItem: IGoods | null = null;
+  filtredGoods: IGoods[] = []
   filters: Filters  = initialFilters;
-  goods: Igoods[] = dataGoods;
+  goods: IGoods[] = dataGoods;
   view: string = getQueryParams.get('view') || '';
   search: string = getQueryParams.get('search') || '';
   sort: string = getQueryParams.get('sort')|| '';
@@ -30,7 +30,7 @@ class State {
   priceValMax: number | string = getQueryParams.get('priceMax') || this.getMaxMinPrice()[1];
   stockValMin: number | string = getQueryParams.get('stockMin') || this.getMaxMinStock()[0];
   stockValMax: number | string = getQueryParams.get('stockMax') || this.getMaxMinStock()[1];
-  cart: Igoods[] = localStorageUtil.getCartItems() || [];
+  cart: IGoods[] = localStorageUtil.getCartItems() || [];
 
   resetState(): void {
     this.search = '';
@@ -43,6 +43,7 @@ class State {
     this.stockValMin = '1';
     this.stockValMax = '28';
   }
+
 
   getTotalCount(): number  {
     return this.cart.reduce((acc, item) => item.count + acc, 0);
@@ -112,7 +113,7 @@ class State {
 
   filtredBrandState(): void {
     if (this.filters.brand.length !== 0) {
-      this.filtredGoods = this.filtredGoods.filter((item: Igoods) => this.filters.brand.includes(item.brand));
+      this.filtredGoods = this.filtredGoods.filter((item: IGoods) => this.filters.brand.includes(item.brand));
     } else {
       this.filtredGoods;
     }
@@ -120,7 +121,7 @@ class State {
 
   filtredCategoryState(): void {
     if (this.filters.category.length !== 0) {
-      this.filtredGoods = this.filtredGoods.filter((item: Igoods) => this.filters.category.includes(item.category));
+      this.filtredGoods = this.filtredGoods.filter((item: IGoods) => this.filters.category.includes(item.category));
     } else {
       this.filtredGoods;
     }
@@ -128,7 +129,7 @@ class State {
 
   filtredPriceState(): void {
     if (this.priceValMin !== 0 || this.priceValMax !== 0) {
-      this.filtredGoods = this.filtredGoods.filter((item: Igoods) => item.price >= state.priceValMin && item.price <= state.priceValMax);
+      this.filtredGoods = this.filtredGoods.filter((item: IGoods) => item.price >= state.priceValMin && item.price <= state.priceValMax);
     } else {
       this.filtredGoods;
     }
@@ -136,7 +137,7 @@ class State {
 
   filtredStockState(): void {
     if (this.stockValMin !== 0 || this.stockValMax !== 0) {
-      this.filtredGoods = this.filtredGoods.filter((item: Igoods) => item.inStock >= state.stockValMin && item.inStock <= state.stockValMax);
+      this.filtredGoods = this.filtredGoods.filter((item: IGoods) => item.inStock >= state.stockValMin && item.inStock <= state.stockValMax);
     } else {
       this.filtredGoods;
     }

@@ -1,6 +1,6 @@
 export type Count = Record<string, number>;
 
-export interface Igoods {
+export interface IGoods {
   id: number,
   category: string,
   name: string,
@@ -11,3 +11,14 @@ export interface Igoods {
   rating: number,
   count: number
 };
+
+export interface IHeader {
+  draw: () => HTMLElement;
+}
+export interface IFooter{
+  draw: () => HTMLElement;
+}
+export interface IErrorPage{
+  draw: () => HTMLElement;
+}
+

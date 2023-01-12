@@ -1,7 +1,6 @@
 import { createHTMLElement } from '../../utils/createHTMLElement';
-import { Igoods } from '../../data/types';
+import { IGoods } from '../../data/types';
 import { state } from './../../state/State';
-import { localStorageUtil } from './../../utils/localStorageUtil';
 
 class Goods {
   private brand;
@@ -15,7 +14,7 @@ class Goods {
   private id;
   private count;
   
-  constructor(goods: Igoods) {
+  constructor(goods: IGoods) {
     this.id = goods.id;
     this.brand = goods.brand;
     this.category = goods.category;

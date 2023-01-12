@@ -1,8 +1,9 @@
 import { createHTMLElement } from '../../utils/createHTMLElement';
 import { createImageElement } from '../../utils/createImageElement';
 import { state } from './../../state/State';
+import { IHeader } from './../../data/types';
 
-class Header {
+class Header implements IHeader {
   
   draw(): HTMLElement {
     const header = createHTMLElement('header', 'header');

@@ -1,15 +1,15 @@
 import { createHTMLElement } from '../../utils/createHTMLElement';
 import { createInputElement } from '../../utils/createInputElement';
-import { Igoods } from '../../data/types';
+import { IGoods } from '../../data/types';
 import { state } from '../../state/State';
 import ModalSubmit from '../../components/modal/ModalSubmit';
 import { localStorageUtil } from './../../utils/localStorageUtil';
 import { getQueryParams } from './../../utils/getQueryParams';
 
 class CartPage {
-  private modal;
-  private cartItems;
-  private cartPages: Igoods[][];
+  private modal: ModalSubmit;
+  private cartItems: IGoods[];
+  private cartPages: IGoods[][];
   private currentPage: number;
   private pagesItems: string;
 
@@ -186,7 +186,7 @@ class CartPage {
     }, 0);
   };
 
-  private generateCardCurrent = (): void => {
+  private generateCartItem= (): void => {
     const countPages = Math.ceil(this.cartItems.length / +this.pagesItems);
     const carts = [...this.cartItems];
     const arrCarts = [];
@@ -197,7 +197,7 @@ class CartPage {
     this.cartPages = arrCarts;
   };
 
-  createCartItems = (item: Igoods): HTMLElement => {
+  createCartItems = (item: IGoods): HTMLElement => {
     const cartItem = createHTMLElement('cart__item');
     cartItem.dataset.id = item.id.toString();
 
@@ -281,7 +281,7 @@ class CartPage {
       localStorage.setItem('cart', JSON.stringify(this.cartItems));
     }
 
-    this.generateCardCurrent();
+    this.generateCartItem();
     this.drawCartItem();
 
     cartProductCount.textContent = this.getCartItemsCount().toString();
@@ -336,7 +336,7 @@ class CartPage {
     getQueryParams.append('limit', valueItems.toString());
     window.location.hash = !!getQueryParams.toString() ? `/cart?${getQueryParams.toString()}` : `/cart`;
 
-    this.generateCardCurrent();
+    this.generateCartItem();
     this.drawCartItem();
   }
 
@@ -366,7 +366,7 @@ class CartPage {
                 <span class="cart__pages-count">${this.currentPage}</span>
                 <img src="./assets/icons/arrow-right-icon.svg" alt="arrow-left icon" class="cart__pages-arrow cart__pages-arrow-right">`;
 
-      this.generateCardCurrent();
+      this.generateCartItem();
 
       cartHeaderItems.append(cartHeaderItemsText, cartHeaderItem);
       cartHeaderBox.append(cartHeaderItems, cartHeaderPages);

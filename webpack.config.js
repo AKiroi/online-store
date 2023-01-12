@@ -13,7 +13,6 @@ const baseConfig = {
         rules: [
             {
                 test: /\.(css|scss)/,
-                //use: [MiniCssExtractPlugin.loader, 'css-loader', 'sass-loader'],
                 use: ['style-loader', 'css-loader', 'sass-loader']
             },
             {
@@ -25,13 +24,6 @@ const baseConfig = {
                 test: /\.(ttf|woff|woff2)$/,
                 type: 'asset/resource',
             },
-            //{
-            //  test: /\.(gif|png|jpg|jpeg|svg)?$/,
-            //  loader: 'file-loader',
-            //  options: {
-            //    name: 'assets/img/[name].[ext]',
-            //  },
-            //},
             {
                 test: /\.(png|jpg|jpeg|svg|ico)$/,
                 type: 'asset/resource',
@@ -54,7 +46,6 @@ const baseConfig = {
         new MiniCssExtractPlugin({
             filename: '[name].[contenthash].css',
         }),
-        //new CopyWebpackPlugin(),
         new CopyWebpackPlugin({
           patterns: [
             {
