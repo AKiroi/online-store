@@ -6,6 +6,13 @@ import ModalSubmit from '../../components/modal/ModalSubmit';
 import { localStorageUtil } from './../../utils/localStorageUtil';
 import { getQueryParams } from './../../utils/getQueryParams';
 
+interface DateSessionStorage {
+  active: number;
+  percent: number;
+  activeDiscount: string;
+  hover: number;
+}
+
 class CartPage {
   private modal: ModalSubmit;
   private cartItems: IGoods[];
@@ -36,6 +43,28 @@ class CartPage {
     containerModal.append(this.modal.draw());
   }
 
+  private setStorageData(promoData: DateSessionStorage[]): void {
+    sessionStorage.setItem('promoData', JSON.stringify(promoData));
+  }
+
+  private getStorageData(): DateSessionStorage[] {
+    const sessionStorageItem = sessionStorage.getItem('promoData') || null;
+    let promoData: DateSessionStorage[];
+    if (sessionStorageItem === null || sessionStorageItem === undefined) {
+      promoData = [
+        {
+          active: -1,
+          percent: 0,
+          activeDiscount: '',
+          hover: 0,
+        },
+      ];
+    } else {
+      promoData = JSON.parse(sessionStorageItem as string);
+    }
+    return promoData;
+  }
+
   private setDiscount = (e: Event): void => {
     const input = e.target as HTMLInputElement;
     const inputRequest: string = input.value;
@@ -51,73 +80,53 @@ class CartPage {
     const cartTotal = document.querySelector('.cart__total') as HTMLElement;
     const cartPromoHint = document.querySelector('.cart__promo-hint') as HTMLElement;
     const cartOldPrice = document.querySelector('.cart__promo-old-price') as HTMLElement;
-    let promo: {
-      active: number;
-      percent: number;
-      activeDiscount: string;
-      hover: number;
-    }[];
-    const sessionStorageItem: string | null = sessionStorage.getItem('promo');
-    if (sessionStorageItem !== null) {
-      promo = JSON.parse(sessionStorageItem as string);
-    } else {
-      promo = [
-        {
-          active: -1,
-          percent: 0,
-          activeDiscount: '',
-          hover: 0,
-        },
-      ];
-    }
+    let promoData = this.getStorageData();
 
     if (e.type === 'input') {
       if (discountPercent[0].indexOf(inputRequest.toUpperCase()) !== -1) {
         const index = discountPercent[0].indexOf(inputRequest.toUpperCase());
         cartPromoHint.innerHTML = `${[discountPercent[1][index]]} - ${discountPercent[2][index]} %`;
-        if (index !== promo[0].active && promo[0].active !== 2) {
+        if (index !== promoData[0].active && promoData[0].active !== 2) {
           cartPromoButton.classList.remove('hidden');
         }
-        promo[0].hover = index;
-        sessionStorage.setItem('promo', JSON.stringify(promo));
+        promoData[0].hover = index;
+        this.setStorageData(promoData);
       } else {
         cartPromoHint.innerHTML = '';
         cartPromoButton.classList.add('hidden');
       }
     }
+
     let activatedDiscount = '';
     let percent = 0;
 
     if (e.type === 'click' && clickedElement.classList.contains('cart__promo-button')) {
-      const sessionStorageItem: string | null = sessionStorage.getItem('promo');
-      if (sessionStorageItem !== null && cartPromoActive.textContent?.length === 0) {
-        const index = Number(JSON.parse(sessionStorageItem)[0].hover);
+      if (cartPromoActive.textContent?.length === 0) {
+        const index = promoData[0].hover;
         activatedDiscount = `<div class="button-delete-discount">Delete discount</div><br>Discount: <br>${[
           discountPercent[1][index],
         ]} - ${discountPercent[2][index]} %`;
         cartPromoActive.innerHTML = activatedDiscount;
         percent = discountPercent[2][index];
-      } else if (sessionStorageItem !== null && cartPromoActive.textContent?.length !== 0) {
+      } else if (cartPromoActive.textContent?.length !== 0) {
         activatedDiscount = `<div class="button-delete-discount">Delete discount</div><br>Discount: <br>${[
           discountPercent[1][0],
         ]} - ${discountPercent[2][0]} % <br>${[discountPercent[1][1]]} - ${discountPercent[2][1]} %`;
         cartPromoActive.innerHTML = activatedDiscount;
         percent = discountPercent[2][0] + discountPercent[2][1];
-        promo[0].hover = 2;
+        promoData[0].hover = 2;
       }
-      if (sessionStorageItem) {
-        promo[0].percent = percent;
-        promo[0].active = promo[0].hover;
-        promo[0].activeDiscount = activatedDiscount;
-        sessionStorage.setItem('promo', JSON.stringify(promo));
-      }
+      promoData[0].percent = percent;
+      promoData[0].active = promoData[0].hover;
+      promoData[0].activeDiscount = activatedDiscount;
+      this.setStorageData(promoData);
       cartTotal.innerHTML = this.getSumTotal('discount');
       cartOldPrice.innerHTML = this.getSumTotal('noDiscount');
       cartPromoButton.classList.add('hidden');
     }
 
     if (e.type === 'click' && clickedElement.classList.contains('button-delete-discount')) {
-      promo = [
+      promoData = [
         {
           active: -1,
           percent: 0,
@@ -125,7 +134,7 @@ class CartPage {
           hover: 0,
         },
       ];
-      sessionStorage.setItem('promo', JSON.stringify(promo));
+      this.setStorageData(promoData);
       cartPromoActive.innerHTML = '';
       cartTotal.innerHTML = this.getSumTotal('discount');
       cartOldPrice.innerHTML = '';
@@ -138,31 +147,28 @@ class CartPage {
         return acc + curr.price * curr.count;
       }, 0);
     const noDiscount = `<span class="cart__total-count-old">${total()}$</span>`;
-    const sessionStorageItem: string | null = sessionStorage.getItem('promo');
-    let promo;
+    const promoData = this.getStorageData();
     let discount = ``;
-    if (sessionStorageItem) {
-      promo = JSON.parse(sessionStorageItem as string);
+
+    if (promoData[0].active !== -1) {
       discount = `Total: <span class="cart__total-count">${Math.round(
-        total() - (total() * promo[0].percent) / 100
+        total() - (total() * promoData[0].percent) / 100
       )}$</span>`;
     }
 
     if (d === 'noDiscount') {
-      if (!promo || promo[0].active === -1) {
+      if (promoData[0].active === -1) {
         return '';
       }
     }
 
-    if (promo) {
-      if (promo[0].active !== -1 || promo[0].active !== undefined) {
-        if (d === 'discount') {
-          return discount;
-        } else if (d === 'noDiscount') {
-          return noDiscount;
-        } else if (d === 'activeDiscount') {
-          return promo[0].activeDiscount;
-        }
+    if (promoData[0].active !== -1) {
+      if (d === 'discount') {
+        return discount;
+      } else if (d === 'noDiscount') {
+        return noDiscount;
+      } else if (d === 'activeDiscount') {
+        return promoData[0].activeDiscount;
       }
     } else {
       if (d === 'discount') {
@@ -186,7 +192,7 @@ class CartPage {
     }, 0);
   };
 
-  private generateCartItem= (): void => {
+  private generateCartItem = (): void => {
     const countPages = Math.ceil(this.cartItems.length / +this.pagesItems);
     const carts = [...this.cartItems];
     const arrCarts = [];
