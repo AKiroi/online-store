@@ -1,7 +1,7 @@
 import { createHTMLElement } from '../../utils/createHTMLElement';
-import { IErrorPage } from './../../data/types';
+import { ContainerElement } from './../../data/types';
 
-class ErrorPage implements IErrorPage {
+class ErrorPage implements ContainerElement {
   draw(): HTMLElement {
     const error = createHTMLElement('error');
     const errorContainer = createHTMLElement('error__container');

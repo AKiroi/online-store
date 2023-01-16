@@ -5,9 +5,9 @@ import Footer from '../footer/Footer';
 import { createHTMLElement } from '../../utils/createHTMLElement';
 import GoodsItemPage from '../../pages/goodsItemPage/GoodsItemPage';
 import dataGoods from '../../data/data';
-import { IFooter, IGoods } from '../../data/types';
+import { IGoods } from '../../data/types';
 import ErrorPage from './../../pages/errorPage/ErrorPage';
-import { IHeader } from './../../data/types';
+import { ContainerElement } from './../../data/types';
 
 enum LocationPath {
   MainPage = '/',
@@ -18,8 +18,8 @@ enum LocationPath {
 class App {
   private root: HTMLElement = document.body;
   private wrapper = createHTMLElement('wrapper');
-  private header: IHeader;
-  private footer: IFooter;
+  private header: ContainerElement;
+  private footer: ContainerElement;
 
   prevPathPage = '';
 
@@ -31,7 +31,7 @@ class App {
   private drawNewPage(location: string, id = ''): void {
     this.wrapper.innerHTML = '';
 
-    let changePage;
+    let changePage: ContainerElement;
 
     const goodsItem = dataGoods.find((item) => item.id === +id);
 
