@@ -1,6 +1,5 @@
-import { brandsArray } from "../data/data";
-import { Count, IGoods } from "../data/types";
-
+import { brandsArray } from '../data/data';
+import { Count, IGoods } from '../data/types';
 
 export const getCountBrandObj = (data: IGoods[]) => {
   return brandsArray.reduce((acc, brand) => {
@@ -12,4 +11,3 @@ export const getCountBrandObj = (data: IGoods[]) => {
     return acc;
   }, {} as Count);
 };
-

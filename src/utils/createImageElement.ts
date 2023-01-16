@@ -1,4 +1,8 @@
-export const  createImageElement = (elementClass: string | string[], elementSrc: string, elementAlt = ''): HTMLImageElement => {
+export const createImageElement = (
+  elementClass: string | string[],
+  elementSrc: string,
+  elementAlt = ''
+): HTMLImageElement => {
   const element = document.createElement('img');
 
   if (Array.isArray(elementClass)) {
@@ -6,10 +10,10 @@ export const  createImageElement = (elementClass: string | string[], elementSrc:
   } else {
     element.className = elementClass;
   }
-  if(elementAlt) {
+  if (elementAlt) {
     element.alt = elementAlt;
   }
   element.src = elementSrc;
-  
+
   return element;
-}
+};
