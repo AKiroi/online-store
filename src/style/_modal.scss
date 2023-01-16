@@ -31,41 +31,47 @@
       background-color: var(--color-orange);
       margin: 57px auto 35px auto;
       padding: 40px 15px 0 15px;
-      & .card__number {
-           border-color: transparent;
-           margin-bottom: 115px;
-           text-align: center;
-      }
-      & .card__number::placeholder {
-           text-align: center;
-      }
-      & .logo-card {
-        width: 100px;
-        height: 100px;
-        position: absolute;
-        top: 90px;
-        left: 50px;
-        & img {
-          margin-top: -15px;
-          width: 130px;
-          height: 130px;
-        }
-      }
-      .small {
-        display: inline-block;
-        width: 100px;
-        padding: 7px 8px;
-        text-align: center;
-      }
-      & .small::placeholder {
-        text-align: center;
-      }
-      & label {
-        font-size: 20px;
-        color: var(--color-grey);
-        margin-right: 15px;
-        margin-left: 10%;
-      }
+    }
+    &__card-number {
+      border-color: transparent;
+      margin-bottom: 115px;
+      text-align: center;
+    }
+    &__card-number::placeholder {
+      text-align: center;
+    }
+    &__logo-card {
+      width: 100px;
+      height: 100px;
+      position: absolute;
+      top: 90px;
+      left: 50px;
+    }
+    &__img {
+      margin-top: -15px;
+      width: 130px;
+      height: 130px;
+    }
+    
+    &__small {
+      display: inline-block;
+      width: 100px;
+      padding: 7px 8px;
+      text-align: center;
+      border: 2px solid var(--color-grey);
+      border-radius: 14px;
+      color: var(--color-grey);
+      font-size: 24px;
+      margin: 110px 0 0 -10px;
+    }
+    &__small::placeholder {
+      text-align: center;
+    }
+    &__label {
+      font-size: 20px;
+      color: var(--color-grey);
+      margin-right: 15px;
+      margin-left: 10%;
     }
     & .modal-btn {
       width: 150px;
