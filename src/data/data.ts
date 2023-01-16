@@ -79,7 +79,7 @@ const dataGoods: IGoods[] = [
     price: 1005,
     inStock: 7,
     rating: 4.78,
-    count: 0
+    count: 0,
   },
   {
     id: 6,
@@ -127,7 +127,7 @@ const dataGoods: IGoods[] = [
     price: 224,
     inStock: 5,
     rating: 4.32,
-    count: 0
+    count: 0,
   },
   {
     id: 9,
@@ -175,7 +175,7 @@ const dataGoods: IGoods[] = [
     price: 4580,
     inStock: 2,
     rating: 4.87,
-    count: 0
+    count: 0,
   },
   {
     id: 12,
@@ -191,7 +191,7 @@ const dataGoods: IGoods[] = [
     price: 1540,
     inStock: 6,
     rating: 4.95,
-    count: 0
+    count: 0,
   },
   {
     id: 13,
@@ -207,7 +207,7 @@ const dataGoods: IGoods[] = [
     price: 2400,
     inStock: 3,
     rating: 4.83,
-    count: 0
+    count: 0,
   },
   {
     id: 14,
@@ -223,7 +223,7 @@ const dataGoods: IGoods[] = [
     price: 765,
     inStock: 6,
     rating: 4.76,
-    count: 0
+    count: 0,
   },
   {
     id: 15,
@@ -255,7 +255,7 @@ const dataGoods: IGoods[] = [
     price: 2000,
     inStock: 1,
     rating: 4.32,
-    count: 0
+    count: 0,
   },
   {
     id: 17,
@@ -271,7 +271,7 @@ const dataGoods: IGoods[] = [
     price: 1950,
     inStock: 6,
     rating: 4.88,
-    count: 0
+    count: 0,
   },
   {
     id: 18,
@@ -287,7 +287,7 @@ const dataGoods: IGoods[] = [
     price: 2650,
     inStock: 4,
     rating: 4.72,
-    count: 0
+    count: 0,
   },
   {
     id: 19,
@@ -367,7 +367,7 @@ const dataGoods: IGoods[] = [
     price: 482,
     inStock: 3,
     rating: 4.97,
-    count: 0
+    count: 0,
   },
   {
     id: 24,
@@ -431,7 +431,7 @@ const dataGoods: IGoods[] = [
     price: 1599,
     inStock: 8,
     rating: 3.96,
-    count: 0
+    count: 0,
   },
   {
     id: 28,
@@ -488,16 +488,13 @@ export type FiltersObjectTypes = {
   category: Array<string>;
 };
 
-
 export const brandsArray: string[] = [...new Set(dataGoods.map((item) => item.brand))];
 
 export const categoryArray: string[] = [...new Set(dataGoods.map((item) => item.category))];
 
-
-
 export const filtersObject: FiltersObjectTypes = {
   brand: brandsArray,
   category: categoryArray,
-}
+};
 
 export default dataGoods;

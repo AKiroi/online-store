@@ -4,7 +4,6 @@ import { state } from './../../state/State';
 import { IHeader } from './../../data/types';
 
 class Header implements IHeader {
-  
   draw(): HTMLElement {
     const header = createHTMLElement('header', 'header');
     const headerContaner = createHTMLElement('header__container');
@@ -15,11 +14,10 @@ class Header implements IHeader {
     headerLogo.href = `#/`;
 
     const headerItem = createHTMLElement('header__item');
-    const headerItemText = createHTMLElement('header__item-text', 'span', 'Total: ' );
+    const headerItemText = createHTMLElement('header__item-text', 'span', 'Total: ');
     const headerItemTotal = createHTMLElement('header__item-total', 'span', `${state.getTotalPrice().toString()} $`);
 
     headerItem.append(headerItemText, headerItemTotal);
-
 
     const headerCart = document.createElement('a');
     headerCart.className = 'header__cart';
@@ -28,9 +26,9 @@ class Header implements IHeader {
     const headerCount = createHTMLElement('header__count', 'span');
     headerCount.textContent = `${state.getTotalCount().toString()}`;
 
-    headerCart.append(headerCartImg, headerCount)
+    headerCart.append(headerCartImg, headerCount);
     headerContaner.append(headerLogo, headerItem, headerCart);
-    header.append(headerContaner)
+    header.append(headerContaner);
 
     return header;
   }

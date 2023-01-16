@@ -13,7 +13,7 @@ class Goods {
   private rating;
   private id;
   private count;
-  
+
   constructor(goods: IGoods) {
     this.id = goods.id;
     this.brand = goods.brand;
@@ -28,10 +28,10 @@ class Goods {
   }
 
   private handlerCartButtonClick = (target: Element): void => {
-    const buttonCart = target.closest('.goods__btn')! as HTMLElement;
+    const buttonCart = target.closest('.goods__btn') as HTMLElement;
     const headerCartCount = document.querySelector('.header__count') as HTMLElement;
-    const headerTotal= document.querySelector('.header__item-total') as HTMLElement;
-    
+    const headerTotal = document.querySelector('.header__item-total') as HTMLElement;
+
     if (target.classList.contains('goods__btn_add')) {
       buttonCart.classList.remove('goods__btn_add');
       buttonCart.textContent = 'Add to cart';
@@ -46,7 +46,7 @@ class Goods {
     }
 
     headerCartCount.textContent = String(state.getTotalCount());
-    headerTotal.textContent = state.getTotalPrice().toString() + " $";
+    headerTotal.textContent = state.getTotalPrice().toString() + ' $';
     localStorage.setItem('cart', JSON.stringify(state.cart));
   };
 
@@ -66,7 +66,7 @@ class Goods {
     } else {
       return `<button class="goods__btn">Add to cart</button>`;
     }
-  }
+  };
 
   draw(): HTMLElement {
     const goodsContainer = createHTMLElement('goods__item');

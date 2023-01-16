@@ -4,25 +4,25 @@ import { getQueryParams } from './../../utils/getQueryParams';
 
 class PriceFilters {
   callBack: () => void;
-  
-  constructor (filterCallBack: () => void){
-    this.callBack = filterCallBack;
-  } 
 
-  handlerPriceFiltred = (e: Event): void => {
+  constructor(filterCallBack: () => void) {
+    this.callBack = filterCallBack;
+  }
+
+  handlerPriceFiltred = (): void => {
     const filterPriceRange = document.querySelectorAll('.price-filter__range') as NodeListOf<Element>;
     const filterPriceInputCustom = document.querySelector('.price-filter__input-custom') as HTMLElement;
     const filterPriceinputMin = <HTMLInputElement>document.querySelector('.price-filter__input-min');
     const filterPriceinputMax = <HTMLInputElement>document.querySelector('.price-filter__input-max');
-    const filterPriceNumberMin = <HTMLInputElement>document.querySelector('.price-filter__number-min')!;
-    const filterPriceNumberMax = <HTMLInputElement>document.querySelector('.price-filter__number-max')!;
-    let gap = 100;
+    const filterPriceNumberMin = <HTMLInputElement>document.querySelector('.price-filter__number-min');
+    const filterPriceNumberMax = <HTMLInputElement>document.querySelector('.price-filter__number-max');
+    const gap = 100;
 
     filterPriceRange.forEach((item) => {
       item.addEventListener('input', (e) => {
         const target = e.target as HTMLElement;
-        let minVal = parseInt(filterPriceinputMin.value);
-        let maxVal = parseInt(filterPriceinputMax.value);
+        const minVal = parseInt(filterPriceinputMin.value);
+        const maxVal = parseInt(filterPriceinputMax.value);
         state.priceValMin = minVal;
         state.priceValMax = maxVal;
 
@@ -30,7 +30,6 @@ class PriceFilters {
         getQueryParams.delete('priceMax');
         getQueryParams.append('priceMin', state.priceValMin.toString());
         getQueryParams.append('priceMax', state.priceValMax.toString());
-
 
         if (maxVal - minVal < gap) {
           if (target.classList.contains('price-filter__input-min')) {

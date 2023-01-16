@@ -1,12 +1,8 @@
 import { createHTMLElement } from '../../utils/createHTMLElement';
 import { createInputElement } from '../../utils/createInputElement';
-import { state } from "../../state/State";
+import { state } from '../../state/State';
 
 class ModalSubmit {
-  constructor() {
-    
-  }
-
   private handlerInput = (e: Event): void => {
     const input = e.target as HTMLInputElement;
     const inputRequest: string = input.value;
@@ -42,7 +38,7 @@ class ModalSubmit {
         input.value = numberCard;
         const cardLogo = document.querySelector('.logo-card') as HTMLElement;
         if (numberCard[0] === '3') {
-        cardLogo.innerHTML = '<img src="./assets/icons/american_express.png" alt="american express">';
+          cardLogo.innerHTML = '<img src="./assets/icons/american_express.png" alt="american express">';
         } else if (numberCard[0] === '4') {
           cardLogo.innerHTML = '<img src="./assets/icons/visa.png" alt="visa">';
         } else if (numberCard[0] === '5') {
@@ -87,8 +83,6 @@ class ModalSubmit {
       }
       input.value = cvvCard;
     }
-
-
 
     const button = e.target as HTMLButtonElement;
     if (button.classList.contains('close-btn')) {

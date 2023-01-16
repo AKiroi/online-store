@@ -242,16 +242,16 @@ class CartPage {
 
   private handlerCartItem = (e: Event) => {
     const target = e.target as HTMLElement;
-    const cartItem = target.closest('.cart__item')!;
+    const cartItem = target.closest('.cart__item') as HTMLElement;
     const dataId = cartItem.getAttribute('data-id') as string;
-    const cartAddCount = document.querySelectorAll('.cart__add-count')!;
-    const cartPrice = document.querySelectorAll('.cart__price')!;
-    const cartTotalCount = document.querySelector('.cart__total-count')!;
-    const cartProductCount = document.querySelector('.cart__product-count')!;
-    const headerItemText = document.querySelector('.header__item-total')!;
-    const headerCount  = document.querySelector('.header__count')!;
-    const cartOldPrice = document.querySelector('.cart__promo-old-price')!;
-    const cartTotal = document.querySelector('.cart__total')!;
+    const cartAddCount = document.querySelectorAll('.cart__add-count') as NodeList;
+    const cartPrice = document.querySelectorAll('.cart__price') as NodeList;
+    const cartTotalCount = document.querySelector('.cart__total-count') as HTMLElement;
+    const cartProductCount = document.querySelector('.cart__product-count') as HTMLElement;
+    const headerItemText = document.querySelector('.header__item-total') as HTMLElement;
+    const headerCount = document.querySelector('.header__count') as HTMLElement;
+    const cartOldPrice = document.querySelector('.cart__promo-old-price') as HTMLElement;
+    const cartTotal = document.querySelector('.cart__total') as HTMLElement;
 
     if (target.closest('.cart__right')) {
       window.location.hash = `#/goodsItem/${dataId}`;
@@ -294,11 +294,11 @@ class CartPage {
     headerCount.textContent = this.getCartItemsCount().toString();
     cartTotalCount.textContent = this.getCartTotalPrice().toString() + '$';
     headerItemText.textContent = this.getCartTotalPrice().toString() + '$';
-  }
+  };
 
   private drawCartItem = (): void => {
-    const cartItems = document.querySelector('.cart__items')!;
-    const cartContainer = document.querySelector('.cart')!;
+    const cartItems = document.querySelector('.cart__items') as HTMLElement;
+    const cartContainer = document.querySelector('.cart') as HTMLElement;
 
     if (this.cartPages.length !== 0) {
       cartItems.innerHTML = '';
@@ -313,11 +313,10 @@ class CartPage {
   private handlerPaginationBtn = (e: Event): void => {
     const cartPagesArrowLeft = document.querySelector('.cart__pages-arrow-left');
     const cartPagesArrowRight = document.querySelector('.cart__pages-arrow-right');
-    const cartPageCount = document.querySelector('.cart__pages-count')!;
+    const cartPageCount = document.querySelector('.cart__pages-count') as HTMLElement;
 
     if (e.target === cartPagesArrowLeft) {
-      if (this.currentPage <= 1) {
-      } else {
+      if (this.currentPage > 1) {
         this.currentPage--;
       }
     }
@@ -327,7 +326,7 @@ class CartPage {
     }
     getQueryParams.delete('page');
     getQueryParams.append('page', this.currentPage.toString());
-    window.location.hash = !!getQueryParams.toString() ? `/cart?${getQueryParams.toString()}` : `/cart`;
+    window.location.hash = getQueryParams.toString() ? `/cart?${getQueryParams.toString()}` : `/cart`;
     cartPageCount.textContent = this.currentPage.toString();
     this.drawCartItem();
   };
@@ -340,11 +339,11 @@ class CartPage {
 
     getQueryParams.delete('limit');
     getQueryParams.append('limit', valueItems.toString());
-    window.location.hash = !!getQueryParams.toString() ? `/cart?${getQueryParams.toString()}` : `/cart`;
+    window.location.hash = getQueryParams.toString() ? `/cart?${getQueryParams.toString()}` : `/cart`;
 
     this.generateCartItem();
     this.drawCartItem();
-  }
+  };
 
   draw(): HTMLElement {
     const cartContainer = createHTMLElement('cart');
@@ -377,7 +376,7 @@ class CartPage {
       cartHeaderItems.append(cartHeaderItemsText, cartHeaderItem);
       cartHeaderBox.append(cartHeaderItems, cartHeaderPages);
       cartHeader.append(cartHeaderTitle, cartHeaderBox);
-      
+
       cartHeaderPages?.addEventListener('click', this.handlerPaginationBtn);
       cartHeaderItem.addEventListener('change', this.handlerInputPageItems);
 

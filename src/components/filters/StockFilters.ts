@@ -2,7 +2,6 @@ import { createHTMLElement } from '../../utils/createHTMLElement';
 import { state } from './../../state/State';
 import { getQueryParams } from './../../utils/getQueryParams';
 
-
 class StockFilters {
   callBack: () => void;
 
@@ -10,20 +9,20 @@ class StockFilters {
     this.callBack = filterCallBack;
   }
 
-  handlerStockFiltred = (e: Event): void => {
+  handlerStockFiltred = (): void => {
     const filterStockRange = document.querySelectorAll('.stock-filter__range') as NodeListOf<Element>;
     const filterStockInputCustom = document.querySelector('.stock-filter__input-custom') as HTMLElement;
     const filterStockInputMin = <HTMLInputElement>document.querySelector('.stock-filter__input-min');
     const filterStockInputMax = <HTMLInputElement>document.querySelector('.stock-filter__input-max');
-    const filterStockNumberMin = <HTMLInputElement>document.querySelector('.stock-filter__number-min')!;
-    const filterStockNumberMax = <HTMLInputElement>document.querySelector('.stock-filter__number-max')!;
-    let gap = 1;
+    const filterStockNumberMin = <HTMLInputElement>document.querySelector('.stock-filter__number-min');
+    const filterStockNumberMax = <HTMLInputElement>document.querySelector('.stock-filter__number-max');
+    const gap = 1;
 
     filterStockRange.forEach((item) => {
       item.addEventListener('input', (e) => {
         const target = e.target as HTMLElement;
-        let minVal = parseInt(filterStockInputMin.value);
-        let maxVal = parseInt(filterStockInputMax.value);
+        const minVal = parseInt(filterStockInputMin.value);
+        const maxVal = parseInt(filterStockInputMax.value);
         state.stockValMin = minVal;
         state.stockValMax = maxVal;
 
