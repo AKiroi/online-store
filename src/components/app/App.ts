@@ -31,7 +31,7 @@ class App {
   private drawNewPage(location: string, id = ''): void {
     this.wrapper.innerHTML = '';
 
-    let changePage;
+    let changePage: ContainerElement;
 
     const goodsItem = dataGoods.find((item) => item.id === +id);
 
