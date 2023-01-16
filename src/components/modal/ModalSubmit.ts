@@ -17,10 +17,8 @@ class ModalSubmit {
     }
 
     if (input.classList.contains('number-phone')) {
-      if (e.type === 'click') {
-        if (inputRequest.length === 0) {
-          input.value = '+';
-        }
+      if (e.type === 'click' && inputRequest.length === 0) {
+        input.value = '+';
       }
       if (e.type === 'input') {
         if (inputRequest.length === 0) {
