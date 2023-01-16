@@ -1,25 +1,25 @@
 import Header from '../header/Header';
 import MainPage from '../../pages/mainPage/MainPage';
 import CartPage from '../../pages/cartPage/CartPage';
-import ModalPage from '../../components/modal/ModalSubmit';
 import Footer from '../footer/Footer';
 import { createHTMLElement } from '../../utils/createHTMLElement';
 import GoodsItemPage from '../../pages/goodsItemPage/GoodsItemPage';
 import dataGoods from '../../data/data';
-import { Igoods } from '../../data/types';
+import { IGoods } from '../../data/types';
 import ErrorPage from './../../pages/errorPage/ErrorPage';
+import { ContainerElement } from './../../data/types';
 
-const LocationPath: Record<string, string> = {
-  MainPage: '/',
-  CartPage: '/cart',
-  GoodsItemPage: `/goodsItem`,
-};
+enum LocationPath {
+  MainPage = '/',
+  CartPage = '/cart',
+  GoodsItemPage = `/goodsItem`,
+}
 
 class App {
   private root: HTMLElement = document.body;
   private wrapper = createHTMLElement('wrapper');
-  private header: Header;
-  private footer: Footer;
+  private header: ContainerElement;
+  private footer: ContainerElement;
 
   prevPathPage = '';
 
@@ -28,10 +28,10 @@ class App {
     this.footer = new Footer();
   }
 
-  drawNewPage(location: string, id = ''): void {
+  private drawNewPage(location: string, id = ''): void {
     this.wrapper.innerHTML = '';
 
-    let changePage;
+    let changePage: ContainerElement;
 
     const goodsItem = dataGoods.find((item) => item.id === +id);
 
@@ -40,9 +40,11 @@ class App {
     } else if (location === LocationPath.CartPage) {
       changePage = new CartPage();
     } else if (location === LocationPath.GoodsItemPage) {
-      changePage = new GoodsItemPage(goodsItem as Igoods);
-    } else if (location === LocationPath.ModalPage) {
-      changePage = new ModalPage();
+      if (+id > 0 && +id <= +dataGoods.length) {
+        changePage = new GoodsItemPage(goodsItem as IGoods);
+      } else {
+        changePage = new ErrorPage();
+      }
     } else {
       changePage = new ErrorPage();
     }
@@ -53,12 +55,12 @@ class App {
     }
   }
 
-  handleHashChange(): void {
+  private handleHashChange(): void {
     window.addEventListener('hashchange', this.loadHashPage);
     window.addEventListener('load', this.loadHashPage);
   }
 
-  loadHashPage = () => {
+  private loadHashPage = (): void => {
     const hash = window.location.hash.slice(1);
     const hashArr = hash.split('/');
     const pathPage = hash.slice(0, hash.indexOf('?'));
@@ -79,7 +81,7 @@ class App {
         this.drawNewPage(hash);
       }
     }
-  }
+  };
 
   start(): void {
     this.handleHashChange();

@@ -1,4 +1,3 @@
-
 import { createHTMLElement } from '../../utils/createHTMLElement';
 import { categoryArray } from '../../data/data';
 import { state } from '../../state/State';
@@ -6,26 +5,24 @@ import { getCountCategoryObj } from '../../utils/getCountCategoryObj';
 
 class CategoryFilters {
   callBack: () => void;
-  constructor (filterCallBack: () => void){
+  constructor(filterCallBack: () => void) {
     this.callBack = filterCallBack;
   }
-  
+
   private filterCategory = (e: Event): void => {
     const target = e.target as HTMLInputElement;
     const dataCategory = target.getAttribute('data-category') as string;
-    
-    
+
     if (target.checked === true) {
       state.filters.category.push(dataCategory);
     } else {
-      const index = state.filters.category.findIndex((item) => item === dataCategory)
+      const index = state.filters.category.findIndex((item) => item === dataCategory);
       state.filters.category.splice(index, 1);
     }
-   
+
     state.filtredCategoryState();
     this.callBack();
-
-  }
+  };
 
   draw(): HTMLElement {
     const categoryFilterContainer = createHTMLElement(['filters__category', 'category-filter']);
@@ -46,7 +43,7 @@ class CategoryFilters {
       const categoryFilterCustomCheckbox = createHTMLElement('brand-filter__custom-checkbox', 'span');
       const categoryFilterName = createHTMLElement('brand-filter__name', 'span', categoryItem);
 
-      const countCategory: string = getCountCategoryObj(state.goods)[categoryItem].toString();      
+      const countCategory: string = getCountCategoryObj(state.goods)[categoryItem].toString();
       const categoryFilterCountContainer = createHTMLElement('category-filter__count-container');
       const categoryFilterCount = createHTMLElement('category-filter__count', 'span', `/${countCategory}`);
       const categoryFilterCountFiltred = createHTMLElement('category-filter__count-filtred', 'span', countCategory);
@@ -57,7 +54,7 @@ class CategoryFilters {
         categoryFilterCountFiltred.textContent = countCategory;
         inputFilterCheckbox.checked = false;
       }
-      
+
       categoryFilterCountContainer.append(categoryFilterCountFiltred, categoryFilterCount);
       categoryFilterWrapper.append(inputFilterCheckbox, categoryFilterCustomCheckbox, categoryFilterName);
       categoryFilterItem.append(categoryFilterWrapper, categoryFilterCountContainer);

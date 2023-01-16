@@ -1,7 +1,7 @@
-import { createHTMLElement } from "../../utils/createHTMLElement";
-import { Igoods } from "../../data/types";
-import { state } from "../../state/State";
-import cartPage from "../../pages/cartPage/CartPage";
+import { createHTMLElement } from '../../utils/createHTMLElement';
+import { IGoods } from '../../data/types';
+import { state } from '../../state/State';
+import cartPage from '../../pages/cartPage/CartPage';
 
 class GoodsItemPage {
   private brand;
@@ -14,7 +14,7 @@ class GoodsItemPage {
   private id;
   private cartPage;
 
-  constructor(goods: Igoods) {
+  constructor(goods: IGoods) {
     this.id = goods.id;
     this.brand = goods.brand;
     this.category = goods.category;
@@ -29,6 +29,7 @@ class GoodsItemPage {
   private handlerCartButtonClick = (target: Element): void => {
     const buttonCart = document.querySelector('.drop__btn') as HTMLElement;
     const headerCartCount = document.querySelector('.header__count') as HTMLElement;
+    const headerTotal = document.querySelector('.header__item-total') as HTMLElement;
     if (target.classList.contains('btn_remove')) {
       buttonCart.classList.remove('btn_remove');
       buttonCart.textContent = 'Drop on cart';
@@ -40,8 +41,10 @@ class GoodsItemPage {
       state.cart.push(this.goodsItem);
       state.cart[state.cart.length - 1].count = 1;
     }
+
     headerCartCount.textContent = String(state.cart.length);
     localStorage.setItem('cart', JSON.stringify(state.cart));
+    headerTotal.textContent = state.getTotalPrice().toString() + ' $';
   };
 
   public findElementToLocalStorage(n: string): number {

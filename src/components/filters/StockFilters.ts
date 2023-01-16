@@ -2,7 +2,6 @@ import { createHTMLElement } from '../../utils/createHTMLElement';
 import { state } from './../../state/State';
 import { getQueryParams } from './../../utils/getQueryParams';
 
-
 class StockFilters {
   callBack: () => void;
 
@@ -10,20 +9,20 @@ class StockFilters {
     this.callBack = filterCallBack;
   }
 
-  handlerStockFiltred = (e: Event): void => {
+  handlerStockFiltred = (): void => {
     const filterStockRange = document.querySelectorAll('.stock-filter__range') as NodeListOf<Element>;
     const filterStockInputCustom = document.querySelector('.stock-filter__input-custom') as HTMLElement;
     const filterStockInputMin = <HTMLInputElement>document.querySelector('.stock-filter__input-min');
     const filterStockInputMax = <HTMLInputElement>document.querySelector('.stock-filter__input-max');
-    const filterStockNumberMin = <HTMLInputElement>document.querySelector('.stock-filter__number-min')!;
-    const filterStockNumberMax = <HTMLInputElement>document.querySelector('.stock-filter__number-max')!;
-    let gap = 1;
+    const filterStockNumberMin = <HTMLInputElement>document.querySelector('.stock-filter__number-min');
+    const filterStockNumberMax = <HTMLInputElement>document.querySelector('.stock-filter__number-max');
+    const gap = 1;
 
     filterStockRange.forEach((item) => {
       item.addEventListener('input', (e) => {
         const target = e.target as HTMLElement;
-        let minVal = parseInt(filterStockInputMin.value);
-        let maxVal = parseInt(filterStockInputMax.value);
+        const minVal = parseInt(filterStockInputMin.value);
+        const maxVal = parseInt(filterStockInputMax.value);
         state.stockValMin = minVal;
         state.stockValMax = maxVal;
 
@@ -76,29 +75,3 @@ class StockFilters {
 }
 
 export default StockFilters;
-
-//draw(): HTMLElement {
-//  const priceFilter = createHTMLElement(['filters__stock', 'stock-filter']);
-
-//  priceFilter.innerHTML = `
-//        <div class="stock-filter__title">Stock</div>
-//        <div class="stock-filter__numbers-wrapper">
-//          <div class="stock-filter__min">
-//            <input class="stock-filter__number-min" type="number" min="0" max="30" value="0" disabled>
-//          </div>
-//          <div class="stock-filter__max">
-//            <input type="number" class="stock-filter__number-max" min="0" max="30" value="30" disabled>
-//          </div>
-//        </div>
-//        <div class="stock-filter__wrapper">
-//          <div class="stock-filter__input-custom"></div>
-//          <input type="range" class="stock-filter__input-min stock-filter__range" min="0" max="30" value="0">
-//          <input type="range" class="stock-filter__input-max stock-filter__range" min="0" max="30" value="30">
-//        </div>
-//    `;
-
-//  return priceFilter;
-//}
-//}
-
-//export default StockFilters;

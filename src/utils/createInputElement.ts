@@ -1,4 +1,8 @@
-export const createInputElement = (elementClass: string | string[], elementType: string, placeholder: string): HTMLInputElement => {
+export const createInputElement = (
+  elementClass: string | string[],
+  elementType: string,
+  placeholder: string
+): HTMLInputElement => {
   const element = document.createElement('input');
   if (Array.isArray(elementClass)) {
     element.className = elementClass.join(' ');

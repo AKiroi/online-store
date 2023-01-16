@@ -1,4 +1,8 @@
-export const  createHTMLElement = (elementClass: string | string[], elementName: string = 'div', elementText = ''): HTMLElement => {
+export const createHTMLElement = (
+  elementClass: string | string[],
+  elementName = 'div',
+  elementText = ''
+): HTMLElement => {
   const element = document.createElement(elementName);
 
   if (Array.isArray(elementClass)) {
@@ -6,9 +10,9 @@ export const  createHTMLElement = (elementClass: string | string[], elementName:
   } else {
     element.className = elementClass;
   }
-  if(elementText) {
+  if (elementText) {
     element.textContent = elementText;
   }
-  
+
   return element;
-}
+};

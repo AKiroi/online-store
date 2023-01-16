@@ -1,28 +1,27 @@
-
-import { createHTMLElement } from "../../utils/createHTMLElement";
-import Search from "../../components/search/Search";
-import Sort from "../../components/sort/Sort";
-import BrandFilters from "../../components/filters/BrandFilters";
-import CategoryFilters from "../../components/filters/CategoryFilters";
-import PriceFilters from "../../components/filters/PriceFilters";
-import StockFilters from "../../components/filters/StockFilters";
-import { state } from "../../state/State";
-import dataGoods from "../../data/data";
-import Goods from "../../components/goods/Goods";
-import ViewButton from "../../components/View/ViewButton";
-import { getCountBrandObj } from "../../utils/getCountBrandObject";
-import { getCountCategoryObj } from "../../utils/getCountCategoryObj";
-import { getQueryParams } from "../../utils/getQueryParams";
+import { createHTMLElement } from '../../utils/createHTMLElement';
+import Search from '../../components/search/Search';
+import Sort from '../../components/sort/Sort';
+import BrandFilters from '../../components/filters/BrandFilters';
+import CategoryFilters from '../../components/filters/CategoryFilters';
+import PriceFilters from '../../components/filters/PriceFilters';
+import StockFilters from '../../components/filters/StockFilters';
+import { state } from '../../state/State';
+import dataGoods from '../../data/data';
+import Goods from '../../components/goods/Goods';
+import ViewButton from '../../components/View/ViewButton';
+import { getCountBrandObj } from '../../utils/getCountBrandObject';
+import { getCountCategoryObj } from '../../utils/getCountCategoryObj';
+import { getQueryParams } from '../../utils/getQueryParams';
 import { deleteQuerryParams } from './../../utils/getQueryParams';
 
 class MainPage {
-  private search;
-  private sort;
-  private brandFilters;
-  private categoryFilters;
-  private priceFilters;
-  private stockFilters;
-  private viewButtons;
+  private search: Search;
+  private sort: Sort;
+  private brandFilters: BrandFilters;
+  private categoryFilters: CategoryFilters;
+  private priceFilters: PriceFilters;
+  private stockFilters: StockFilters;
+  private viewButtons: ViewButton;
 
   mainGoods = createHTMLElement('main__goods');
   goodsContainer = createHTMLElement('goods');
@@ -45,17 +44,18 @@ class MainPage {
     this.setParamsToUrl();
 
     Object.values(getCountBrandObj(state.filtredGoods)).forEach((count, i) => {
-      const filtredCountElem = document.querySelectorAll('.brand-filter__count-filtred')!;
+      const filtredCountElem = document.querySelectorAll('.brand-filter__count-filtred') as NodeList;
       filtredCountElem[i].textContent = String(count);
     });
+
     Object.values(getCountCategoryObj(state.filtredGoods)).forEach((count, i) => {
-      const filtredCountElem = document.querySelectorAll('.category-filter__count-filtred')!;
+      const filtredCountElem = document.querySelectorAll('.category-filter__count-filtred') as NodeList;
       filtredCountElem[i].textContent = String(count);
     });
     this.goodsSortFoundCount.textContent = `${state.filtredGoods.length}`;
 
     this.goodsFiltredCreate();
-  }
+  };
 
   private setParamsToUrl(): void {
     getQueryParams.delete('brand');
@@ -72,17 +72,17 @@ class MainPage {
     if (state.search) {
       getQueryParams.append('search', state.search);
     }
-    if (state.filters.brand.length !== 0) { 
+    if (state.filters.brand.length !== 0) {
       state.filters.brand.forEach((brand) => getQueryParams.append('brand', brand));
     }
 
-    if (state.filters.category.length !== 0) { 
+    if (state.filters.category.length !== 0) {
       state.filters.category.forEach((category) => getQueryParams.append('category', category));
     }
     if (state.sort) {
       getQueryParams.append('sort', state.sort);
     }
-    window.location.hash = !!getQueryParams.toString() ? `/?${getQueryParams.toString()}` : `/`;
+    window.location.hash = getQueryParams.toString() ? `/?${getQueryParams.toString()}` : `/`;
   }
 
   private goodsFiltredCreate(): void {
@@ -135,9 +135,6 @@ class MainPage {
     const mainFilters = createHTMLElement(['main__filters', 'filters']);
     const goodsSort = createHTMLElement('goods-sort');
     const goodsSortFound = createHTMLElement('goods-sort__found', 'div', 'Found: ');
-    //const goodsSortFoundCount = createHTMLElement('goods-sort__found-count', 'span', `${state.filtredGoods.length}`);
-    
-
     const filtersButtons = createHTMLElement('filters__buttons');
 
     const filtersResetButton = createHTMLElement('filters__reset-btn', 'button', 'Reset filters');

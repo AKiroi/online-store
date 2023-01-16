@@ -1,9 +1,9 @@
 import { createHTMLElement } from '../../utils/createHTMLElement';
 import { createImageElement } from '../../utils/createImageElement';
 import { state } from './../../state/State';
+import { ContainerElement } from './../../data/types';
 
-class Header {
-  
+class Header implements ContainerElement {
   draw(): HTMLElement {
     const header = createHTMLElement('header', 'header');
     const headerContaner = createHTMLElement('header__container');
@@ -14,11 +14,10 @@ class Header {
     headerLogo.href = `#/`;
 
     const headerItem = createHTMLElement('header__item');
-    const headerItemText = createHTMLElement('header__item-text', 'span', 'Total: ' );
+    const headerItemText = createHTMLElement('header__item-text', 'span', 'Total: ');
     const headerItemTotal = createHTMLElement('header__item-total', 'span', `${state.getTotalPrice().toString()} $`);
 
     headerItem.append(headerItemText, headerItemTotal);
-
 
     const headerCart = document.createElement('a');
     headerCart.className = 'header__cart';
@@ -27,9 +26,9 @@ class Header {
     const headerCount = createHTMLElement('header__count', 'span');
     headerCount.textContent = `${state.getTotalCount().toString()}`;
 
-    headerCart.append(headerCartImg, headerCount)
+    headerCart.append(headerCartImg, headerCount);
     headerContaner.append(headerLogo, headerItem, headerCart);
-    header.append(headerContaner)
+    header.append(headerContaner);
 
     return header;
   }

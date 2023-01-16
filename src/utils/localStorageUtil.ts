@@ -1,4 +1,4 @@
-import { Igoods } from '../data/types';
+import { IGoods } from '../data/types';
 class LocalStorageUtil {
   key: string;
 
@@ -6,7 +6,7 @@ class LocalStorageUtil {
     this.key = 'cart';
   }
 
-  getCartItems(): Igoods[] {
+  getCartItems(): IGoods[] {
     const cartItemsLocalStorage: string | null = localStorage.getItem(this.key);
     if (cartItemsLocalStorage !== null) {
       return JSON.parse(cartItemsLocalStorage);

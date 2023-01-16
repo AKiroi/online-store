@@ -1,7 +1,6 @@
 import { createHTMLElement } from '../../utils/createHTMLElement';
-import { Igoods } from '../../data/types';
+import { IGoods } from '../../data/types';
 import { state } from './../../state/State';
-import { localStorageUtil } from './../../utils/localStorageUtil';
 
 class Goods {
   private brand;
@@ -14,8 +13,8 @@ class Goods {
   private rating;
   private id;
   private count;
-  
-  constructor(goods: Igoods) {
+
+  constructor(goods: IGoods) {
     this.id = goods.id;
     this.brand = goods.brand;
     this.category = goods.category;
@@ -29,23 +28,16 @@ class Goods {
   }
 
   private handlerCartButtonClick = (target: Element): void => {
-    const buttonCart = target.closest('.goods__btn')! as HTMLElement;
+    const buttonCart = target.closest('.goods__btn') as HTMLElement;
     const headerCartCount = document.querySelector('.header__count') as HTMLElement;
-    const headerTotal= document.querySelector('.header__item-total') as HTMLElement;
-    const data = localStorageUtil.getCartItems();
-
-    //console.log(data);
-    
+    const headerTotal = document.querySelector('.header__item-total') as HTMLElement;
 
     if (target.classList.contains('goods__btn_add')) {
       buttonCart.classList.remove('goods__btn_add');
       buttonCart.textContent = 'Add to cart';
-
       this.goodsItem.count = 0;
-
       const index = state.cart.findIndex((item) => item.id === this.id);
       state.cart.splice(index, 1);
-      
     } else {
       buttonCart.classList.add('goods__btn_add');
       buttonCart.textContent = 'Drop from cart';
@@ -54,7 +46,7 @@ class Goods {
     }
 
     headerCartCount.textContent = String(state.getTotalCount());
-    headerTotal.textContent = state.getTotalPrice().toString() + " $";
+    headerTotal.textContent = state.getTotalPrice().toString() + ' $';
     localStorage.setItem('cart', JSON.stringify(state.cart));
   };
 
@@ -68,27 +60,18 @@ class Goods {
     }
   };
 
+  private createButtonAdd = (): string => {
+    if (state.cart.some((item) => item.id === this.id)) {
+      return `<button class="goods__btn goods__btn_add">Drop from cart</button>`;
+    } else {
+      return `<button class="goods__btn">Add to cart</button>`;
+    }
+  };
+
   draw(): HTMLElement {
     const goodsContainer = createHTMLElement('goods__item');
 
     goodsContainer.addEventListener('click', this.handlerGoodsItem);
-    let classRemoveButton = '';
-    let textButton = 'Add to card';
-    if (localStorage.getItem('cart')) {
-      if (
-        JSON.parse(localStorage.getItem('cart') as string).findIndex(
-          (el: Element) => el.id.toString() === this.id.toString()
-        ) !== -1
-      ) {
-        textButton = 'Drop from card';
-        classRemoveButton = ' goods__btn_add';
-      }
-    }
-
-    const data = localStorageUtil.getCartItems();
-
-
-
 
     goodsContainer.innerHTML = `
       <div class="goods__content-wrapper">
@@ -107,7 +90,7 @@ class Goods {
       </div>
       <div class="goods__price-block">
         <div class="goods__price">$${this.price}</div>
-        <button class="goods__btn${classRemoveButton}">${textButton}</button>
+        ${this.createButtonAdd()}
       </div>
   `;
 

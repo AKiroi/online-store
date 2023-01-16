@@ -3,12 +3,12 @@
 @import "./style/_goods-section.scss";
 @import "./style/_sort-search.scss";
 @import "./style/_footer.scss";
-@import "style/cart";
-@import "style/goods-item";
-@import "style/modal";
+@import "style/_cart.scss";
+@import "style/_goods-item.scss";
+@import "style/_modal.scss";
 
 :root {
-	--color-backgrounfd: #121c1e;
+	--color-background: #121c1e;
 	--color-orange: #ffca94;
 	--color-orange-light: #f2d0ae;
 	--color-white: #fff;
@@ -115,7 +115,7 @@ body {
 	font-size: 15px;
 	font-weight: 400;
 	color: #545454;
-	background-color: var(--color-backgrounfd);
+	background-color: var(--color-background);
   min-height: 100vh;
 	display: flex;
 	flex-direction: column;
