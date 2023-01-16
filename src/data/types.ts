@@ -12,12 +12,6 @@ export interface IGoods {
   count: number;
 }
 
-export interface IHeader {
-  draw: () => HTMLElement;
-}
-export interface IFooter {
-  draw: () => HTMLElement;
-}
-export interface IErrorPage {
+export interface ContainerElement {
   draw: () => HTMLElement;
 }
